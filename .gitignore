@@ -1,0 +1,11 @@
+GraphicProject/
+*.cs
+!default.cs
+*.config
+!default.config
+*.resx
+!default.resx
+*.csproj
+!default.csproj
+*.settings
+!default.settings
