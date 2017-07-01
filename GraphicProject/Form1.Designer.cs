@@ -35,16 +35,21 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(229, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(682, 606);
+            this.panel1.Size = new System.Drawing.Size(1121, 732);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // button1
             // 
@@ -102,11 +107,40 @@
             this.button6.Text = "Hình Tam giác";
             this.button6.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 638);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Màu sắc:";
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(91, 638);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 23);
+            this.label2.TabIndex = 0;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(146, 630);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(77, 37);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "Chọn...";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 642);
+            this.ClientSize = new System.Drawing.Size(1362, 784);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -118,6 +152,7 @@
             this.Text = "Đề tài môn Kỹ Thuật Đồ Họa";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -130,6 +165,10 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

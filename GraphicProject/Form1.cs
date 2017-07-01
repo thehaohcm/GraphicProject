@@ -21,12 +21,14 @@ namespace GraphicProject
 
         List<Shape> shapeSet;
         Shape shape;
-        bool endClick = false;
+        bool endClick = false, cancelDraw = false;
+        TypeDraw typeCurrent;
         
         public Form1()
         {
             InitializeComponent();
             shapeSet = new List<Shape>();
+            label2.BackColor = colorDialog1.Color;
         }
 
         public void drawCoordinates()
@@ -56,7 +58,9 @@ namespace GraphicProject
             //    g.DrawLine(new Pen(Color.Black, 3), new Point(234, 118), new Point(293, 228));
             //}
             shape = new Line();
+            shape.setColor(colorDialog1.Color);
             endClick = false;
+            typeCurrent = TypeDraw.Line;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -67,54 +71,139 @@ namespace GraphicProject
 
         private void paint(Object sender,PaintEventArgs e)
         {
-            foreach(Shape s in shapeSet)
+            foreach (Shape s in shapeSet)
             {
                 Pen pen = new Pen(s.getColor(), 3);
                 Graphics g = this.panel1.CreateGraphics();
-                if (s.getTypeDraw()==TypeDraw.Line)
+                if (s.getTypeDraw() == TypeDraw.Line)
                 {
                     Line line = (Line)s;
                     g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
                 }
                 g.Dispose();
             }
+
+            if (endClick)
+            {
+                switch (shape.getTypeDraw())
+                {
+                    case TypeDraw.Line:
+                        Line line = (Line)shape;
+                        if (line.getEndPoint() != null)
+                        {
+                            Pen pen = new Pen(shape.getColor(), 3);
+                            Graphics g = this.panel1.CreateGraphics();
+                            g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                        }
+                        break;
+                }
+
+            }
         }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!endClick)
+            if (e.Button == MouseButtons.Left)
             {
-                switch (shape.getTypeDraw())
+                if (shape == null)
                 {
-                    case TypeDraw.Line:
-                        Line line = (Line)shape;
-                        line.setStartPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
-                        endClick = true;
-                        break;
-                    case TypeDraw.Circle:
+                    MessageBox.Show("Bạn vui lòn chọn hình trước khi vẽ");
+                    return;
+                }
+                if (!endClick)
+                {
+                    switch (shape.getTypeDraw())
+                    {
+                        case TypeDraw.Line:
+                            Line line = (Line)shape;
+                            line.setStartPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
+                            endClick = true;
+                            break;
+                        case TypeDraw.Circle:
 
-                        break;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (shape.getTypeDraw())
+                    {
+                        case TypeDraw.Line:
+                            Line line = (Line)shape;
+                            line.setEndPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
+                            endClick = false;
+                            break;
+                    }
+                    shapeSet.Add(shape);
+                    panel1.Paint += new PaintEventHandler(paint);
+                    panel1.Refresh();
+                    shape = new Line();
+
                 }
             }
-            else
+            else if (e.Button == MouseButtons.Right)
             {
-                switch (shape.getTypeDraw())
+                cancelDraw = true;
+                endClick = false;
+                shape = null;
+                switch (typeCurrent)
                 {
                     case TypeDraw.Line:
-                        Line line = (Line)shape;
-                        line.setEndPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
+                        shape = new Line();
+                        break;
+                    case TypeDraw.Circle:
+                        shape = new Circle();
+                        break;
+                    case TypeDraw.Ellipse:
+                        shape = new Ellipse();
+                        break;
+                    case TypeDraw.Parallelogram:
+                        shape = new Parallelogram();
+                        break;
+                    case TypeDraw.Rectangle:
+                        shape = new Rectangle();
+                        break;
+                    case TypeDraw.Square:
+                        shape = new Square();
+                        break;
+                    case TypeDraw.Triangle:
+                        shape = new Triangle();
                         break;
                 }
-                shapeSet.Add(shape);
                 panel1.Paint += new PaintEventHandler(paint);
                 panel1.Refresh();
-                endClick = false;
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                label2.BackColor = colorDialog1.Color;
+                if (shape != null)
+                    shape.setColor(colorDialog1.Color);
+            }
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (endClick)
+            {
+                switch (shape.getTypeDraw())
+                {
+                    case TypeDraw.Line:
+                        Line line = (Line)shape;
+                        line.setEndPoint(new Point(e.X, e.Y));
+                        break;
+                }
+                panel1.Paint += new PaintEventHandler(paint);
+                panel1.Refresh();
+            }
         }
     }
 }
