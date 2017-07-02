@@ -35,7 +35,7 @@ namespace GraphicProject
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
-            DrawShape.drawCoordinates(this);
+            drawShape.drawCoordinates();
         }
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
@@ -53,7 +53,8 @@ namespace GraphicProject
                     {
                         case TypeDraw.Line:
                             Line line = (Line)drawShape.getShape();
-                            line.setStartPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
+                            //line.setStartPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
+                            line.setStartPoint(drawShape.roundPoint(e.X, e.Y));
                             break;
                         case TypeDraw.Circle:
 
@@ -66,7 +67,8 @@ namespace GraphicProject
                     {
                         case TypeDraw.Line:
                             Line line = (Line)drawShape.getShape();
-                            line.setEndPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
+                            //line.setEndPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
+                            line.setEndPoint(drawShape.roundPoint(e.X, e.Y));
                             break;
                     }
                     drawShape.addShapeToShapeSet();
@@ -100,18 +102,18 @@ namespace GraphicProject
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
-            if(drawShape.getShape()!=null&&drawShape.getShape().checkDrawable())//if (endClick)
-            {
-                switch (drawShape.getShape().getTypeDraw())
-                {
-                    case TypeDraw.Line:
-                        Line line = (Line)drawShape.getShape();
-                        line.setEndPoint(new Point(e.X, e.Y));
-                        break;
-                }
-                panel1.Paint += new PaintEventHandler(drawShape.paint);
-                panel1.Refresh();
-            }
+            //if(drawShape.getShape()!=null&&drawShape.getShape().checkDrawable())//if (endClick)
+            //{
+            //    switch (drawShape.getShape().getTypeDraw())
+            //    {
+            //        case TypeDraw.Line:
+            //            Line line = (Line)drawShape.getShape();
+            //            line.setEndPoint(drawShape.roundPoint(e.X,e.Y));
+            //            break;
+            //    }
+            //    panel1.Paint += new PaintEventHandler(drawShape.paint);
+            //    panel1.Refresh();
+            //}
         }
 
         private void button5_Click(object sender, EventArgs e)

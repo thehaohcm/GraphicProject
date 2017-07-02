@@ -55,15 +55,82 @@ namespace GraphicProject
             initShape(shape.getTypeDraw());
         }
 
-        public static int round(float num)
+        private void putcolor(int x, int y, Color m)
         {
-            //handle
-            return 1;
+            if (x < 0 || x > 400 || y < 0 || y > 400) return;
+            //arrcolor[round(y) / 5, round(x) / 5] = m;
         }
 
-        public static void drawDDA()
+        private void putpixel(int x, int y, Color m)
         {
+            if (x < 0 || x > 400 || y < 0 || y > 400) return;
 
+            Graphics grfx = frm.panel1.CreateGraphics();
+            Pen p = new Pen(m);
+            SolidBrush b = new SolidBrush(m);
+            grfx.DrawEllipse(p, x, y, 2, 2);
+            grfx.FillEllipse(b, x, y, 2, 2);
+            grfx.DrawEllipse(p, x - 2, y - 2, 2, 2);
+            grfx.FillEllipse(b, x - 2, y - 2, 2, 2);
+            grfx.DrawEllipse(p, x, y - 2, 2, 2);
+            grfx.FillEllipse(b, x, y - 2, 2, 2);
+            grfx.DrawEllipse(p, x - 2, y, 2, 2);
+            grfx.FillEllipse(b, x - 2, y, 2, 2);
+
+            putcolor(x, y, m);
+        }
+
+        public int round(double tds)
+        {
+            int tdm;
+            double sodu = tds % 5;
+            if (sodu != 0)
+            {
+                if (sodu >= 3) tdm = (int)(tds + 5 - sodu);
+                else tdm = (int)(tds - sodu);
+            }
+            else tdm = (int)tds;
+            if (tdm > 400) tdm = 400;
+            return tdm;
+        }
+
+        public Point roundPoint(double X, double Y)
+        {
+            return new Point(round(X),round(Y));
+        }
+
+        public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
+        {
+            //Line line = (Line)s;
+            int Dx, Dy, count, temp_1, temp_2, dem = 1;
+            //int temp_3, temp_4;
+            Dx = line.getEndPoint().X - line.getStartPoint().Y;
+            Dy = line.getEndPoint().Y - line.getStartPoint().Y;
+            if (Math.Abs(Dy) > Math.Abs(Dx)) count = Math.Abs(Dy);
+            else count = Math.Abs(Dx);
+            float x, y, delta_X, delta_Y;
+            if (count > 0)
+            {
+                delta_X = Dx;
+                delta_X /= count;
+                delta_Y = Dy;
+                delta_Y /= count;
+                x = line.getStartPoint().X;
+                y = line.getStartPoint().Y;
+                do
+                {
+                    temp_1 = round(x);
+                    temp_2 = round(y);
+                    putpixel(temp_1, temp_2, shape.getColor());
+                    // temp_3 = temp_1;
+                    // temp_4 = temp_2;
+                    x += delta_X;
+                    y += delta_Y;
+                    --count;
+                    dem++;
+                } while (count != -1);
+
+            }
         }
 
         public static void draw(Shape shape)
@@ -99,7 +166,7 @@ namespace GraphicProject
 
         }
 
-        public static void drawCoordinates(Form1 frm)
+        public void drawCoordinates()
         {
             Graphics g = frm.panel1.CreateGraphics();
             // SolidBrush brush = new SolidBrush(Color.DarkSlateBlue);
@@ -122,7 +189,8 @@ namespace GraphicProject
                 if (s.getTypeDraw() == TypeDraw.Line)
                 {
                     Line line = (Line)s;
-                    g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                    //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                    DDA_Line(line);
                 }
                 g.Dispose();
             }
@@ -137,20 +205,14 @@ namespace GraphicProject
                         {
                             Pen pen = new Pen(shape.getColor(), 3);
                             Graphics g = frm.panel1.CreateGraphics();
-                            g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                            //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                            
+                            DDA_Line(line);
                         }
                         break;
                 }
-
             }
         }
-
-        //public void paintPanel(Shape shape)//,List<Shape> shapeSet)
-        //{
-        //    //DrawShape.shapeSet = shapeSet;
-        //    frm.panel1.Paint += new PaintEventHandler(paint);
-        //    frm.panel1.Refresh();
-        //}
 
         public void addShape(Shape shape)
         {
