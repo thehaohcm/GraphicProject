@@ -7,17 +7,17 @@ using System.Drawing;
 
 namespace GraphicProject
 {
-    class Parallelogram:Shape
+    class Parallelogram : Shape
     {
         Point point1, point2, point3;
 
         Point point4;
-        public Parallelogram(Point point1,Point point2,Point point3,Color color):this(point1,point2,point3)
+        public Parallelogram(Point point1, Point point2, Point point3, Color color) : this(point1, point2, point3)
         {
             setColor(color);
         }
 
-        public Parallelogram(Point point1,Point point2,Point point3): base(TypeDraw.Parallelogram)
+        public Parallelogram(Point point1, Point point2, Point point3) : base(TypeDraw.Parallelogram)
         {
             //this.point1 = point1;
             //this.point2 = point2;
@@ -30,7 +30,7 @@ namespace GraphicProject
             //...
         }
 
-        public Parallelogram():this(new Point(0, 0), new Point(0, 0), new Point(0, 0))
+        public Parallelogram() : this(new Point(0, 0), new Point(0, 0), new Point(0, 0))
         {
             resetRemaningClick();
         }
@@ -68,11 +68,48 @@ namespace GraphicProject
             return point3;
         }
 
+        //public void setPoint4(Point point)
+        //{
+        //    this.point4 = point;
+        //    minusRemainingClick();
+        //}
+
         public Point getPoint4()
         {
             return point4;
         }
 
+        private void calculatePoint4()
+        {
+            if (point1 == null || point2 == null || point3 == null)
+                return;
+            if (point1.Y > point2.Y)
+            {
+                if (point3.X < point2.X)
+                    this.point4 = new Point(point1.X - (point2.X - point3.X), point3.Y);
+                else
+                    this.point4 = new Point(point1.X + (point3.X - point2.X), point3.Y);
+            }
+            else
+            {
+                if (point1.X < point2.X)
+                    this.point4 = new Point(point3.X - (point2.X - point1.X), point1.Y);
+                else
+                    this.point4 = new Point(point3.X + (point1.X - point2.X), point1.Y);
+            }
+        }
 
+        public List<Line> getAllLines()
+        {
+            if (point1 == null || point2 == null||point3==null||point4==null)
+                return null;
+            calculatePoint4();
+            List<Line> listLine = new List<Line>();
+            listLine.Add(new Line(point1, point2));
+            listLine.Add(new Line(point2, point3));
+            listLine.Add(new Line(point3, point4));
+            listLine.Add(new Line(point4, point1));
+            return listLine;
+        }
     }
 }

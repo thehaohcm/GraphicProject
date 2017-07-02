@@ -13,7 +13,7 @@ namespace GraphicProject
 
         //Add the rest
         //...
-        private int edge;
+        private double edge;
 
         public Square(Point startPoint,Point endPoint,int edge,Color color):this(startPoint,endPoint)
         {
@@ -62,7 +62,7 @@ namespace GraphicProject
             return endPoint;
         }
 
-        public int getEdge()
+        public double getEdge()
         {
             return edge;
         }

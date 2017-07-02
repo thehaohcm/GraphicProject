@@ -10,7 +10,7 @@ namespace GraphicProject
     class Ellipse:Shape
     {
         Point startPoint, endWidthPoint, endHightPoint;
-        int width, height;
+        double width, height;
 		public Ellipse(Point startPoint,Point endWidthPoint,Point endHightPoint,Color color):this(startPoint,endWidthPoint,endHightPoint)
         {
             setColor(color);
@@ -68,11 +68,11 @@ namespace GraphicProject
             return endHightPoint;
         }
 
-        public int getWidth() {
+        public double getWidth() {
             return width;
         }
 
-        public int getHeight()
+        public double getHeight()
         {
             return height;
         }

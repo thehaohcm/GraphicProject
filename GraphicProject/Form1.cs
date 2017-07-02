@@ -54,7 +54,25 @@ namespace GraphicProject
                         case TypeDraw.Line:
                             Line line = (Line)drawShape.getShape();
                             //line.setStartPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
-                            line.setStartPoint(drawShape.roundPoint(e.X, e.Y));
+                            line.setStartPoint(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Rectangle:
+                            Rectangle rectangle = (Rectangle)drawShape.getShape();
+                            rectangle.setStartPoint(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Triangle:
+                            Triangle triangle = (Triangle)drawShape.getShape();
+                            if (triangle.getRemainingClick() == 3)
+                                triangle.setPoint1(new Point(e.X, e.Y));
+                            else if (triangle.getRemainingClick() == 2)
+                                triangle.setPoint2(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Parallelogram:
+                            Parallelogram parallelogram = (Parallelogram)drawShape.getShape();
+                            if (parallelogram.getRemainingClick() == 3)
+                                parallelogram.setPoint1(new Point(e.X, e.Y));
+                            else if (parallelogram.getRemainingClick() == 2)
+                                parallelogram.setPoint2(new Point(e.X, e.Y));
                             break;
                         case TypeDraw.Circle:
 
@@ -68,7 +86,19 @@ namespace GraphicProject
                         case TypeDraw.Line:
                             Line line = (Line)drawShape.getShape();
                             //line.setEndPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
-                            line.setEndPoint(drawShape.roundPoint(e.X, e.Y));
+                            line.setEndPoint(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Rectangle:
+                            Rectangle rectangle = (Rectangle)drawShape.getShape();
+                            rectangle.setEndPoint(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Triangle:
+                            Triangle triangle = (Triangle)drawShape.getShape();
+                            triangle.setPoint3(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Parallelogram:
+                            Parallelogram paralleogram = (Parallelogram)drawShape.getShape();
+                            paralleogram.setPoint3(new Point(e.X, e.Y));
                             break;
                     }
                     drawShape.addShapeToShapeSet();

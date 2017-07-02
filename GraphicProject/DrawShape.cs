@@ -102,12 +102,14 @@ namespace GraphicProject
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
         {
             //Line line = (Line)s;
-            int Dx, Dy, count, temp_1, temp_2, dem = 1;
+            int Dx, Dy, count, temp_1, temp_2, dem = 1,absX,absY;
             //int temp_3, temp_4;
             Dx = line.getEndPoint().X - line.getStartPoint().Y;
             Dy = line.getEndPoint().Y - line.getStartPoint().Y;
-            if (Math.Abs(Dy) > Math.Abs(Dx)) count = Math.Abs(Dy);
-            else count = Math.Abs(Dx);
+            absX = Math.Abs(Dx);
+            absY = Math.Abs(Dy);
+            if (absY > absX) count = absY;
+            else count = absX;
             float x, y, delta_X, delta_Y;
             if (count > 0)
             {
@@ -121,7 +123,7 @@ namespace GraphicProject
                 {
                     temp_1 = round(x);
                     temp_2 = round(y);
-                    putpixel(temp_1, temp_2, shape.getColor());
+                    putpixel(temp_1, temp_2, line.getColor());
                     // temp_3 = temp_1;
                     // temp_4 = temp_2;
                     x += delta_X;
@@ -133,7 +135,69 @@ namespace GraphicProject
             }
         }
 
-        public static void draw(Shape shape)
+        private void DDA_Line1(Line line)
+        {
+            int dY, step, absX, absY;
+            float x,y, x_inc, y_inc;
+            int dX = line.getEndPoint().X - line.getStartPoint().Y;
+            dY = line.getEndPoint().Y - line.getStartPoint().Y;
+            absX = Math.Abs(dX);
+            absY = Math.Abs(dY);
+            if (absX > absY)
+                step = absX;
+            else
+                step = absY;
+            x_inc = dX / step;
+            y_inc = dY / step;
+            x = line.getStartPoint().X;
+            y = line.getStartPoint().Y;
+            putpixel(round(line.getStartPoint().X), round(line.getStartPoint().Y), line.getColor());
+            step--;
+            int k = 1;
+            while (step!=-1)
+            {
+                x += x_inc;
+                y += y_inc;
+                putpixel(round(x), round(y), line.getColor());
+                k++;
+                step--;
+            }
+
+        }
+
+        public void DDA_Line2(Line line)
+        {
+            int xInitial = line.getStartPoint().X, yInitial = line.getStartPoint().Y, xFinal = line.getEndPoint().X, yFinal = line.getEndPoint().Y;
+
+            int dx = xFinal - xInitial, dy = yFinal - yInitial, steps, k, xf, yf;
+
+            float xIncrement, yIncrement, x = xInitial, y = yInitial;
+
+            if (Math.Abs(dx) > Math.Abs(dy)) steps = Math.Abs(dx);
+
+            else steps = Math.Abs(dy);
+            xIncrement = dx / (float)steps;
+            yIncrement = dy / (float)steps;
+            //PixelFunc func = new PixelFunc(SetPixel);
+            for (k = 0; k < steps; k++)
+            {
+                x += xIncrement;
+                xf = (int)x;
+                y += yIncrement;
+                yf = (int)y;
+                //try
+                //{
+                    //pictureBox1.Invoke(func, xf, yf, Color.Blue);
+                    putpixel(round(x), round(y), line.getColor());
+                //}
+                //catch (InvalidOperationException)
+                //{
+                //    return;
+                //}
+            }
+        }
+
+        public void draw(Shape shape)
         {
             switch (shape.getTypeDraw())
             {
@@ -186,32 +250,55 @@ namespace GraphicProject
             {
                 Pen pen = new Pen(s.getColor(), 3);
                 Graphics g = frm.panel1.CreateGraphics();
-                if (s.getTypeDraw() == TypeDraw.Line)
+                switch (s.getTypeDraw())
                 {
-                    Line line = (Line)s;
-                    //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
-                    DDA_Line(line);
+                    case TypeDraw.Line:
+                        Line line = (Line)s;
+                        //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                        DDA_Line2(line);
+                        break;
+                    case TypeDraw.Rectangle:
+                        Rectangle retangle = (Rectangle)s;
+                        List<Line> listLines = retangle.getAllLines();
+                        if (listLines != null)
+                            foreach(Line _line in listLines)
+                                DDA_Line2(_line);
+                        break;
+                    case TypeDraw.Triangle:
+                        Triangle triangle = (Triangle)s;
+                        listLines = triangle.getAllLines();
+                        if (listLines != null)
+                            foreach (Line _line in listLines)
+                                DDA_Line2(_line);
+                        break;
+                    case TypeDraw.Parallelogram:
+                        Parallelogram parallelogram = (Parallelogram)s;
+                        listLines = parallelogram.getAllLines();
+                        if (listLines != null)
+                            foreach (Line _line in listLines)
+                                DDA_Line2(_line);
+                        break;
                 }
                 g.Dispose();
             }
 
-            if (shape.checkDrawable()) //if (endClick)
-            {
-                switch (shape.getTypeDraw())
-                {
-                    case TypeDraw.Line:
-                        Line line = (Line)shape;
-                        if (line.getEndPoint() != null)
-                        {
-                            Pen pen = new Pen(shape.getColor(), 3);
-                            Graphics g = frm.panel1.CreateGraphics();
-                            //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+            //if (shape.checkDrawable()) //if (endClick)
+            //{
+            //    switch (shape.getTypeDraw())
+            //    {
+            //        case TypeDraw.Line:
+            //            Line line = (Line)shape;
+            //            if (line.getEndPoint() != null)
+            //            {
+            //                Pen pen = new Pen(shape.getColor(), 3);
+            //                Graphics g = frm.panel1.CreateGraphics();
+            //                //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
                             
-                            DDA_Line(line);
-                        }
-                        break;
-                }
-            }
+            //                DDA_Line2(line);
+            //            }
+            //            break;
+            //    }
+            //}
         }
 
         public void addShape(Shape shape)

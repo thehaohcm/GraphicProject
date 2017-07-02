@@ -21,6 +21,7 @@ namespace GraphicProject
 
         public Rectangle(Point startPoint,Point endPoint):base(TypeDraw.Rectangle)
         {
+            resetRemaningClick();
             //this.startPoint = startPoint;
             //this.endPoint = endPoint;
             setStartPoint(startPoint);
@@ -52,6 +53,20 @@ namespace GraphicProject
         public Point getEndPoint()
         {
             return endPoint;
+        }
+
+        public List<Line> getAllLines()
+        {
+            if (startPoint == null || endPoint == null)
+                return null;
+            Point point12 = new Point(endPoint.X,startPoint.Y);
+            Point point21 = new Point(startPoint.X, endPoint.Y);
+            List<Line> listLine = new List<Line>();
+            listLine.Add(new Line(startPoint,point12));
+            listLine.Add(new Line( point12,endPoint));
+            listLine.Add(new Line( endPoint,point21));
+            listLine.Add(new Line(point21,startPoint));
+            return listLine;
         }
 
     }

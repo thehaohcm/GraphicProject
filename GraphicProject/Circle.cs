@@ -10,7 +10,7 @@ namespace GraphicProject
     class Circle:Shape
     {
         private Point centerPoint,endPoint;
-        private int radius;
+        private double radius;
 
         public Circle(Point centerPoint, Point endPoint, Color color) : this(centerPoint, endPoint)
         {
@@ -55,7 +55,7 @@ namespace GraphicProject
             return endPoint;
         }
 
-        public int getRadius()
+        public double getRadius()
         {
             return radius;
         }

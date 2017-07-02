@@ -64,5 +64,15 @@ namespace GraphicProject
             return point3;
         }
 
+        public List<Line> getAllLines()
+        {
+            if (point1 == null || point2 == null || point3 == null)
+                return null;
+            List<Line> listLines = new List<Line>();
+            listLines.Add(new Line(point1, point2));
+            listLines.Add(new Line(point2, point3));
+            listLines.Add(new Line(point3, point1));
+            return listLines;
+        }
     }
 }
