@@ -17,22 +17,25 @@ namespace GraphicProject
 
         public Line(Point startPoint,Point endPoint): base(TypeDraw.Line)
         {
-            this.startPoint = startPoint;
-            this.endPoint = endPoint;
+            setStartPoint(startPoint);
+            setEndPoint(endPoint);
         }
 
         public Line():this(new Point(0, 0), new Point(0, 0))
         {
+            this.resetRemaningClick();
         }
 
         public void setStartPoint(Point startPoint)
         {
             this.startPoint = startPoint;
+            minusRemainingClick();
         }
 
         public void setEndPoint(Point endPoint)
         {
             this.endPoint = endPoint;
+            minusRemainingClick();
         }
 
         public Point getStartPoint()

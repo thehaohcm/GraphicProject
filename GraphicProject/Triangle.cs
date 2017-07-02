@@ -17,18 +17,24 @@ namespace GraphicProject
 
         public Triangle(Point point1,Point point2,Point point3):base(TypeDraw.Triangle)
         {
-            this.point1 = point1;
-            this.point2 = point2;
-            this.point3 = point3;
+            //this.point1 = point1;
+            //this.point2 = point2;
+            //this.point3 = point3;
+
+            setPoint1(point1);
+            setPoint2(point2);
+            setPoint3(point3);
         }
 
         public Triangle():this(new Point(0, 0), new Point(0, 0), new Point(0, 0))
         {
+            resetRemaningClick();
         }
 
         public void setPoint1(Point point1)
         {
             this.point1 = point1;
+            minusRemainingClick();
         }
 
         public Point getPoint1()
@@ -39,6 +45,7 @@ namespace GraphicProject
         public void setPoint2(Point point2)
         {
             this.point2 = point2;
+            minusRemainingClick();
         }
 
         public Point getPoint2()
@@ -49,6 +56,7 @@ namespace GraphicProject
         public void setPoint3(Point point3)
         {
             this.point3 = point3;
+            minusRemainingClick();
         }
 
         public Point getPoint3()

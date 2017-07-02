@@ -15,35 +15,42 @@ namespace GraphicProject
         //...
         private int edge;
 
-        public Square(Point startPoint,Point endPoint,int edge,Color color):this(startPoint,endPoint,edge)
+        public Square(Point startPoint,Point endPoint,int edge,Color color):this(startPoint,endPoint)
         {
             setColor(color);
         }
-        public Square(Point startPoint,Point endPoint,int edge):base(TypeDraw.Square)
+        public Square(Point startPoint,Point endPoint):base(TypeDraw.Square)
         {
-            this.startPoint = startPoint;
-            this.endPoint = endPoint;
-            this.edge = edge;
+            //this.startPoint = startPoint;
+            //this.endPoint = endPoint;
+
+            setStartPoint(startPoint);
+            setEndPoint(endPoint);
+
+            //this.edge = edge;
         }
 
-        public Square():this(new Point(0, 0), new Point(0, 0), 0)
+        public Square():this(new Point(0, 0), new Point(0, 0))
         {
+            resetRemaningClick();
         }
 
         public void setStartPoint(Point startPoint)
         {
             this.startPoint = startPoint;
+            minusRemainingClick();
         }
 
         public void setEndPoint(Point endPoint)
         {
             this.endPoint = endPoint;
+            minusRemainingClick();
         }
 
-        public void setEdge(int edge)
-        {
-            this.edge = edge;
-        }
+        //public void setEdge(int edge)
+        //{
+        //    this.edge = edge;
+        //}
 
         public Point getStartPoint()
         {

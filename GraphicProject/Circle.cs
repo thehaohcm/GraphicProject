@@ -19,8 +19,8 @@ namespace GraphicProject
 
         public Circle(Point centerPoint,Point endPoint): base(TypeDraw.Circle)
         {
-            this.centerPoint = centerPoint;
-            this.endPoint = endPoint;
+            setCenterPoint(centerPoint);
+            setEndPoint(endPoint);
 
             //calculate radius
             //handle...
@@ -28,11 +28,13 @@ namespace GraphicProject
 
         public Circle():this(new Point(0, 0), new Point(0, 0))
         {
+            resetRemaningClick();
         }
 
         public void setCenterPoint(Point centerPoint)
         {
             this.centerPoint = centerPoint;
+            minusRemainingClick();
         }
 
         public Point getCenterPoint()
@@ -43,6 +45,7 @@ namespace GraphicProject
         public void setEndPoint(Point endPoint)
         {
             this.endPoint = endPoint;
+            minusRemainingClick();
             //calculate radius
             //....
         }

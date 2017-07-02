@@ -21,17 +21,21 @@ namespace GraphicProject
 
         public Rectangle(Point startPoint,Point endPoint):base(TypeDraw.Rectangle)
         {
-            this.startPoint = startPoint;
-            this.endPoint = endPoint;
+            //this.startPoint = startPoint;
+            //this.endPoint = endPoint;
+            setStartPoint(startPoint);
+            setEndPoint(endPoint);
         }
 
         public Rectangle():this(new Point(0, 0), new Point(0, 0))
         {
+            resetRemaningClick();
         }
 
         public void setStartPoint(Point startPoint)
         {
             this.startPoint = startPoint;
+            minusRemainingClick();
         }
 
         public Point getStartPoint()
@@ -42,6 +46,7 @@ namespace GraphicProject
         public void setEndPoint(Point endPoint)
         {
             this.endPoint = endPoint;
+            minusRemainingClick();
         }
 
         public Point getEndPoint()

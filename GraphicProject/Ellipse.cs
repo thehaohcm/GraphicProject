@@ -18,9 +18,13 @@ namespace GraphicProject
 
 		public Ellipse(Point startPoint,Point endWidthPoint, Point endHightPoint): base(TypeDraw.Ellipse)
         {
-            this.startPoint = startPoint;
-            this.endWidthPoint = endWidthPoint;
-            this.endHightPoint = endHightPoint;
+            //this.startPoint = startPoint;
+            //this.endWidthPoint = endWidthPoint;
+            //this.endHightPoint = endHightPoint;
+
+            setStartPoint(startPoint);
+            setEndWidthPoint(endWidthPoint);
+            setEndHightPoint(endHightPoint);
 
             //calculate width,heigth
             //handle...
@@ -28,12 +32,13 @@ namespace GraphicProject
 
         public Ellipse():this(new Point(0,0),new Point(0,0),new Point(0, 0))
         {
-
+            resetRemaningClick();
         }
 
         public void setStartPoint(Point startPoint)
         {
             this.startPoint = startPoint;
+            minusRemainingClick();
         }
 
         public Point getStartPoint()
@@ -44,6 +49,7 @@ namespace GraphicProject
         public void setEndWidthPoint(Point endWidthPoint)
         {
             this.endWidthPoint = endWidthPoint;
+            minusRemainingClick();
         }
 
         public Point getEndWidthPoint()
@@ -54,6 +60,7 @@ namespace GraphicProject
         public void setEndHightPoint(Point endHightPoint)
         {
             this.endHightPoint = endHightPoint;
+            minusRemainingClick();
         }
 
         public Point getEndHightPoint()

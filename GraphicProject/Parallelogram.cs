@@ -19,21 +19,26 @@ namespace GraphicProject
 
         public Parallelogram(Point point1,Point point2,Point point3): base(TypeDraw.Parallelogram)
         {
-            this.point1 = point1;
-            this.point2 = point2;
-            this.point3 = point3;
+            //this.point1 = point1;
+            //this.point2 = point2;
+            //this.point3 = point3;
+
+            setPoint1(point1);
+            setPoint2(point2);
+            setPoint3(point3);
             //handle => point 4
             //...
         }
 
         public Parallelogram():this(new Point(0, 0), new Point(0, 0), new Point(0, 0))
         {
-
+            resetRemaningClick();
         }
 
         public void setPoint1(Point point)
         {
             this.point1 = point;
+            minusRemainingClick();
         }
 
         public Point getPoint1()
@@ -44,6 +49,7 @@ namespace GraphicProject
         public void setPoint2(Point point)
         {
             this.point2 = point;
+            minusRemainingClick();
         }
 
         public Point getPoint2()
@@ -54,6 +60,7 @@ namespace GraphicProject
         public void setPoint3(Point point)
         {
             this.point3 = point;
+            minusRemainingClick();
         }
 
         public Point getPoint3()

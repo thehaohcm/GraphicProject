@@ -69,6 +69,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Hình chữ nhật";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -88,6 +89,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Hình Bình Hành";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -97,6 +99,7 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "Hình Ellipse";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -106,6 +109,7 @@
             this.button6.TabIndex = 5;
             this.button6.Text = "Hình Tam giác";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label1
             // 
@@ -157,8 +161,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -168,7 +170,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ColorDialog colorDialog1;
+        public System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 
