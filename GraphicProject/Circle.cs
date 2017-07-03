@@ -24,6 +24,7 @@ namespace GraphicProject
 
             //calculate radius
             //handle...
+
         }
 
         public Circle():this(new Point(0, 0), new Point(0, 0))
@@ -38,6 +39,7 @@ namespace GraphicProject
         {
             this.centerPoint = centerPoint;
             minusRemainingClick();
+            calculateRadius();
         }
 
         public Point getCenterPoint()
@@ -51,6 +53,7 @@ namespace GraphicProject
             minusRemainingClick();
             //calculate radius
             //....
+            calculateRadius();
         }
 
         public Point getEndPoint()
@@ -61,6 +64,16 @@ namespace GraphicProject
         public double getRadius()
         {
             return radius;
+        }
+
+        private void calculateRadius()
+        {
+            if (centerPoint != new Point(0,0) && endPoint != new Point(0,0))
+            {
+                double c1 = Math.Abs(centerPoint.X - endPoint.X);
+                double c2 = Math.Abs(centerPoint.Y - endPoint.Y);
+                this.radius = Math.Sqrt(c1 * c1 + c2 * c2);
+            }
         }
     }
 }

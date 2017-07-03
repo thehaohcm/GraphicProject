@@ -75,7 +75,8 @@ namespace GraphicProject
                                 parallelogram.setPoint2(new Point(e.X, e.Y));
                             break;
                         case TypeDraw.Circle:
-
+                            Circle circle = (Circle)drawShape.getShape();
+                            circle.setCenterPoint(new Point(e.X, e.Y));
                             break;
                     }
                 }
@@ -99,6 +100,10 @@ namespace GraphicProject
                         case TypeDraw.Parallelogram:
                             Parallelogram paralleogram = (Parallelogram)drawShape.getShape();
                             paralleogram.setPoint3(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Circle:
+                            Circle circle = (Circle)drawShape.getShape();
+                            circle.setEndPoint(new Point(e.X, e.Y));
                             break;
                     }
                     drawShape.addShapeToShapeSet();

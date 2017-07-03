@@ -81,14 +81,14 @@ namespace GraphicProject
         }
         private void put8pixel(int x, int y, int centerX, int centerY, Color color)
         {
-            putpixel(centerX + x, centerY + y, color);
-            putpixel(centerX + x, centerY - y, color);
-            putpixel(centerX - x, centerY + y, color);
-            putpixel(centerX - x, centerY - y, color);
-            putpixel(centerX + y, centerY + x, color);
-            putpixel(centerX + y, centerY - x, color);
-            putpixel(centerX - y, centerY + x, color);
-            putpixel(centerX - y, centerY - x, color);
+            putpixel(round(centerX + x), round(centerY + y), color);
+            putpixel(round(centerX + x), round(centerY - y), color);
+            putpixel(round(centerX - x), round(centerY + y), color);
+            putpixel(round(centerX - x), round(centerY - y), color);
+            putpixel(round(centerX + y), round(centerY + x), color);
+            putpixel(round(centerX + y), round(centerY - x), color);
+            putpixel(round(centerX - y), round(centerY + x), color);
+            putpixel(round(centerX - y), round(centerY - x), color);
         }
 
         public int round(double tds)
@@ -120,18 +120,21 @@ namespace GraphicProject
             y = circle.getEndPoint().Y;
             centerX = circle.getCenterPoint().X;
             centerY = circle.getCenterPoint().Y;
-            if (x == centerX || y != centerY)
-            {
-                R = Math.Abs(y - centerY);
-            }
-            else if (y == centerY)
-            {
-                R = Math.Abs(x - centerX);
-            }
+            //if (x == centerX || y != centerY)
+            //{
+            //    R = Math.Abs(y - centerY);
+            //}
+            //else if (y == centerY)
+            //{
+            //    R = Math.Abs(x - centerX);
+            //}
+            R = round(circle.getRadius());
             int max = round((float)(Math.Sqrt(2) / 2 * R));
-            p = 1 - R;
+            p = 5/4 - R;
+            x = 0;y = R;
             put8pixel(x, y, centerX, centerY, color);
-            while (x < max)
+            
+            while (x <= max)
             {
                 if (p < 0)
                     p = p + 2 * x + 3;
@@ -366,6 +369,10 @@ namespace GraphicProject
                         if (listLines != null)
                             foreach (Line _line in listLines)
                                 DDA_Line2(_line);
+                        break;
+                    case TypeDraw.Circle:
+                        Circle circle = (Circle)s;
+                        MidPoint_Circle(circle);
                         break;
                 }
                 g.Dispose();
