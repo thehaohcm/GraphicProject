@@ -69,9 +69,15 @@ namespace GraphicProject
             if (point1 == null || point2 == null || point3 == null)
                 return null;
             List<Line> listLines = new List<Line>();
-            listLines.Add(new Line(point1, point2));
-            listLines.Add(new Line(point2, point3));
-            listLines.Add(new Line(point3, point1));
+            Line l1 = new Line(point1, point2);
+            l1.setColor(this.getColor());
+            Line l2 = new Line(point2, point3);
+            l2.setColor(this.getColor());
+            Line l3 = new Line(point3, point1);
+            l3.setColor(this.getColor());
+            listLines.Add(l1);
+            listLines.Add(l2);
+            listLines.Add(l3);
             return listLines;
         }
     }

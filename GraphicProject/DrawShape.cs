@@ -14,11 +14,13 @@ namespace GraphicProject
         private List<Shape> shapeSet;
         private Shape shape;
         private Form1 frm;
+        private Color color;
 
         public DrawShape(Form1 frm)
         {
             shapeSet = new List<Shape>();
             this.frm = frm;
+            color = Color.Black;
         }
 
         public void initShape(TypeDraw type)
@@ -47,7 +49,7 @@ namespace GraphicProject
                     shape = new Triangle();
                     break;
             }
-            shape.setColor(frm.colorDialog1.Color);
+            shape.setColor(color);
         }
 
         public void resetShape()
@@ -91,11 +93,11 @@ namespace GraphicProject
             putpixel(round(centerX - y), round(centerY - x), color);
         }
 
-        private void put4pixel(int x, int y, int centerX, int centerY, Color color)
+        private void put4pixel(int x,int y,int centerX,int centerY,Color color)
         {
             putpixel(round(centerX + x), round(centerY + y), color);
-            putpixel(round(centerX + x), round(centerY - y), color);
             putpixel(round(centerX - x), round(centerY + y), color);
+            putpixel(round(centerX + x), round(centerY - y), color);
             putpixel(round(centerX - x), round(centerY - y), color);
         }
 
@@ -128,6 +130,14 @@ namespace GraphicProject
             y = circle.getEndPoint().Y;
             centerX = circle.getCenterPoint().X;
             centerY = circle.getCenterPoint().Y;
+            //if (x == centerX || y != centerY)
+            //{
+            //    R = Math.Abs(y - centerY);
+            //}
+            //else if (y == centerY)
+            //{
+            //    R = Math.Abs(x - centerX);
+            //}
             R = round(circle.getRadius());
             int max = round((float)(Math.Sqrt(2) / 2 * R));
             p = 5/4 - R;
@@ -146,19 +156,59 @@ namespace GraphicProject
                 x = x + 1;
                 put8pixel(x, y, centerX, centerY, color);
             }
-
-
-
         }
 
 
         public void MidPoint_Ellipse(Ellipse ellipse)
         {
-            int x1, y1, x2, y2, centerX, centerY;
-
-
-
-
+            //int x1, y1, x2, y2, centerX, centerY;
+            int x, y, fx, fy, a2, b2, p,a,b;
+            a = (int)ellipse.getWidthRadius();
+            b = (int)ellipse.getHeightRadius();
+            x = 0;
+            y = b;
+            a2 = a*a;
+            b2 = b * b;
+            fx = 0;
+            fy = 2 * a2 * y;
+            put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y,  ellipse.getColor());
+            p = round(b2 - (a2 * b) + (0.25 * a2));//p=b2 - a2*b +a2/4
+            while (fx < fy)
+            {
+                x++;
+                fx += 2 * b2;
+                //delay(50);
+                if (p < 0)
+                {
+                    p += b2 * (2 * x + 3);//p=p + b2*(2x +3)
+                }
+                else
+                {
+                    y--;
+                    p += b2 * (2 * x + 3) + a2 * (2 - 2 * y);//p=p +b2(2x +3) +a2(2-2y)
+                    fy -= 2 * a2;
+                }
+                put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+            }
+            p = round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y - 1) * (y - 1) - a2 * b2);
+            //
+            while (y > 0)
+            {
+                y--;
+                fy -= 2 * a2;
+               // delay(50);
+                if (p >= 0)
+                {
+                    p += a2 * (3 - 2 * y); //p=p +a2(3-2y)
+                }
+                else
+                {
+                    x++;
+                    fx += 2 * b2;
+                    p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);//p=p+ b2(2x +2) + a2(3-2y)
+                }
+                put4pixel(ellipse.getStartPoint().X,ellipse.getStartPoint().Y, x, y, ellipse.getColor());
+            }
         }
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
         {
@@ -286,37 +336,9 @@ namespace GraphicProject
             }
         }
 
-        public void draw(Shape shape)
+        public void setColorForShape(Color color)
         {
-            switch (shape.getTypeDraw())
-            {
-                case TypeDraw.Line:
-
-                    break;
-                case TypeDraw.Circle:
-
-                    break;
-                case TypeDraw.Ellipse:
-
-                    break;
-                case TypeDraw.Rectangle:
-
-                    break;
-                case TypeDraw.Square:
-
-                    break;
-                case TypeDraw.Triangle:
-
-                    break;
-                case TypeDraw.Parallelogram:
-
-                    break;
-            }
-        }
-
-        public static void drawLine(Form1 frm)
-        {
-
+            this.color = color;
         }
 
         public void drawCoordinates()
@@ -361,18 +383,26 @@ namespace GraphicProject
                         listLines = triangle.getAllLines();
                         if (listLines != null)
                             foreach (Line _line in listLines)
+                            {
                                 DDA_Line2(_line);
+                            }
                         break;
                     case TypeDraw.Parallelogram:
                         Parallelogram parallelogram = (Parallelogram)s;
                         listLines = parallelogram.getAllLines();
                         if (listLines != null)
                             foreach (Line _line in listLines)
+                            {
                                 DDA_Line2(_line);
+                            }
                         break;
                     case TypeDraw.Circle:
                         Circle circle = (Circle)s;
                         MidPoint_Circle(circle);
+                        break;
+                    case TypeDraw.Ellipse:
+                        Ellipse ellipse = (Ellipse)s;
+                        MidPoint_Ellipse(ellipse);
                         break;
                 }
                 g.Dispose();
@@ -414,6 +444,12 @@ namespace GraphicProject
         public void addShapeToShapeSet()
         {
             shapeSet.Add(shape);
+        }
+
+        public void clearAllScreen()
+        {
+            shapeSet.Clear();
+
         }
     }
 }

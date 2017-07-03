@@ -39,12 +39,14 @@ namespace GraphicProject
         {
             this.startPoint = startPoint;
             minusRemainingClick();
+            calculateEdge();
         }
 
         public void setEndPoint(Point endPoint)
         {
             this.endPoint = endPoint;
             minusRemainingClick();
+            calculateEdge();
         }
 
         //public void setEdge(int edge)
@@ -65,6 +67,20 @@ namespace GraphicProject
         public double getEdge()
         {
             return edge;
+        }
+
+        private void calculateEdge()
+        {
+            if (startPoint != null && endPoint != null)
+            {
+                if (startPoint.X == endPoint.X)
+                {
+                    this.edge = Math.Abs(startPoint.Y - endPoint.Y);
+                }else if (endPoint.Y == endPoint.Y)
+                {
+                    this.edge = Math.Abs(startPoint.X - endPoint.X);
+                }
+            }
         }
 
     }
