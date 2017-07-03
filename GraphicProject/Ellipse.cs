@@ -9,7 +9,7 @@ namespace GraphicProject
 {
     class Ellipse:Shape
     {
-        Point startPoint, endWidthPoint, endHightPoint;
+        Point startPoint, endWidthPoint, endHeightPoint;
         double widthRadius, heightRadius;
 		public Ellipse(Point startPoint,Point endWidthPoint,Point endHightPoint,Color color):this(startPoint,endWidthPoint,endHightPoint)
         {
@@ -50,6 +50,8 @@ namespace GraphicProject
         {
             this.endWidthPoint = endWidthPoint;
             minusRemainingClick();
+            if (startPoint != null)
+                widthRadius = Math.Abs(startPoint.X - endWidthPoint.X);
         }
 
         public Point getEndWidthPoint()
@@ -59,13 +61,15 @@ namespace GraphicProject
 
         public void setEndHightPoint(Point endHightPoint)
         {
-            this.endHightPoint = endHightPoint;
+            this.endHeightPoint = endHightPoint;
             minusRemainingClick();
+            if (startPoint != null)
+                heightRadius = Math.Abs(startPoint.Y - endHeightPoint.Y);
         }
 
         public Point getEndHightPoint()
         {
-            return endHightPoint;
+            return endHeightPoint;
         }
 
         public double getWidthRadius() {
@@ -75,11 +79,6 @@ namespace GraphicProject
         public double getHeightRadius()
         {
             return heightRadius;
-        }
-
-        private void calculateWidthHeight()
-        {
-            //widthRadius=
         }
     }
 }

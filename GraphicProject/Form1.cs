@@ -78,6 +78,13 @@ namespace GraphicProject
                             Circle circle = (Circle)drawShape.getShape();
                             circle.setCenterPoint(new Point(e.X, e.Y));
                             break;
+                        case TypeDraw.Ellipse:
+                            Ellipse ellipse = (Ellipse)drawShape.getShape();
+                            if (ellipse.getRemainingClick() == 3)
+                                ellipse.setStartPoint(new Point(e.X, e.Y));
+                            else if (ellipse.getRemainingClick() == 2)
+                                ellipse.setEndHightPoint(new Point(e.X, e.Y));
+                            break;
                     }
                 }
                 else
@@ -104,6 +111,10 @@ namespace GraphicProject
                         case TypeDraw.Circle:
                             Circle circle = (Circle)drawShape.getShape();
                             circle.setEndPoint(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Ellipse:
+                            Ellipse ellipse = (Ellipse)drawShape.getShape();
+                            ellipse.setEndWidthPoint(new Point(e.X, e.Y));
                             break;
                     }
                     drawShape.addShapeToShapeSet();
@@ -168,6 +179,12 @@ namespace GraphicProject
         private void button6_Click(object sender, EventArgs e)
         {
             drawShape.initShape(TypeDraw.Triangle);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            drawShape.clearAllScreen();
+            panel1.Refresh();
         }
     }
 }
