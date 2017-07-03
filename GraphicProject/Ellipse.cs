@@ -18,10 +18,6 @@ namespace GraphicProject
 
 		public Ellipse(Point startPoint,Point endWidthPoint, Point endHightPoint): base(TypeDraw.Ellipse)
         {
-            //this.startPoint = startPoint;
-            //this.endWidthPoint = endWidthPoint;
-            //this.endHightPoint = endHightPoint;
-
             setStartPoint(startPoint);
             setEndWidthPoint(endWidthPoint);
             setEndHightPoint(endHightPoint);
