@@ -9,6 +9,7 @@ namespace GraphicProject
 {
     class Rectangle:Shape
     {
+        private static decimal currentNumber = 0;
         Point startPoint, endPoint;
 
         //Insert 2 Point to Rectangle and get-set method
@@ -26,6 +27,8 @@ namespace GraphicProject
             //this.endPoint = endPoint;
             setStartPoint(startPoint);
             setEndPoint(endPoint);
+            currentNumber++;
+            setName("Rectangle_" + currentNumber);
         }
 
         public Rectangle():this(new Point(0, 0), new Point(0, 0))
@@ -76,6 +79,5 @@ namespace GraphicProject
             listLine.Add(l4);
             return listLine;
         }
-
     }
 }

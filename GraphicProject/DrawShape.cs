@@ -444,12 +444,22 @@ namespace GraphicProject
         public void addShapeToShapeSet()
         {
             shapeSet.Add(shape);
+            updateListView();
         }
 
         public void clearAllScreen()
         {
             shapeSet.Clear();
 
+        }
+
+        public void updateListView()
+        {
+            frm.listView1.Clear();
+            foreach (Shape shape in shapeSet)
+            {
+                frm.listView1.Items.Add(shape.getName());
+            }
         }
     }
 }

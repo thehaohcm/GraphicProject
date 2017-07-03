@@ -9,6 +9,7 @@ namespace GraphicProject
 {
     class Ellipse:Shape
     {
+        private static decimal currentNumber = 0;
         Point startPoint, endWidthPoint, endHeightPoint;
         double widthRadius, heightRadius;
 		public Ellipse(Point startPoint,Point endWidthPoint,Point endHightPoint,Color color):this(startPoint,endWidthPoint,endHightPoint)
@@ -21,6 +22,8 @@ namespace GraphicProject
             setStartPoint(startPoint);
             setEndWidthPoint(endWidthPoint);
             setEndHightPoint(endHightPoint);
+            currentNumber++;
+            setName("Ellipse_" + currentNumber);
 
             //calculate width,heigth
             //handle...
