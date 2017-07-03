@@ -151,7 +151,7 @@ namespace GraphicProject
         public void MidPoint_Ellipse(Ellipse ellipse)
         {
             int x1, y1, x2, y2, centerX, centerY;
-            //test
+            //test thu xiu choi 
 
 
 
