@@ -122,11 +122,19 @@ namespace GraphicProject
             if (point1 == null || point2 == null||point3==null||point4==null)
                 return null;
             calculatePoint4();
+            Line l1 = new Line(point1, point2);
+            l1.setColor(this.getColor());
+            Line l2 = new Line(point2, point3);
+            l2.setColor(this.getColor());
+            Line l3 = new Line(point3, point4);
+            l3.setColor(this.getColor());
+            Line l4 = new Line(point4, point1);
+            l4.setColor(this.getColor());
             List<Line> listLine = new List<Line>();
-            listLine.Add(new Line(point1, point2));
-            listLine.Add(new Line(point2, point3));
-            listLine.Add(new Line(point3, point4));
-            listLine.Add(new Line(point4, point1));
+            listLine.Add(l1);
+            listLine.Add(l2);
+            listLine.Add(l3);
+            listLine.Add(l4);
             return listLine;
         }
     }

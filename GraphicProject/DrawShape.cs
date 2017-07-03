@@ -14,6 +14,7 @@ namespace GraphicProject
         private List<Shape> shapeSet;
         private Shape shape;
         private Form1 frm;
+        private Color color;
 
         public DrawShape(Form1 frm)
         {
@@ -47,7 +48,7 @@ namespace GraphicProject
                     shape = new Triangle();
                     break;
             }
-            shape.setColor(frm.colorDialog1.Color);
+            shape.setColor(color);
         }
 
         public void resetShape()
@@ -146,9 +147,6 @@ namespace GraphicProject
                 x = x + 1;
                 put8pixel(x, y, centerX, centerY, color);
             }
-
-
-
         }
 
 
@@ -319,6 +317,11 @@ namespace GraphicProject
 
         }
 
+        public void setColorForShape(Color color)
+        {
+            this.color = color;
+        }
+
         public void drawCoordinates()
         {
             Graphics g = frm.panel1.CreateGraphics();
@@ -361,14 +364,18 @@ namespace GraphicProject
                         listLines = triangle.getAllLines();
                         if (listLines != null)
                             foreach (Line _line in listLines)
+                            {
                                 DDA_Line2(_line);
+                            }
                         break;
                     case TypeDraw.Parallelogram:
                         Parallelogram parallelogram = (Parallelogram)s;
                         listLines = parallelogram.getAllLines();
                         if (listLines != null)
                             foreach (Line _line in listLines)
+                            {
                                 DDA_Line2(_line);
+                            }
                         break;
                     case TypeDraw.Circle:
                         Circle circle = (Circle)s;

@@ -130,8 +130,7 @@ namespace GraphicProject
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 label2.BackColor = colorDialog1.Color;
-                if (drawShape.getShape() != null)
-                    drawShape.getShape().setColor(colorDialog1.Color);
+                drawShape.setColorForShape(colorDialog1.Color);
             }
         }
 

@@ -61,11 +61,19 @@ namespace GraphicProject
                 return null;
             Point point12 = new Point(endPoint.X,startPoint.Y);
             Point point21 = new Point(startPoint.X, endPoint.Y);
+            Line l1 = new Line(startPoint, point12);
+            l1.setColor(this.getColor());
+            Line l2 = new Line(point12, endPoint);
+            l2.setColor(this.getColor());
+            Line l3 = new Line(endPoint, point21);
+            l3.setColor(this.getColor());
+            Line l4 = new Line(point21, startPoint);
+            l4.setColor(this.getColor());
             List<Line> listLine = new List<Line>();
-            listLine.Add(new Line(startPoint,point12));
-            listLine.Add(new Line( point12,endPoint));
-            listLine.Add(new Line( endPoint,point21));
-            listLine.Add(new Line(point21,startPoint));
+            listLine.Add(l1);
+            listLine.Add(l2);
+            listLine.Add(l3);
+            listLine.Add(l4);
             return listLine;
         }
 
