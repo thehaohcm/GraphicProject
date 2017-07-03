@@ -99,6 +99,14 @@ namespace GraphicProject
             return new Point(round(X),round(Y));
         }
 
+        public void MidPoint_Ellipse(Ellipse ellipse)
+        {
+            int x1, y1, x2, y2, centerX, centerY;
+
+
+
+
+        }
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
         {
             //Line line = (Line)s;
@@ -220,7 +228,7 @@ namespace GraphicProject
                 {
                     D = D + (Dy - Dx);
                     y++;
-                }
+        }
                 putpixel(x, y, line.getColor());
             }
         }
