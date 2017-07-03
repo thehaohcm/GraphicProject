@@ -228,7 +228,7 @@ namespace GraphicProject
                 {
                     D = D + (Dy - Dx);
                     y++;
-        }
+                }
                 putpixel(x, y, line.getColor());
             }
         }
