@@ -30,7 +30,10 @@ namespace GraphicProject
         {
             resetRemaningClick();
         }
-
+        public void setRadius(double radius)
+        {
+            this.radius = radius;
+        }
         public void setCenterPoint(Point centerPoint)
         {
             this.centerPoint = centerPoint;
