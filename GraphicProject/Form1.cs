@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 
-public delegate void drawCoordinates();
 namespace GraphicProject
 {
     public partial class Form1 : Form
