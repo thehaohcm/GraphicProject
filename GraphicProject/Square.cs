@@ -9,6 +9,7 @@ namespace GraphicProject
 {
     class Square:Shape
     {
+        private static decimal currentNumber = 0;
         private Point startPoint,endPoint;
 
         //Add the rest
@@ -26,7 +27,8 @@ namespace GraphicProject
 
             setStartPoint(startPoint);
             setEndPoint(endPoint);
-
+            currentNumber++;
+            setName("Square_" + currentNumber);
             //this.edge = edge;
         }
 
@@ -82,6 +84,5 @@ namespace GraphicProject
                 }
             }
         }
-
     }
 }

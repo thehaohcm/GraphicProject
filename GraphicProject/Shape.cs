@@ -12,6 +12,7 @@ namespace GraphicProject
         Color color;
         TypeDraw typeDraw;
         private int remainingClick;
+        private string name;
 
         protected Shape(TypeDraw typeDraw)
         {
@@ -84,6 +85,16 @@ namespace GraphicProject
             if (this.remainingClick > 1)
                 return false;
             return true;
+        }
+
+        protected void setName(string name)
+        {
+            this.name = name;
+        }
+
+        public string getName()
+        {
+            return name;
         }
     }
 }

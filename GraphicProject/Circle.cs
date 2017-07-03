@@ -9,6 +9,7 @@ namespace GraphicProject
 {
     class Circle:Shape
     {
+        private static decimal currentNumber=0;
         private Point centerPoint,endPoint;
         private double radius;
 
@@ -21,7 +22,8 @@ namespace GraphicProject
         {
             setCenterPoint(centerPoint);
             setEndPoint(endPoint);
-
+            currentNumber++;
+            setName("Circle_"+currentNumber);
             //calculate radius
             //handle...
 

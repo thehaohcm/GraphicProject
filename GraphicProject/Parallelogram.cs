@@ -9,6 +9,7 @@ namespace GraphicProject
 {
     class Parallelogram : Shape
     {
+        private static decimal currentNumber = 0;
         Point point1, point2, point3;
 
         Point point4;
@@ -26,6 +27,8 @@ namespace GraphicProject
             setPoint1(point1);
             setPoint2(point2);
             setPoint3(point3);
+            currentNumber++;
+            setName("Parallelogram_" + currentNumber);
             //handle => point 4
             //...
         }
