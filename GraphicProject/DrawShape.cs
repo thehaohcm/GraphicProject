@@ -91,6 +91,14 @@ namespace GraphicProject
             putpixel(round(centerX - y), round(centerY - x), color);
         }
 
+        private void put4pixel(int x, int y, int centerX, int centerY, Color color)
+        {
+            putpixel(round(centerX + x), round(centerY + y), color);
+            putpixel(round(centerX + x), round(centerY - y), color);
+            putpixel(round(centerX - x), round(centerY + y), color);
+            putpixel(round(centerX - x), round(centerY - y), color);
+        }
+
         public int round(double tds)
         {
             int tdm;
@@ -120,14 +128,6 @@ namespace GraphicProject
             y = circle.getEndPoint().Y;
             centerX = circle.getCenterPoint().X;
             centerY = circle.getCenterPoint().Y;
-            //if (x == centerX || y != centerY)
-            //{
-            //    R = Math.Abs(y - centerY);
-            //}
-            //else if (y == centerY)
-            //{
-            //    R = Math.Abs(x - centerX);
-            //}
             R = round(circle.getRadius());
             int max = round((float)(Math.Sqrt(2) / 2 * R));
             p = 5/4 - R;
