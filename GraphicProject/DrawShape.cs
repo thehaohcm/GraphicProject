@@ -197,6 +197,34 @@ namespace GraphicProject
             }
         }
 
+        public void drawLinebyMidPoint(Line line)
+        {
+            int x1 = round(line.getStartPoint().X);
+            int y1 = round(line.getStartPoint().Y);
+            int x2 = round(line.getEndPoint().X);
+            int y2 = round(line.getEndPoint().Y);
+            int Dx = 5;//round(x2 - x1);
+            int Dy = 5;//round(y2 - y1);
+            int x = x1;
+            int y = y1;
+            putpixel(x1, y1, line.getColor());
+            float D = Dy - (Dx >> 1); // ~ float D = Dy - Dx/2;
+            while (x <= x2)
+            {
+                x++;
+                if (D < 0)
+                {
+                    D = D + Dy;
+                }
+                else
+                {
+                    D = D + (Dy - Dx);
+                    y++;
+                }
+                putpixel(x, y, line.getColor());
+            }
+        }
+
         public void draw(Shape shape)
         {
             switch (shape.getTypeDraw())
@@ -255,14 +283,17 @@ namespace GraphicProject
                     case TypeDraw.Line:
                         Line line = (Line)s;
                         //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
-                        DDA_Line2(line);
+                        //DDA_Line2(line);
+                        drawLinebyMidPoint(line);
                         break;
                     case TypeDraw.Rectangle:
                         Rectangle retangle = (Rectangle)s;
                         List<Line> listLines = retangle.getAllLines();
                         if (listLines != null)
-                            foreach(Line _line in listLines)
+                            foreach (Line _line in listLines)
+                            {
                                 DDA_Line2(_line);
+                            }
                         break;
                     case TypeDraw.Triangle:
                         Triangle triangle = (Triangle)s;

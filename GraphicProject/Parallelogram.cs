@@ -83,20 +83,38 @@ namespace GraphicProject
         {
             if (point1 == null || point2 == null || point3 == null)
                 return;
-            if (point1.Y > point2.Y)
+            //calculatePoint4();
+            //if (point1.X > point2.X)
+            //{
+            //    if (point3.X < point2.X)
+            //        this.point4 = new Point(point1.X - (point2.X - point3.X), point3.Y);
+            //    else
+            //        this.point4 = new Point(point1.X + (point3.X - point2.X), point3.Y);
+            //}
+            //else
+            if(point1.X<point2.X)
             {
-                if (point3.X < point2.X)
-                    this.point4 = new Point(point1.X - (point2.X - point3.X), point3.Y);
+                if (point1.X < point2.X)
+                    this.point4 = new Point(point3.X + (point1.X - point2.X), point3.Y);
                 else
-                    this.point4 = new Point(point1.X + (point3.X - point2.X), point3.Y);
+                    this.point4 = new Point(point3.X - (point2.X - point1.X), point3.Y);
             }
-            else
+            //if (point1.Y > point2.Y)
+            //{
+            //    if (point3.X < point2.X)
+            //        this.point4 = new Point(point1.X - (point2.X - point3.X), point3.Y);
+            //    else
+            //        this.point4 = new Point(point1.X + (point3.X - point2.X), point3.Y);
+            //}
+            //else
+            else if (point1.Y < point2.Y)
             {
                 if (point1.X < point2.X)
                     this.point4 = new Point(point3.X - (point2.X - point1.X), point1.Y);
                 else
                     this.point4 = new Point(point3.X + (point1.X - point2.X), point1.Y);
             }
+            minusRemainingClick();
         }
 
         public List<Line> getAllLines()
