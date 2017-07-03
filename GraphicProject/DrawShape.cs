@@ -79,6 +79,17 @@ namespace GraphicProject
 
             putcolor(x, y, m);
         }
+        private void put8pixel(int x, int y, int centerX, int centerY, Color color)
+        {
+            putpixel(centerX + x, centerY + y, color);
+            putpixel(centerX + x, centerY - y, color);
+            putpixel(centerX - x, centerY + y, color);
+            putpixel(centerX - x, centerY - y, color);
+            putpixel(centerX + y, centerY + x, color);
+            putpixel(centerX + y, centerY - x, color);
+            putpixel(centerX - y, centerY + x, color);
+            putpixel(centerX - y, centerY - x, color);
+        }
 
         public int round(double tds)
         {
@@ -98,6 +109,45 @@ namespace GraphicProject
         {
             return new Point(round(X),round(Y));
         }
+        public void MidPoint_Circle(Circle circle)
+        {
+            int x, y, centerX, centerY, p, R;
+            R = 0;
+            //get color of the circle
+            Color color = circle.getColor();
+            //get the point at radius
+            x = circle.getEndPoint().X;
+            y = circle.getEndPoint().Y;
+            centerX = circle.getCenterPoint().X;
+            centerY = circle.getCenterPoint().Y;
+            if (x == centerX || y != centerY)
+            {
+                R = Math.Abs(y - centerY);
+            }
+            else if (y == centerY)
+            {
+                R = Math.Abs(x - centerX);
+            }
+            int max = round((float)(Math.Sqrt(2) / 2 * R));
+            p = 1 - R;
+            put8pixel(x, y, centerX, centerY, color);
+            while (x < max)
+            {
+                if (p < 0)
+                    p = p + 2 * x + 3;
+                else
+                {
+                    p = p + 2 * (x - y) + 5;
+                    y = y - 1;
+                }
+                x = x + 1;
+                put8pixel(x, y, centerX, centerY, color);
+            }
+
+
+
+        }
+
 
         public void MidPoint_Ellipse(Ellipse ellipse)
         {
