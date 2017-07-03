@@ -106,6 +106,7 @@ namespace GraphicProject
 
 
 
+
         }
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
         {
