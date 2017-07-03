@@ -9,7 +9,6 @@ namespace GraphicProject
 {
     class Line:Shape
     {
-        private static decimal currentNumber = 0;
         private Point startPoint, endPoint;
         public Line(Point startPoint,Point endPoint,Color color):this(startPoint,endPoint)
         {
@@ -20,11 +19,9 @@ namespace GraphicProject
         {
             setStartPoint(startPoint);
             setEndPoint(endPoint);
-            currentNumber++;
-            setName("Line_" + currentNumber);
         }
 
-        public Line():this(new Point(0, 0), new Point(0, 0))
+        public Line() : this(new Point(0, 0), new Point(0, 0))
         {
             this.resetRemaningClick();
         }
@@ -45,7 +42,7 @@ namespace GraphicProject
         {
             return startPoint;
         }
-        
+
         public Point getEndPoint()
         {
             return endPoint;
