@@ -9,18 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 
-public delegate void drawCoordinates();
 namespace GraphicProject
 {
     public partial class Form1 : Form
     {
         DrawShape drawShape;
-        
+        private int indexChoosedShape = -1;
         public Form1()
         {
             InitializeComponent();
             label2.BackColor = colorDialog1.Color;
             drawShape = new DrawShape(this);
+            button9.Enabled = false;
+            panel1.Paint += new PaintEventHandler(drawShape.paint);
+            button8.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -118,7 +120,7 @@ namespace GraphicProject
                             break;
                     }
                     drawShape.addShapeToShapeSet();
-                    panel1.Paint += new PaintEventHandler(drawShape.paint);
+                    
                     panel1.Refresh();
                     drawShape.resetShape();
                 }
@@ -126,7 +128,7 @@ namespace GraphicProject
             else if (e.Button == MouseButtons.Right) //cancel and clear the current shape in screen
             {
                 drawShape.resetShape();
-                panel1.Paint += new PaintEventHandler(drawShape.paint);
+                //panel1.Paint += new PaintEventHandler(drawShape.paint);
                 panel1.Refresh();
             }
         }
@@ -183,8 +185,53 @@ namespace GraphicProject
 
         private void button8_Click(object sender, EventArgs e)
         {
-            drawShape.clearAllScreen();
-            panel1.Refresh();
+            if (listBox1.Items.Count > 0)
+            {
+                DialogResult r = MessageBox.Show("Bạn có thật sựa muốn xóa hết tất cả?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (r == DialogResult.Yes)
+                {
+                    drawShape.clearAllScreen();
+                    drawShape.updateListView();
+                    panel1.Refresh();
+                }
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = this.listBox1.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                this.indexChoosedShape = index;
+                drawShape.chooseShape(index);
+                button9.Enabled = true;
+                //drawShape.resetShape();
+                panel1.Refresh();
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (indexChoosedShape != -1) {
+                DialogResult r=MessageBox.Show("Bạn có thật sự muốn xóa hình này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (r == DialogResult.Yes)
+                {
+                    drawShape.removeShape(indexChoosedShape);
+                    this.indexChoosedShape = -1;
+                    button9.Enabled = false;
+                    panel1.Refresh();
+                }
+            }
         }
     }
 }

@@ -12,10 +12,11 @@ namespace GraphicProject
     {
 
         private List<Shape> shapeSet;
-        private Shape shape;
+        private Shape shape,choosedShape;
         private Form1 frm;
         private Color color;
-
+        private bool choosedFlag = false;
+        
         public DrawShape(Form1 frm)
         {
             shapeSet = new List<Shape>();
@@ -50,6 +51,7 @@ namespace GraphicProject
                     break;
             }
             shape.setColor(color);
+            choosedFlag = false;
         }
 
         public void resetShape()
@@ -93,7 +95,7 @@ namespace GraphicProject
             putpixel(round(centerX - y), round(centerY - x), color);
         }
 
-        private void put4pixel(int x,int y,int centerX,int centerY,Color color)
+        private void put4pixel(int x, int y, int centerX, int centerY, Color color)
         {
             putpixel(round(centerX + x), round(centerY + y), color);
             putpixel(round(centerX - x), round(centerY + y), color);
@@ -117,7 +119,7 @@ namespace GraphicProject
 
         public Point roundPoint(double X, double Y)
         {
-            return new Point(round(X),round(Y));
+            return new Point(round(X), round(Y));
         }
         public void MidPoint_Circle(Circle circle)
         {
@@ -140,10 +142,10 @@ namespace GraphicProject
             //}
             R = round(circle.getRadius());
             int max = round((float)(Math.Sqrt(2) / 2 * R));
-            p = 5/4 - R;
-            x = 0;y = R;
+            p = 5 / 4 - R;
+            x = 0; y = R;
             put8pixel(x, y, centerX, centerY, color);
-            
+
             while (x <= max)
             {
                 if (p < 0)
@@ -158,11 +160,10 @@ namespace GraphicProject
             }
         }
 
-
         public void MidPoint_Ellipse(Ellipse ellipse)
         {
             //int x1, y1, x2, y2, centerX, centerY;
-            int x, y, fx, fy, a2, b2, p,a,b;
+            int x, y, fx, fy, a2, b2, p, a, b;
             a = (int)ellipse.getWidthRadius();
             b = (int)ellipse.getHeightRadius();
             x = 0;
@@ -171,21 +172,22 @@ namespace GraphicProject
             b2 = b * b;
             fx = 0;
             fy = 2 * a2 * y;
-            put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y,  ellipse.getColor());
-            p = round(b2 - 4*a2*b +a2/4);
-            while (fx <= fy)
+            put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+            p = round(b2 - (a2 * b) + (0.25 * a2));//p=b2 - a2*b +a2/4
+            while (fx < fy)
             {
                 x++;
                 fx += 2 * b2;
+                //delay(50);
                 if (p < 0)
                 {
                     p += b2 * (2 * x + 3);//p=p + b2*(2x +3)
                 }
                 else
                 {
+                    y--;
                     p += b2 * (2 * x + 3) + a2 * (2 - 2 * y);//p=p +b2(2x +3) +a2(2-2y)
                     fy -= 2 * a2;
-                    y--;
                 }
                 put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
             }
@@ -195,6 +197,7 @@ namespace GraphicProject
             {
                 y--;
                 fy -= 2 * a2;
+                // delay(50);
                 if (p >= 0)
                 {
                     p += a2 * (3 - 2 * y); //p=p +a2(3-2y)
@@ -205,13 +208,13 @@ namespace GraphicProject
                     fx += 2 * b2;
                     p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);//p=p+ b2(2x +2) + a2(3-2y)
                 }
-                put4pixel(x,y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+                put4pixel(ellipse.getStartPoint().X, ellipse.getStartPoint().Y, x, y, ellipse.getColor());
             }
         }
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
         {
             //Line line = (Line)s;
-            int Dx, Dy, count, temp_1, temp_2, dem = 1,absX,absY;
+            int Dx, Dy, count, temp_1, temp_2, dem = 1, absX, absY;
             //int temp_3, temp_4;
             Dx = line.getEndPoint().X - line.getStartPoint().Y;
             Dy = line.getEndPoint().Y - line.getStartPoint().Y;
@@ -247,7 +250,7 @@ namespace GraphicProject
         private void DDA_Line1(Line line)
         {
             int dY, step, absX, absY;
-            float x,y, x_inc, y_inc;
+            float x, y, x_inc, y_inc;
             int dX = line.getEndPoint().X - line.getStartPoint().Y;
             dY = line.getEndPoint().Y - line.getStartPoint().Y;
             absX = Math.Abs(dX);
@@ -263,7 +266,7 @@ namespace GraphicProject
             putpixel(round(line.getStartPoint().X), round(line.getStartPoint().Y), line.getColor());
             step--;
             int k = 1;
-            while (step!=-1)
+            while (step != -1)
             {
                 x += x_inc;
                 y += y_inc;
@@ -296,8 +299,8 @@ namespace GraphicProject
                 yf = (int)y;
                 //try
                 //{
-                    //pictureBox1.Invoke(func, xf, yf, Color.Blue);
-                    putpixel(round(x), round(y), line.getColor());
+                //pictureBox1.Invoke(func, xf, yf, Color.Blue);
+                putpixel(round(x), round(y), line.getColor());
                 //}
                 //catch (InvalidOperationException)
                 //{
@@ -355,80 +358,193 @@ namespace GraphicProject
 
         public void paint(Object sender, PaintEventArgs e)
         {
-            foreach (Shape s in shapeSet)
+            if (!choosedFlag)
             {
-                Pen pen = new Pen(s.getColor(), 3);
-                Graphics g = frm.panel1.CreateGraphics();
-                switch (s.getTypeDraw())
+                foreach (Shape s in shapeSet)
                 {
-                    case TypeDraw.Line:
-                        Line line = (Line)s;
-                        //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
-                        //DDA_Line2(line);
-                        drawLinebyMidPoint(line);
-                        break;
-                    case TypeDraw.Rectangle:
-                        Rectangle retangle = (Rectangle)s;
-                        List<Line> listLines = retangle.getAllLines();
-                        if (listLines != null)
-                            foreach (Line _line in listLines)
-                            {
-                                DDA_Line2(_line);
-                            }
-                        break;
-                    case TypeDraw.Triangle:
-                        Triangle triangle = (Triangle)s;
-                        listLines = triangle.getAllLines();
-                        if (listLines != null)
-                            foreach (Line _line in listLines)
-                            {
-                                DDA_Line2(_line);
-                            }
-                        break;
-                    case TypeDraw.Parallelogram:
-                        Parallelogram parallelogram = (Parallelogram)s;
-                        listLines = parallelogram.getAllLines();
-                        if (listLines != null)
-                            foreach (Line _line in listLines)
-                            {
-                                DDA_Line2(_line);
-                            }
-                        break;
-                    case TypeDraw.Circle:
-                        Circle circle = (Circle)s;
-                        MidPoint_Circle(circle);
-                        break;
-                    case TypeDraw.Ellipse:
-                        Ellipse ellipse = (Ellipse)s;
-                        MidPoint_Ellipse(ellipse);
-                        break;
+                    Pen pen = new Pen(s.getColor(), 3);
+                    Graphics g = frm.panel1.CreateGraphics();
+                    switch (s.getTypeDraw())
+                    {
+                        case TypeDraw.Line:
+                            Line line = (Line)s;
+                            //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                            //DDA_Line2(line);
+                            drawLinebyMidPoint(line);
+                            break;
+                        case TypeDraw.Rectangle:
+                            Rectangle retangle = (Rectangle)s;
+                            List<Line> listLines = retangle.getAllLines();
+                            if (listLines != null)
+                                foreach (Line _line in listLines)
+                                {
+                                    DDA_Line2(_line);
+                                }
+                            break;
+                        case TypeDraw.Triangle:
+                            Triangle triangle = (Triangle)s;
+                            listLines = triangle.getAllLines();
+                            if (listLines != null)
+                                foreach (Line _line in listLines)
+                                {
+                                    DDA_Line2(_line);
+                                }
+                            break;
+                        case TypeDraw.Parallelogram:
+                            Parallelogram parallelogram = (Parallelogram)s;
+                            listLines = parallelogram.getAllLines();
+                            if (listLines != null)
+                                foreach (Line _line in listLines)
+                                {
+                                    DDA_Line2(_line);
+                                }
+                            break;
+                        case TypeDraw.Circle:
+                            Circle circle = (Circle)s;
+                            MidPoint_Circle(circle);
+                            break;
+                        case TypeDraw.Ellipse:
+                            Ellipse ellipse = (Ellipse)s;
+                            MidPoint_Ellipse(ellipse);
+                            break;
+                    }
+                    g.Dispose();
                 }
-                g.Dispose();
             }
-
-            //if (shape.checkDrawable()) //if (endClick)
-            //{
-            //    switch (shape.getTypeDraw())
-            //    {
-            //        case TypeDraw.Line:
-            //            Line line = (Line)shape;
-            //            if (line.getEndPoint() != null)
-            //            {
-            //                Pen pen = new Pen(shape.getColor(), 3);
-            //                Graphics g = frm.panel1.CreateGraphics();
-            //                //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
-                            
-            //                DDA_Line2(line);
-            //            }
-            //            break;
-            //    }
-            //}
+            else
+            {
+                if (choosedShape != null)
+                {
+                    Pen pen = new Pen(choosedShape.getColor(), 3);
+                    Graphics g = frm.panel1.CreateGraphics();
+                    switch (choosedShape.getTypeDraw())
+                    {
+                        case TypeDraw.Line:
+                            Line line = (Line)choosedShape;
+                            //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                            //DDA_Line2(line);
+                            drawLinebyMidPoint(line);
+                            break;
+                        case TypeDraw.Rectangle:
+                            Rectangle retangle = (Rectangle)choosedShape;
+                            List<Line> listLines = retangle.getAllLines();
+                            if (listLines != null)
+                                foreach (Line _line in listLines)
+                                {
+                                    DDA_Line2(_line);
+                                }
+                            break;
+                        case TypeDraw.Triangle:
+                            Triangle triangle = (Triangle)choosedShape;
+                            listLines = triangle.getAllLines();
+                            if (listLines != null)
+                                foreach (Line _line in listLines)
+                                {
+                                    DDA_Line2(_line);
+                                }
+                            break;
+                        case TypeDraw.Parallelogram:
+                            Parallelogram parallelogram = (Parallelogram)choosedShape;
+                            listLines = parallelogram.getAllLines();
+                            if (listLines != null)
+                                foreach (Line _line in listLines)
+                                {
+                                    DDA_Line2(_line);
+                                }
+                            break;
+                        case TypeDraw.Circle:
+                            Circle circle = (Circle)choosedShape;
+                            MidPoint_Circle(circle);
+                            break;
+                        case TypeDraw.Ellipse:
+                            Ellipse ellipse = (Ellipse)choosedShape;
+                            MidPoint_Ellipse(ellipse);
+                            break;
+                    }
+                    g.Dispose();
+                }
+            }
         }
+        
 
-        public void addShape(Shape shape)
-        {
-            this.shapeSet.Add(shape);
-        }
+        //public void paintOneShape(Object sender, PaintEventArgs e)
+        //{
+        //    if (choosedShape != null)
+        //    {
+        //        Pen pen = new Pen(choosedShape.getColor(), 3);
+        //        Graphics g = frm.panel1.CreateGraphics();
+        //        switch (choosedShape.getTypeDraw())
+        //        {
+        //            case TypeDraw.Line:
+        //                Line line = (Line)choosedShape;
+        //                //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+        //                //DDA_Line2(line);
+        //                drawLinebyMidPoint(line);
+        //                break;
+        //            case TypeDraw.Rectangle:
+        //                Rectangle retangle = (Rectangle)choosedShape;
+        //                List<Line> listLines = retangle.getAllLines();
+        //                if (listLines != null)
+        //                    foreach (Line _line in listLines)
+        //                    {
+        //                        DDA_Line2(_line);
+        //                    }
+        //                break;
+        //            case TypeDraw.Triangle:
+        //                Triangle triangle = (Triangle)choosedShape;
+        //                listLines = triangle.getAllLines();
+        //                if (listLines != null)
+        //                    foreach (Line _line in listLines)
+        //                    {
+        //                        DDA_Line2(_line);
+        //                    }
+        //                break;
+        //            case TypeDraw.Parallelogram:
+        //                Parallelogram parallelogram = (Parallelogram)choosedShape;
+        //                listLines = parallelogram.getAllLines();
+        //                if (listLines != null)
+        //                    foreach (Line _line in listLines)
+        //                    {
+        //                        DDA_Line2(_line);
+        //                    }
+        //                break;
+        //            case TypeDraw.Circle:
+        //                Circle circle = (Circle)choosedShape;
+        //                MidPoint_Circle(circle);
+        //                break;
+        //            case TypeDraw.Ellipse:
+        //                Ellipse ellipse = (Ellipse)choosedShape;
+        //                MidPoint_Ellipse(ellipse);
+        //                break;
+        //        }
+        //        g.Dispose();
+        //    }
+        //}
+
+        //if (shape.checkDrawable()) //if (endClick)
+        //{
+        //    switch (shape.getTypeDraw())
+        //    {
+        //        case TypeDraw.Line:
+        //            Line line = (Line)shape;
+        //            if (line.getEndPoint() != null)
+        //            {
+        //                Pen pen = new Pen(shape.getColor(), 3);
+        //                Graphics g = frm.panel1.CreateGraphics();
+        //                //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+
+        //                DDA_Line2(line);
+        //            }
+        //            break;
+        //    }
+        //}
+        //}
+
+        //public void addShape(Shape shape)
+        //{
+        //    shape.setName();
+        //    this.shapeSet.Add(shape);
+        //}
         public List<Shape> getShapeSet()
         {
             return shapeSet;
@@ -441,6 +557,7 @@ namespace GraphicProject
 
         public void addShapeToShapeSet()
         {
+            shape.setName();
             shapeSet.Add(shape);
             updateListView();
         }
@@ -448,16 +565,35 @@ namespace GraphicProject
         public void clearAllScreen()
         {
             shapeSet.Clear();
-
+            frm.panel1.Refresh();
         }
 
         public void updateListView()
         {
-            frm.listView1.Clear();
+            frm.listBox1.Items.Clear();
             foreach (Shape shape in shapeSet)
             {
-                frm.listView1.Items.Add(shape.getName());
+                frm.listBox1.Items.Add(shape.getName());
             }
+            if (frm.listBox1.Items.Count > 0)
+                frm.button8.Enabled = true;
+            else
+                frm.button8.Enabled = false;
+        }
+
+        public void chooseShape(int index)
+        {
+            choosedFlag = true;
+            choosedShape = shapeSet.ElementAt(index);
+
+        }
+
+        public void removeShape(int index)
+        {
+            shapeSet.RemoveAt(index);
+            choosedFlag = false;
+            choosedShape = null;
+            updateListView();
         }
     }
 }

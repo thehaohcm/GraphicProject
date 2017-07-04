@@ -9,7 +9,6 @@ namespace GraphicProject
 {
     class Square:Shape
     {
-        private static decimal currentNumber = 0;
         private Point startPoint,endPoint;
 
         //Add the rest
@@ -27,12 +26,11 @@ namespace GraphicProject
 
             setStartPoint(startPoint);
             setEndPoint(endPoint);
-            currentNumber++;
-            setName("Square_" + currentNumber);
+            setName();
             //this.edge = edge;
         }
 
-        public Square():this(new Point(0, 0), new Point(0, 0))
+        public Square() : this(new Point(0, 0), new Point(0, 0))
         {
             resetRemaningClick();
         }
@@ -78,7 +76,8 @@ namespace GraphicProject
                 if (startPoint.X == endPoint.X)
                 {
                     this.edge = Math.Abs(startPoint.Y - endPoint.Y);
-                }else if (endPoint.Y == endPoint.Y)
+                }
+                else if (endPoint.Y == endPoint.Y)
                 {
                     this.edge = Math.Abs(startPoint.X - endPoint.X);
                 }

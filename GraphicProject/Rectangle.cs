@@ -9,7 +9,6 @@ namespace GraphicProject
 {
     class Rectangle:Shape
     {
-        private static decimal currentNumber = 0;
         Point startPoint, endPoint;
 
         //Insert 2 Point to Rectangle and get-set method
@@ -27,11 +26,10 @@ namespace GraphicProject
             //this.endPoint = endPoint;
             setStartPoint(startPoint);
             setEndPoint(endPoint);
-            currentNumber++;
-            setName("Rectangle_" + currentNumber);
+            setName();
         }
 
-        public Rectangle():this(new Point(0, 0), new Point(0, 0))
+        public Rectangle() : this(new Point(0, 0), new Point(0, 0))
         {
             resetRemaningClick();
         }
@@ -62,7 +60,7 @@ namespace GraphicProject
         {
             if (startPoint == null || endPoint == null)
                 return null;
-            Point point12 = new Point(endPoint.X,startPoint.Y);
+            Point point12 = new Point(endPoint.X, startPoint.Y);
             Point point21 = new Point(startPoint.X, endPoint.Y);
             Line l1 = new Line(startPoint, point12);
             l1.setColor(this.getColor());

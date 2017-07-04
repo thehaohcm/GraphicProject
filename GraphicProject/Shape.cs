@@ -13,6 +13,7 @@ namespace GraphicProject
         TypeDraw typeDraw;
         private int remainingClick;
         private string name;
+        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1;
 
         protected Shape(TypeDraw typeDraw)
         {
@@ -87,9 +88,45 @@ namespace GraphicProject
             return true;
         }
 
-        protected void setName(string name)
+        public void setName()
         {
-            this.name = name;
+            switch (this.typeDraw)
+            {
+                case TypeDraw.Circle:
+                    this.name = "Circle_" + numCirCle;
+                    numCirCle++;
+                    break;
+                case TypeDraw.Ellipse:
+                    this.name = "Ellipse_" + numEllipse;
+                    numEllipse++;
+                    this.remainingClick = 3;
+                    break;
+                case TypeDraw.Line:
+                    this.name = "Line_" + numLine;
+                    numLine++;
+                    this.remainingClick = 2;
+                    break;
+                case TypeDraw.Parallelogram:
+                    this.name = "Parallelogram_" + numParallelogram;
+                    numParallelogram++;
+                    this.remainingClick = 3;
+                    break;
+                case TypeDraw.Rectangle:
+                    this.name = "Rectangle_" + numRectangle;
+                    numRectangle++;
+                    this.remainingClick = 2;
+                    break;
+                case TypeDraw.Square:
+                    this.name = "Square_" + numSquare;
+                    numSquare++;
+                    this.remainingClick = 2;
+                    break;
+                case TypeDraw.Triangle:
+                    this.name = "Triangle_" + numTriangle;
+                    numTriangle++;
+                    this.remainingClick = 3;
+                    break;
+            }
         }
 
         public string getName()

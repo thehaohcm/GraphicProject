@@ -9,7 +9,6 @@ namespace GraphicProject
 {
     class Circle:Shape
     {
-        private static decimal currentNumber=0;
         private Point centerPoint,endPoint;
         private double radius;
 
@@ -22,14 +21,12 @@ namespace GraphicProject
         {
             setCenterPoint(centerPoint);
             setEndPoint(endPoint);
-            currentNumber++;
-            setName("Circle_"+currentNumber);
             //calculate radius
             //handle...
 
         }
 
-        public Circle():this(new Point(0, 0), new Point(0, 0))
+        public Circle() : this(new Point(0, 0), new Point(0, 0))
         {
             resetRemaningClick();
         }
@@ -70,12 +67,13 @@ namespace GraphicProject
 
         private void calculateRadius()
         {
-            if (centerPoint != new Point(0,0) && endPoint != new Point(0,0))
+            if (centerPoint != new Point(0, 0) && endPoint != new Point(0, 0))
             {
                 double c1 = Math.Abs(centerPoint.X - endPoint.X);
                 double c2 = Math.Abs(centerPoint.Y - endPoint.Y);
                 this.radius = Math.Sqrt(c1 * c1 + c2 * c2);
             }
         }
+
     }
 }

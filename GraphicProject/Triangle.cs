@@ -9,7 +9,6 @@ namespace GraphicProject
 {
     class Triangle:Shape
     {
-        private static decimal currentNumber = 0;
         Point point1, point2, point3;
         public Triangle(Point point1,Point point2,Point point3,Color color):this(point1,point2,point3)
         {
@@ -25,11 +24,10 @@ namespace GraphicProject
             setPoint1(point1);
             setPoint2(point2);
             setPoint3(point3);
-            currentNumber++;
-            setName("Triangle_" + currentNumber);
+            setName();
         }
 
-        public Triangle():this(new Point(0, 0), new Point(0, 0), new Point(0, 0))
+        public Triangle() : this(new Point(0, 0), new Point(0, 0), new Point(0, 0))
         {
             resetRemaningClick();
         }

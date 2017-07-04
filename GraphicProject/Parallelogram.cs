@@ -9,7 +9,6 @@ namespace GraphicProject
 {
     class Parallelogram : Shape
     {
-        private static decimal currentNumber = 0;
         Point point1, point2, point3;
 
         Point point4;
@@ -27,8 +26,7 @@ namespace GraphicProject
             setPoint1(point1);
             setPoint2(point2);
             setPoint3(point3);
-            currentNumber++;
-            setName("Parallelogram_" + currentNumber);
+            setName();
             //handle => point 4
             //...
         }
@@ -95,7 +93,7 @@ namespace GraphicProject
             //        this.point4 = new Point(point1.X + (point3.X - point2.X), point3.Y);
             //}
             //else
-            if(point1.X<point2.X)
+            if (point1.X < point2.X)
             {
                 if (point1.X < point2.X)
                     this.point4 = new Point(point3.X + (point1.X - point2.X), point3.Y);
@@ -122,7 +120,7 @@ namespace GraphicProject
 
         public List<Line> getAllLines()
         {
-            if (point1 == null || point2 == null||point3==null||point4==null)
+            if (point1 == null || point2 == null || point3 == null || point4 == null)
                 return null;
             calculatePoint4();
             Line l1 = new Line(point1, point2);
