@@ -87,6 +87,7 @@ namespace GraphicProject
                             else if (ellipse.getRemainingClick() == 2)
                                 ellipse.setEndHightPoint(new Point(e.X, e.Y));
                             break;
+                        
                     }
                 }
                 else
@@ -122,6 +123,11 @@ namespace GraphicProject
                             Cube cube = (Cube)drawShape.getShape();
                             cube.setPoint(new Point(e.X, e.Y));
                             break;
+                        case TypeDraw.Cylinder:
+                            Cylinder cylinder = (Cylinder)drawShape.getShape();
+                            cylinder.setPoint(new Point(e.X, e.Y));
+                            break;
+
                     }
                     drawShape.addShapeToShapeSet();
                     
@@ -242,6 +248,26 @@ namespace GraphicProject
         {
             drawShape.initShape(TypeDraw.Cube);
             
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            drawShape.initShape(TypeDraw.Cylinder);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (indexChoosedShape != -1)
+            {
+                drawShape.translationTransform(indexChoosedShape);
+                panel1.Refresh();
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            drawShape.showAllShape2D();
+            panel1.Refresh();
         }
     }
 }

@@ -48,6 +48,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +58,7 @@
             // 
             this.panel1.Location = new System.Drawing.Point(229, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(705, 550);
+            this.panel1.Size = new System.Drawing.Size(705, 601);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
@@ -230,11 +233,44 @@
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(16, 601);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(207, 47);
+            this.button11.TabIndex = 13;
+            this.button11.Text = "Hình trụ";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(944, 407);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(244, 42);
+            this.button12.TabIndex = 14;
+            this.button12.Text = "Tịnh tuyến";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(944, 362);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(244, 39);
+            this.button13.TabIndex = 15;
+            this.button13.Text = "Hiện tất cả hình";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1209, 631);
+            this.ClientSize = new System.Drawing.Size(1209, 660);
+            this.Controls.Add(this.button13);
+            this.Controls.Add(this.button12);
+            this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.label3);
@@ -283,6 +319,9 @@
         private System.Windows.Forms.Button button9;
         public System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
     }
 }
 

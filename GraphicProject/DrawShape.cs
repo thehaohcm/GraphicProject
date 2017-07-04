@@ -53,6 +53,9 @@ namespace GraphicProject
                 case TypeDraw.Cube:
                     shape = new Cube();
                     break;
+                case TypeDraw.Cylinder:
+                    shape = new Cylinder();
+                    break;
             }
             shape.setColor(color);
             choosedFlag = false;
@@ -448,6 +451,21 @@ namespace GraphicProject
                                 drawLinebyMidPoint(_line,_line.getDottedLineFlag());
                             }
                             break;
+                        case TypeDraw.Cylinder:
+                            Cylinder cylinder = (Cylinder)s;
+                            g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
+                            g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
+                            //g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
+                            //g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
+                            g.DrawLine(new Pen(Color.Red), 200, 200, 400, 400);
+                            foreach(Shape _s in cylinder.getListLine())
+                            {
+                                if (_s.getTypeDraw() == TypeDraw.Line)
+                                    drawLinebyMidPoint((Line)_s);
+                                else if (_s.getTypeDraw() == TypeDraw.Ellipse)
+                                    MidPoint_Ellipse((Ellipse)_s);
+                            }
+                            break;
                     }
                     g.Dispose();
                 }
@@ -608,6 +626,7 @@ namespace GraphicProject
         public void clearAllScreen()
         {
             shapeSet.Clear();
+            Shape.resetAllCountShape();
             frm.panel1.Refresh();
         }
 
@@ -637,6 +656,17 @@ namespace GraphicProject
             choosedFlag = false;
             choosedShape = null;
             updateListView();
+        }
+
+        public void translationTransform(int index)
+        {
+            Shape shape = shapeSet.ElementAt(index);
+            Transform.transformTranslation(shape, new Point(1, 1));
+        }
+
+        public void showAllShape2D()
+        {
+            choosedFlag = false;
         }
     }
 }
