@@ -657,5 +657,16 @@ namespace GraphicProject
             choosedShape = null;
             updateListView();
         }
+
+        public void translationTransform(int index)
+        {
+            Shape shape = shapeSet.ElementAt(index);
+            Transform.transformTranslation(shape, new Point(1, 1));
+        }
+
+        public void showAllShape2D()
+        {
+            choosedFlag = false;
+        }
     }
 }

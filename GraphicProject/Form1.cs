@@ -254,5 +254,20 @@ namespace GraphicProject
         {
             drawShape.initShape(TypeDraw.Cylinder);
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (indexChoosedShape != -1)
+            {
+                drawShape.translationTransform(indexChoosedShape);
+                panel1.Refresh();
+            }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            drawShape.showAllShape2D();
+            panel1.Refresh();
+        }
     }
 }
