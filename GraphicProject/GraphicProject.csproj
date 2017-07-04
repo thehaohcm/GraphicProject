@@ -56,6 +56,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputCubeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputCubeForm.Designer.cs">
+      <DependentUpon>InputCubeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Line.cs" />
     <Compile Include="Parallelogram.cs" />
     <Compile Include="Point3D.cs" />
@@ -69,6 +75,9 @@
     <Compile Include="TypeDraw.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputCubeForm.resx">
+      <DependentUpon>InputCubeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
