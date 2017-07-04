@@ -13,7 +13,7 @@ namespace GraphicProject
         TypeDraw typeDraw;
         private int remainingClick;
         private string name;
-        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1;
+        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1, numCube=1;
 
         protected Shape(TypeDraw typeDraw)
         {
@@ -72,6 +72,9 @@ namespace GraphicProject
                 case TypeDraw.Triangle:
                     this.remainingClick = 3;
                     break;
+                case TypeDraw.Cube:
+                    this.remainingClick = 1;
+                    break;
             }
         }
 
@@ -125,6 +128,11 @@ namespace GraphicProject
                     this.name = "Triangle_" + numTriangle;
                     numTriangle++;
                     this.remainingClick = 3;
+                    break;
+                case TypeDraw.Cube:
+                    this.name = "Cube_" + numCube;
+                    numCube++;
+                    this.remainingClick = 1;
                     break;
             }
         }

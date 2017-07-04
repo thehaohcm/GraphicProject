@@ -118,6 +118,10 @@ namespace GraphicProject
                             Ellipse ellipse = (Ellipse)drawShape.getShape();
                             ellipse.setEndWidthPoint(new Point(e.X, e.Y));
                             break;
+                        case TypeDraw.Cube:
+                            Cube cube = (Cube)drawShape.getShape();
+                            cube.setPoint(new Point(e.X, e.Y));
+                            break;
                     }
                     drawShape.addShapeToShapeSet();
                     
@@ -232,6 +236,12 @@ namespace GraphicProject
                     panel1.Refresh();
                 }
             }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            drawShape.initShape(TypeDraw.Cube);
+            
         }
     }
 }

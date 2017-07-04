@@ -11,7 +11,7 @@ namespace GraphicProject
     class DrawShape
     {
 
-        private List<Shape> shapeSet;
+        private List<Shape> shapeSet,shapeSet3D;
         private Shape shape,choosedShape;
         private Form1 frm;
         private Color color;
@@ -20,6 +20,7 @@ namespace GraphicProject
         public DrawShape(Form1 frm)
         {
             shapeSet = new List<Shape>();
+            shapeSet3D = new List<Shape>();
             this.frm = frm;
             color = Color.Black;
         }
@@ -48,6 +49,9 @@ namespace GraphicProject
                     break;
                 case TypeDraw.Triangle:
                     shape = new Triangle();
+                    break;
+                case TypeDraw.Cube:
+                    shape = new Cube();
                     break;
             }
             shape.setColor(color);
@@ -309,31 +313,55 @@ namespace GraphicProject
             }
         }
 
-        public void drawLinebyMidPoint(Line line)
+        public void drawLinebyMidPoint(Line line,bool dottedLineFlag=false)
         {
             int x1 = round(line.getStartPoint().X);
             int y1 = round(line.getStartPoint().Y);
             int x2 = round(line.getEndPoint().X);
             int y2 = round(line.getEndPoint().Y);
-            int Dx = 5;//round(x2 - x1);
-            int Dy = 5;//round(y2 - y1);
-            int x = x1;
-            int y = y1;
+            int Dx =round(x2 - x1);
+            int Dy =round(y2 - y1);
+            int x = round(x1);
+            int y = round(y1);
             putpixel(x1, y1, line.getColor());
-            float D = Dy - (Dx >> 1); // ~ float D = Dy - Dx/2;
-            while (x <= x2)
+            float P = 2*Dy - Dx;
+            float Q = 2 * Dx - Dy;
+            int count = 0,count_dot=0;
+            while (x < x2 || y < y2)
             {
-                x++;
-                if (D < 0)
+                if (y < y2)
                 {
-                    D = D + Dy;
+
+                    y++;
+                    if (Q < 0)
+                    {
+                        Q = Q + 2 * Dx;
+                    }
+                    else
+                    {
+                        Q = Q + 2 * (Dx - Dy);
+                        x++;
+                    }
                 }
                 else
                 {
-                    D = D + (Dy - Dx);
-                    y++;
+                    x++;
+                    if (P < 0)
+                    {
+                        P = P + 2 * Dy;
+                    }
+                    else
+                    {
+                        P = P + 2 * (Dy - Dx);
+                        y++;
+                    }
                 }
-                putpixel(x, y, line.getColor());
+                if (dottedLineFlag==false||(dottedLineFlag == true && count % 10== 0))
+                {
+                    putpixel(round(x), round(y), line.getColor());
+                    
+                }
+                count++;
             }
         }
 
@@ -406,6 +434,19 @@ namespace GraphicProject
                         case TypeDraw.Ellipse:
                             Ellipse ellipse = (Ellipse)s;
                             MidPoint_Ellipse(ellipse);
+                            break;
+                        case TypeDraw.Cube:
+                            Cube cube = (Cube)s;
+                            g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
+                            g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
+                            //g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
+                            //g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
+                            g.DrawLine(new Pen(Color.Red), 200, 200, 400, 400);
+                            foreach (Line _line in cube.getListLine())
+                            {
+                                //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
+                                drawLinebyMidPoint(_line,_line.getDottedLineFlag());
+                            }
                             break;
                     }
                     g.Dispose();
@@ -558,6 +599,8 @@ namespace GraphicProject
         public void addShapeToShapeSet()
         {
             shape.setName();
+            if (shape.getTypeDraw() == TypeDraw.Cube)
+                shapeSet3D.Add(shape);
             shapeSet.Add(shape);
             updateListView();
         }

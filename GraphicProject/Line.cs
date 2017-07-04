@@ -10,9 +10,16 @@ namespace GraphicProject
     class Line:Shape
     {
         private Point startPoint, endPoint;
+        private bool dottedLineFlag;
         public Line(Point startPoint,Point endPoint,Color color):this(startPoint,endPoint)
         {
             setColor(color);
+            setDottedLineFlag(false);
+        }
+
+        public Line(Point startPoint,Point endPoint, bool dottedLineFlag=false):this(startPoint,endPoint)
+        {
+            setDottedLineFlag(dottedLineFlag);
         }
 
         public Line(Point startPoint,Point endPoint): base(TypeDraw.Line)
@@ -20,6 +27,7 @@ namespace GraphicProject
             setStartPoint(startPoint);
             setEndPoint(endPoint);
         }
+
 
         public Line() : this(new Point(0, 0), new Point(0, 0))
         {
@@ -46,6 +54,16 @@ namespace GraphicProject
         public Point getEndPoint()
         {
             return endPoint;
+        }
+
+        public void setDottedLineFlag(bool dottedLineFlag)
+        {
+            this.dottedLineFlag = dottedLineFlag;
+        }
+
+        public bool getDottedLineFlag()
+        {
+            return this.dottedLineFlag;
         }
     }
 }

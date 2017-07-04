@@ -47,6 +47,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             // 
             this.panel1.Location = new System.Drawing.Point(229, 47);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(636, 615);
+            this.panel1.Size = new System.Drawing.Size(705, 550);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
@@ -163,7 +164,7 @@
             this.chuyểnĐổiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1127, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1209, 33);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -192,7 +193,7 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(871, 77);
+            this.listBox1.Location = new System.Drawing.Point(944, 77);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(244, 224);
             this.listBox1.TabIndex = 9;
@@ -203,7 +204,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(871, 47);
+            this.label3.Location = new System.Drawing.Point(940, 47);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(152, 20);
             this.label3.TabIndex = 10;
@@ -211,7 +212,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(871, 307);
+            this.button9.Location = new System.Drawing.Point(944, 316);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(244, 40);
             this.button9.TabIndex = 11;
@@ -219,11 +220,22 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(16, 545);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(207, 47);
+            this.button10.TabIndex = 12;
+            this.button10.Text = "Hình hộp";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1127, 788);
+            this.ClientSize = new System.Drawing.Size(1209, 631);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.listBox1);
@@ -270,6 +282,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button9;
         public System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button10;
     }
 }
 
