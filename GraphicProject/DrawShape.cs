@@ -215,7 +215,7 @@ namespace GraphicProject
                     fx += 2 * b2;
                     p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);//p=p+ b2(2x +2) + a2(3-2y)
                 }
-                put4pixel(ellipse.getStartPoint().X, ellipse.getStartPoint().Y, x, y, ellipse.getColor());
+                put4pixel(x, y , ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
             }
         }
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
