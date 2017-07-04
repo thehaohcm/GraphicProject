@@ -26,7 +26,6 @@ namespace GraphicProject
             setPoint1(point1);
             setPoint2(point2);
             setPoint3(point3);
-            setName();
             //handle => point 4
             //...
         }
@@ -84,37 +83,11 @@ namespace GraphicProject
         {
             if (point1 == null || point2 == null || point3 == null)
                 return;
-            //calculatePoint4();
-            //if (point1.X > point2.X)
-            //{
-            //    if (point3.X < point2.X)
-            //        this.point4 = new Point(point1.X - (point2.X - point3.X), point3.Y);
-            //    else
-            //        this.point4 = new Point(point1.X + (point3.X - point2.X), point3.Y);
-            //}
-            //else
-            if (point1.X < point2.X)
-            {
-                if (point1.X < point2.X)
-                    this.point4 = new Point(point3.X + (point1.X - point2.X), point3.Y);
-                else
-                    this.point4 = new Point(point3.X - (point2.X - point1.X), point3.Y);
-            }
-            //if (point1.Y > point2.Y)
-            //{
-            //    if (point3.X < point2.X)
-            //        this.point4 = new Point(point1.X - (point2.X - point3.X), point3.Y);
-            //    else
-            //        this.point4 = new Point(point1.X + (point3.X - point2.X), point3.Y);
-            //}
-            //else
-            else if (point1.Y < point2.Y)
-            {
-                if (point1.X < point2.X)
-                    this.point4 = new Point(point3.X - (point2.X - point1.X), point1.Y);
-                else
-                    this.point4 = new Point(point3.X + (point1.X - point2.X), point1.Y);
-            }
+            Point ptd = new Point(0, 0);
+            ptd.X = point1.X + point3.X;
+            ptd.Y = point1.Y + point3.Y;
+            this.point4.X = ptd.X - point2.X;
+            this.point4.Y = ptd.Y - point2.Y;
             minusRemainingClick();
         }
 

@@ -24,7 +24,6 @@ namespace GraphicProject
             setPoint1(point1);
             setPoint2(point2);
             setPoint3(point3);
-            setName();
         }
 
         public Triangle() : this(new Point(0, 0), new Point(0, 0), new Point(0, 0))

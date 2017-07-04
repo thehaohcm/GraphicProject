@@ -26,7 +26,6 @@ namespace GraphicProject
             //this.endPoint = endPoint;
             setStartPoint(startPoint);
             setEndPoint(endPoint);
-            setName();
         }
 
         public Rectangle() : this(new Point(0, 0), new Point(0, 0))

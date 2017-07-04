@@ -26,7 +26,6 @@ namespace GraphicProject
 
             setStartPoint(startPoint);
             setEndPoint(endPoint);
-            setName();
             //this.edge = edge;
         }
 

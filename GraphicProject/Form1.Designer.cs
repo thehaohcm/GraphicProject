@@ -51,7 +51,10 @@
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -127,7 +130,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 445);
+            this.label1.Location = new System.Drawing.Point(12, 551);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 6;
@@ -135,14 +138,14 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(91, 445);
+            this.label2.Location = new System.Drawing.Point(91, 551);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 23);
             this.label2.TabIndex = 0;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(146, 437);
+            this.button7.Location = new System.Drawing.Point(146, 543);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(77, 37);
             this.button7.TabIndex = 0;
@@ -152,11 +155,11 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(16, 493);
+            this.button8.Location = new System.Drawing.Point(944, 455);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(207, 46);
+            this.button8.Size = new System.Drawing.Size(226, 46);
             this.button8.TabIndex = 0;
-            this.button8.Text = "Xóa tất cả";
+            this.button8.Text = "Xóa tất cả hình";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
@@ -167,7 +170,7 @@
             this.chuyểnĐổiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1209, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1186, 33);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -198,7 +201,7 @@
             this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(944, 77);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(244, 224);
+            this.listBox1.Size = new System.Drawing.Size(226, 224);
             this.listBox1.TabIndex = 9;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
@@ -209,15 +212,15 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(940, 47);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(152, 20);
+            this.label3.Size = new System.Drawing.Size(155, 20);
             this.label3.TabIndex = 10;
-            this.label3.Text = "danh sách hình ảnh:";
+            this.label3.Text = "Danh sách hình ảnh:";
             // 
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(944, 316);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(244, 40);
+            this.button9.Size = new System.Drawing.Size(226, 40);
             this.button9.TabIndex = 11;
             this.button9.Text = "Xóa hình";
             this.button9.UseVisualStyleBackColor = true;
@@ -225,9 +228,9 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(16, 545);
+            this.button10.Location = new System.Drawing.Point(12, 437);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(207, 47);
+            this.button10.Size = new System.Drawing.Size(211, 47);
             this.button10.TabIndex = 12;
             this.button10.Text = "Hình hộp";
             this.button10.UseVisualStyleBackColor = true;
@@ -235,9 +238,9 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(16, 601);
+            this.button11.Location = new System.Drawing.Point(12, 490);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(207, 47);
+            this.button11.Size = new System.Drawing.Size(211, 47);
             this.button11.TabIndex = 13;
             this.button11.Text = "Hình trụ";
             this.button11.UseVisualStyleBackColor = true;
@@ -247,7 +250,7 @@
             // 
             this.button12.Location = new System.Drawing.Point(944, 407);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(244, 42);
+            this.button12.Size = new System.Drawing.Size(226, 42);
             this.button12.TabIndex = 14;
             this.button12.Text = "Tịnh tuyến";
             this.button12.UseVisualStyleBackColor = true;
@@ -257,17 +260,36 @@
             // 
             this.button13.Location = new System.Drawing.Point(944, 362);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(244, 39);
+            this.button13.Size = new System.Drawing.Size(226, 39);
             this.button13.TabIndex = 15;
             this.button13.Text = "Hiện tất cả hình";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 683);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1186, 28);
+            this.toolStrip1.TabIndex = 16;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(112, 25);
+            this.toolStripLabel1.Text = "Hướng dẫn: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1209, 660);
+            this.ClientSize = new System.Drawing.Size(1186, 711);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
@@ -293,6 +315,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,6 +346,8 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }
 
