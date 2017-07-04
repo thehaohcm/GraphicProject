@@ -215,7 +215,7 @@ namespace GraphicProject
                     fx += 2 * b2;
                     p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);//p=p+ b2(2x +2) + a2(3-2y)
                 }
-                put4pixel(x, y , ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+                put4pixel(ellipse.getStartPoint().X, ellipse.getStartPoint().Y, x, y, ellipse.getColor());
             }
         }
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
@@ -329,7 +329,7 @@ namespace GraphicProject
             putpixel(x1, y1, line.getColor());
             float P = 2*Dy - Dx;
             float Q = 2 * Dx - Dy;
-            int count = 0,count_dot=0;
+            int count = 0;
             while (x < x2 || y < y2)
             {
                 if (y < y2)
