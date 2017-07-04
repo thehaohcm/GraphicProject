@@ -13,7 +13,7 @@ namespace GraphicProject
         TypeDraw typeDraw;
         private int remainingClick;
         private string name;
-        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1, numCube=1;
+        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1, numCube=1,numCylinder=1;
 
         protected Shape(TypeDraw typeDraw)
         {
@@ -134,12 +134,30 @@ namespace GraphicProject
                     numCube++;
                     this.remainingClick = 1;
                     break;
+                case TypeDraw.Cylinder:
+                    this.name = "Cylinder_" + numCylinder;
+                    numCylinder++;
+                    this.remainingClick = 1;
+                    break;
             }
         }
 
         public string getName()
         {
             return name;
+        }
+
+        public static void resetAllCountShape()
+        {
+            Shape.numCirCle = 1;
+            Shape.numCube = 1;
+            Shape.numCylinder = 1;
+            Shape.numEllipse = 1;
+            Shape.numLine = 1;
+            Shape.numParallelogram = 1;
+            Shape.numRectangle = 1;
+            Shape.numSquare = 1;
+            Shape.numTriangle = 1;
         }
     }
 }
