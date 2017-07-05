@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace GraphicProject
 {
-    class DrawShape
+    public class DrawShape
     {
 
         private List<Shape> shapeSet,shapeSet3D;

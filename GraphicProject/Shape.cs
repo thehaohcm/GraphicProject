@@ -13,7 +13,7 @@ namespace GraphicProject
         TypeDraw typeDraw;
         private int remainingClick;
         private string name;
-        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1, numCube=1,numCylinder=1;
+        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1, numCube=1,numCylinder=1,numRhombus=1;
         private Point transformPoint;
         private bool transformFlag;
 
@@ -73,6 +73,9 @@ namespace GraphicProject
                     this.remainingClick = 2;
                     break;
                 case TypeDraw.Triangle:
+                    this.remainingClick = 3;
+                    break;
+                case TypeDraw.Rhombus:
                     this.remainingClick = 3;
                     break;
                 case TypeDraw.Cube:
@@ -136,6 +139,12 @@ namespace GraphicProject
                     this.name = "Triangle_" + numTriangle;
                     numTriangle++;
                     this.remainingClick = 3;
+                    break;
+                case TypeDraw.Rhombus:
+                    this.name = "Rhombus_" + numRhombus;
+                    numRhombus++;
+                    this.remainingClick = 3;
+                    break;
                     break;
                 case TypeDraw.Cube:
                     this.name = "Cube_" + numCube;

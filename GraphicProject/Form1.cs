@@ -164,18 +164,7 @@ namespace GraphicProject
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
-            //if(drawShape.getShape()!=null&&drawShape.getShape().checkDrawable())//if (endClick)
-            //{
-            //    switch (drawShape.getShape().getTypeDraw())
-            //    {
-            //        case TypeDraw.Line:
-            //            Line line = (Line)drawShape.getShape();
-            //            line.setEndPoint(drawShape.roundPoint(e.X,e.Y));
-            //            break;
-            //    }
-            //    panel1.Paint += new PaintEventHandler(drawShape.paint);
-            //    panel1.Refresh();
-            //}
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -276,6 +265,11 @@ namespace GraphicProject
             drawShape.showAllShape2D();
             richTextBox1.Clear();
             panel1.Refresh();
+        }
+
+        public void setCube(int height,int width,int depth)
+        {
+
         }
     }
 }
