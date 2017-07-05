@@ -23,6 +23,8 @@ namespace GraphicProject
             button9.Enabled = false;
             panel1.Paint += new PaintEventHandler(drawShape.paint);
             button8.Enabled = false;
+            button13.Enabled = false;
+            button12.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -220,6 +222,7 @@ namespace GraphicProject
                 this.indexChoosedShape = index;
                 drawShape.chooseShape(index);
                 button9.Enabled = true;
+                button12.Enabled = true;
                 //drawShape.resetShape();
                 panel1.Refresh();
             }
@@ -234,6 +237,7 @@ namespace GraphicProject
                     drawShape.removeShape(indexChoosedShape);
                     this.indexChoosedShape = -1;
                     button9.Enabled = false;
+                    button12.Enabled = false;
                     panel1.Refresh();
                     richTextBox1.Clear();
                 }
@@ -262,7 +266,7 @@ namespace GraphicProject
 
         private void button13_Click(object sender, EventArgs e)
         {
-            drawShape.showAllShape2D();
+            drawShape.showAllShape();
             richTextBox1.Clear();
             panel1.Refresh();
         }
@@ -287,7 +291,8 @@ namespace GraphicProject
             dToolStripMenuItem.Checked = true;
             dToolStripMenuItem1.Checked = false;
             drawShape.setCheck2d(true);
-            panel1.Invalidate();
+            //panel1.Invalidate();
+            panel1.Refresh();
             drawShape.updateListView();
         }
 
@@ -306,7 +311,8 @@ namespace GraphicProject
             dToolStripMenuItem1.Checked = true;
             dToolStripMenuItem.Checked = false;
             drawShape.setCheck2d(false);
-            panel1.Invalidate();
+            //panel1.Invalidate();
+            panel1.Refresh();
             drawShape.updateListView();
         }
     }

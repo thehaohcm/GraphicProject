@@ -590,6 +590,17 @@ namespace GraphicProject
                 frm.button8.Enabled = true;
             else
                 frm.button8.Enabled = false;
+
+            if (frm.listBox1.Items.Count > 0)
+            {
+                frm.button13.Enabled = true;
+                frm.button8.Enabled = true;
+            }
+            else
+            {
+                frm.button13.Enabled = false;
+                frm.button8.Enabled = false;
+            }
         }
 
         public void chooseShape(int index)
@@ -618,7 +629,7 @@ namespace GraphicProject
             //Transform.transformTranslation(shape, new Point(1, 1));
         }
 
-        public void showAllShape2D()
+        public void showAllShape()
         {
             choosedFlag = false;
         }

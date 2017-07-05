@@ -192,14 +192,14 @@
             this.dToolStripMenuItem.Checked = true;
             this.dToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.dToolStripMenuItem.Name = "dToolStripMenuItem";
-            this.dToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.dToolStripMenuItem.Size = new System.Drawing.Size(201, 30);
             this.dToolStripMenuItem.Text = "hệ tọa độ 2D";
             this.dToolStripMenuItem.Click += new System.EventHandler(this.dToolStripMenuItem_Click);
             // 
             // dToolStripMenuItem1
             // 
             this.dToolStripMenuItem1.Name = "dToolStripMenuItem1";
-            this.dToolStripMenuItem1.Size = new System.Drawing.Size(210, 30);
+            this.dToolStripMenuItem1.Size = new System.Drawing.Size(201, 30);
             this.dToolStripMenuItem1.Text = "hệ tọa độ 3D";
             this.dToolStripMenuItem1.Click += new System.EventHandler(this.dToolStripMenuItem1_Click);
             // 
@@ -249,7 +249,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(944, 556);
+            this.button12.Location = new System.Drawing.Point(944, 511);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(226, 42);
             this.button12.TabIndex = 14;
@@ -259,7 +259,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(944, 511);
+            this.button13.Location = new System.Drawing.Point(944, 559);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(226, 39);
             this.button13.TabIndex = 15;
@@ -375,13 +375,13 @@
         public System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button12;
     }
 }
 
