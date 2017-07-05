@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace GraphicProject
 {
-    public class DrawShape
+    class DrawShape
     {
 
         private List<Shape> shapeSet,shapeSet3D;
@@ -16,6 +16,7 @@ namespace GraphicProject
         private Form1 frm;
         private Color color;
         private bool choosedFlag = false;
+        private bool check2d=true;
         //private bool translationFlag = false;
         
         public DrawShape(Form1 frm)
@@ -383,16 +384,32 @@ namespace GraphicProject
                 g.DrawLine(new Pen(Color.Black), 5 * i, 0, 5 * i, 400);
                 g.DrawLine(new Pen(Color.Black), 0, 5 * i, 400, 5 * i);
             }
-            g.DrawLine(new Pen(Color.Aqua), 0, 200, 400, 200);
-            g.DrawLine(new Pen(Color.Aqua), 200, 0, 200, 400);
+            g.DrawLine(new Pen(Color.FromArgb(0x00, 0x99, 0x00)), 0, 200, 400, 200);
+            g.DrawLine(new Pen(Color.FromArgb(0x00, 0x99, 0x00)), 200, 0, 200, 400);
+            
+            if (!check2d)
+            {
+                g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
+                g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
+                g.DrawLine(new Pen(Color.FromArgb(0x00, 0x99, 0x00)), 200, 200, 400, 400);
+            }
+        }
 
+        public void setCheck2d(bool check)
+        {
+            check2d = check;
         }
 
         public void paint(Object sender, PaintEventArgs e)
         {
             if (!choosedFlag)
             {
-                foreach (Shape s in shapeSet)
+                List<Shape> _shapeSet;
+                if (check2d)
+                    _shapeSet = shapeSet;
+                else
+                    _shapeSet = shapeSet3D;
+                foreach (Shape s in _shapeSet)
                 {
                     Pen pen = new Pen(s.getColor(), 3);
                     Graphics g = frm.panel1.CreateGraphics();
@@ -543,9 +560,10 @@ namespace GraphicProject
         public void addShapeToShapeSet()
         {
             shape.setName();
-            if (shape.getTypeDraw() == TypeDraw.Cube)
+            if (shape.getTypeDraw() == TypeDraw.Cube||shape.getTypeDraw()==TypeDraw.Cylinder)
                 shapeSet3D.Add(shape);
-            shapeSet.Add(shape);
+            else
+                shapeSet.Add(shape);
             updateListView();
         }
 
@@ -559,7 +577,12 @@ namespace GraphicProject
         public void updateListView()
         {
             frm.listBox1.Items.Clear();
-            foreach (Shape shape in shapeSet)
+            List<Shape> _shapeSet;
+            if (check2d)
+                _shapeSet = shapeSet;
+            else
+                _shapeSet = shapeSet3D;
+            foreach (Shape shape in _shapeSet)
             {
                 frm.listBox1.Items.Add(shape.getName());
             }
@@ -572,7 +595,10 @@ namespace GraphicProject
         public void chooseShape(int index)
         {
             choosedFlag = true;
-            choosedShape = shapeSet.ElementAt(index);
+            if (check2d)
+                choosedShape = shapeSet.ElementAt(index);
+            else
+                choosedShape = shapeSet3D.ElementAt(index);
             getInfoShape();
         }
 

@@ -271,5 +271,43 @@ namespace GraphicProject
         {
 
         }
+
+        private void dToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button10.Enabled = false;
+            button11.Enabled = false;
+
+            button1.Enabled = true;
+            button2.Enabled = true;
+            button3.Enabled = true;
+            button4.Enabled = true;
+            button5.Enabled = true;
+            button6.Enabled = true;
+
+            dToolStripMenuItem.Checked = true;
+            dToolStripMenuItem1.Checked = false;
+            drawShape.setCheck2d(true);
+            panel1.Invalidate();
+            drawShape.updateListView();
+        }
+
+        private void dToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            button10.Enabled = true;
+            button11.Enabled = true;
+
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+
+            dToolStripMenuItem1.Checked = true;
+            dToolStripMenuItem.Checked = false;
+            drawShape.setCheck2d(false);
+            panel1.Invalidate();
+            drawShape.updateListView();
+        }
     }
 }

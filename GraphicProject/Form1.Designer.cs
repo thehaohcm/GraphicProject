@@ -189,15 +189,19 @@
             // 
             // dToolStripMenuItem
             // 
+            this.dToolStripMenuItem.Checked = true;
+            this.dToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.dToolStripMenuItem.Name = "dToolStripMenuItem";
-            this.dToolStripMenuItem.Size = new System.Drawing.Size(119, 30);
-            this.dToolStripMenuItem.Text = "2D";
+            this.dToolStripMenuItem.Size = new System.Drawing.Size(210, 30);
+            this.dToolStripMenuItem.Text = "hệ tọa độ 2D";
+            this.dToolStripMenuItem.Click += new System.EventHandler(this.dToolStripMenuItem_Click);
             // 
             // dToolStripMenuItem1
             // 
             this.dToolStripMenuItem1.Name = "dToolStripMenuItem1";
-            this.dToolStripMenuItem1.Size = new System.Drawing.Size(119, 30);
-            this.dToolStripMenuItem1.Text = "3D";
+            this.dToolStripMenuItem1.Size = new System.Drawing.Size(210, 30);
+            this.dToolStripMenuItem1.Text = "hệ tọa độ 3D";
+            this.dToolStripMenuItem1.Click += new System.EventHandler(this.dToolStripMenuItem1_Click);
             // 
             // listBox1
             // 
@@ -223,6 +227,7 @@
             // 
             // button10
             // 
+            this.button10.Enabled = false;
             this.button10.Location = new System.Drawing.Point(12, 437);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(211, 47);
@@ -233,6 +238,7 @@
             // 
             // button11
             // 
+            this.button11.Enabled = false;
             this.button11.Location = new System.Drawing.Point(12, 490);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(211, 47);
