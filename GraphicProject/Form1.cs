@@ -92,47 +92,52 @@ namespace GraphicProject
                 }
                 else
                 {
-                    switch (drawShape.getShape().getTypeDraw())
+                    if (drawShape.getShape().getTransformFlag())
                     {
-                        case TypeDraw.Line:
-                            Line line = (Line)drawShape.getShape();
-                            //line.setEndPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
-                            line.setEndPoint(new Point(e.X, e.Y));
-                            break;
-                        case TypeDraw.Rectangle:
-                            Rectangle rectangle = (Rectangle)drawShape.getShape();
-                            rectangle.setEndPoint(new Point(e.X, e.Y));
-                            break;
-                        case TypeDraw.Triangle:
-                            Triangle triangle = (Triangle)drawShape.getShape();
-                            triangle.setPoint3(new Point(e.X, e.Y));
-                            break;
-                        case TypeDraw.Parallelogram:
-                            Parallelogram paralleogram = (Parallelogram)drawShape.getShape();
-                            paralleogram.setPoint3(new Point(e.X, e.Y));
-                            break;
-                        case TypeDraw.Circle:
-                            Circle circle = (Circle)drawShape.getShape();
-                            circle.setEndPoint(new Point(e.X, e.Y));
-                            break;
-                        case TypeDraw.Ellipse:
-                            Ellipse ellipse = (Ellipse)drawShape.getShape();
-                            ellipse.setEndWidthPoint(new Point(e.X, e.Y));
-                            break;
-                        case TypeDraw.Cube:
-                            Cube cube = (Cube)drawShape.getShape();
-                            cube.setPoint(new Point(e.X, e.Y));
-                            break;
-                        case TypeDraw.Cylinder:
-                            Cylinder cylinder = (Cylinder)drawShape.getShape();
-                            cylinder.setPoint(new Point(e.X, e.Y));
-                            break;
-
+                        drawShape.getShape().setTransformPoint(new Point(e.X, e.Y));
                     }
-                    drawShape.addShapeToShapeSet();
-                    
+                    else {
+                        switch (drawShape.getShape().getTypeDraw())
+                        {
+                            case TypeDraw.Line:
+                                Line line = (Line)drawShape.getShape();
+                                //line.setEndPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
+                                line.setEndPoint(new Point(e.X, e.Y));
+                                break;
+                            case TypeDraw.Rectangle:
+                                Rectangle rectangle = (Rectangle)drawShape.getShape();
+                                rectangle.setEndPoint(new Point(e.X, e.Y));
+                                break;
+                            case TypeDraw.Triangle:
+                                Triangle triangle = (Triangle)drawShape.getShape();
+                                triangle.setPoint3(new Point(e.X, e.Y));
+                                break;
+                            case TypeDraw.Parallelogram:
+                                Parallelogram paralleogram = (Parallelogram)drawShape.getShape();
+                                paralleogram.setPoint3(new Point(e.X, e.Y));
+                                break;
+                            case TypeDraw.Circle:
+                                Circle circle = (Circle)drawShape.getShape();
+                                circle.setEndPoint(new Point(e.X, e.Y));
+                                break;
+                            case TypeDraw.Ellipse:
+                                Ellipse ellipse = (Ellipse)drawShape.getShape();
+                                ellipse.setEndWidthPoint(new Point(e.X, e.Y));
+                                break;
+                            case TypeDraw.Cube:
+                                Cube cube = (Cube)drawShape.getShape();
+                                cube.setPoint(new Point(e.X, e.Y));
+                                break;
+                            case TypeDraw.Cylinder:
+                                Cylinder cylinder = (Cylinder)drawShape.getShape();
+                                cylinder.setPoint(new Point(e.X, e.Y));
+                                break;
+
+                        }
+                        drawShape.addShapeToShapeSet();
+                        drawShape.resetShape();
+                    }
                     panel1.Refresh();
-                    drawShape.resetShape();
                 }
             }
             else if (e.Button == MouseButtons.Right) //cancel and clear the current shape in screen
@@ -203,6 +208,7 @@ namespace GraphicProject
                     drawShape.clearAllScreen();
                     drawShape.updateListView();
                     panel1.Refresh();
+                    richTextBox1.Clear();
                 }
             }
         }
@@ -240,6 +246,7 @@ namespace GraphicProject
                     this.indexChoosedShape = -1;
                     button9.Enabled = false;
                     panel1.Refresh();
+                    richTextBox1.Clear();
                 }
             }
         }
@@ -260,13 +267,14 @@ namespace GraphicProject
             if (indexChoosedShape != -1)
             {
                 drawShape.translationTransform(indexChoosedShape);
-                panel1.Refresh();
+                //panel1.Refresh();
             }
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
             drawShape.showAllShape2D();
+            richTextBox1.Clear();
             panel1.Refresh();
         }
     }

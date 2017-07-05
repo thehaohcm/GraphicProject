@@ -45,7 +45,6 @@
             this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -53,8 +52,13 @@
             this.button13 = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -155,7 +159,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(944, 455);
+            this.button8.Location = new System.Drawing.Point(944, 604);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(226, 46);
             this.button8.TabIndex = 0;
@@ -199,26 +203,17 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(944, 77);
+            this.listBox1.Location = new System.Drawing.Point(13, 20);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(226, 224);
+            this.listBox1.Size = new System.Drawing.Size(198, 144);
             this.listBox1.TabIndex = 9;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(940, 47);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(155, 20);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Danh sách hình ảnh:";
-            // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(944, 316);
+            this.button9.Location = new System.Drawing.Point(944, 465);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(226, 40);
             this.button9.TabIndex = 11;
@@ -248,7 +243,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(944, 407);
+            this.button12.Location = new System.Drawing.Point(944, 556);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(226, 42);
             this.button12.TabIndex = 14;
@@ -258,7 +253,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(944, 362);
+            this.button13.Location = new System.Drawing.Point(944, 511);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(226, 39);
             this.button13.TabIndex = 15;
@@ -284,19 +279,48 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(112, 25);
             this.toolStripLabel1.Text = "Hướng dẫn: ";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.listBox1);
+            this.groupBox1.Location = new System.Drawing.Point(944, 47);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(225, 190);
+            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Danh sách hình ảnh:";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.richTextBox1);
+            this.groupBox2.Location = new System.Drawing.Point(944, 243);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(225, 188);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Thông tin hình ảnh:";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(11, 24);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(208, 158);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 711);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button13);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.label2);
@@ -317,6 +341,8 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,7 +365,6 @@
         private System.Windows.Forms.ToolStripMenuItem dToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dToolStripMenuItem1;
         public System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button9;
         public System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button10;
@@ -348,6 +373,9 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 

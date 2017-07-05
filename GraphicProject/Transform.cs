@@ -9,21 +9,28 @@ namespace GraphicProject
 {
     class Transform
     {
-        public static void transformTranslation(Shape shape, Point newPostion)
+        public static void transformTranslation(Shape shape)
         {
+            int dx, dy;
+            Point newPosition = shape.getTransformPoint();
             switch (shape.getTypeDraw())
             {
                 case TypeDraw.Line:
                     Line line = (Line)shape;
-                    line.setStartPoint(multiMatrix2D(30, 20, new double[3] { line.getStartPoint().X, line.getStartPoint().Y, 1 }));
-                    line.setEndPoint(multiMatrix2D(30, 20, new double[3] { line.getEndPoint().X, line.getEndPoint().Y, 1 }));
+                    dx = newPosition.X - line.getStartPoint().X;
+                    dy = newPosition.Y - line.getStartPoint().Y;
+                    line.setStartPoint(multiMatrix2D(dx, dy, new double[3] { line.getStartPoint().X, line.getStartPoint().Y, 1 }));
+                    line.setEndPoint(multiMatrix2D(dx, dy, new double[3] { line.getEndPoint().Y, line.getEndPoint().Y, 1 }));
                     break;
                 case TypeDraw.Circle:
                     Circle circle = (Circle)shape;
-                    circle.setCenterPoint(multiMatrix2D(30, 20, new double[3] { circle.getCenterPoint().X, circle.getCenterPoint().Y, 1 }));
-                    circle.setCenterPoint(multiMatrix2D(30, 20, new double[3] { circle.getEndPoint().X, circle.getEndPoint().Y, 1 }));
+                    dx = newPosition.X - circle.getCenterPoint().X;
+                    dy = newPosition.Y - circle.getCenterPoint().Y;
+                    circle.setCenterPoint(multiMatrix2D(dx, dy, new double[3] { circle.getCenterPoint().X, circle.getCenterPoint().Y, 1 }));
+                    circle.setEndPoint(multiMatrix2D(dx, dy, new double[3] { circle.getEndPoint().X, circle.getEndPoint().Y, 1 }));
                     break;
             }
+            shape.setTransformFlag(false);
         }
 
         private static Point multiMatrix2D(double dx, double dy, double[] array)

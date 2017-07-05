@@ -16,6 +16,7 @@ namespace GraphicProject
         private Form1 frm;
         private Color color;
         private bool choosedFlag = false;
+        //private bool translationFlag = false;
         
         public DrawShape(Form1 frm)
         {
@@ -382,8 +383,8 @@ namespace GraphicProject
                 g.DrawLine(new Pen(Color.Black), 5 * i, 0, 5 * i, 400);
                 g.DrawLine(new Pen(Color.Black), 0, 5 * i, 400, 5 * i);
             }
-            g.DrawLine(new Pen(Color.Red), 0, 200, 400, 200);
-            g.DrawLine(new Pen(Color.Red), 200, 0, 200, 400);
+            g.DrawLine(new Pen(Color.Aqua), 0, 200, 400, 200);
+            g.DrawLine(new Pen(Color.Aqua), 200, 0, 200, 400);
 
         }
 
@@ -444,7 +445,7 @@ namespace GraphicProject
                             g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
                             //g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
                             //g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
-                            g.DrawLine(new Pen(Color.Red), 200, 200, 400, 400);
+                            g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
                             foreach (Line _line in cube.getListLine())
                             {
                                 //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
@@ -457,7 +458,7 @@ namespace GraphicProject
                             g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
                             //g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
                             //g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
-                            g.DrawLine(new Pen(Color.Red), 200, 200, 400, 400);
+                            g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
                             foreach(Shape _s in cylinder.getListLine())
                             {
                                 if (_s.getTypeDraw() == TypeDraw.Line)
@@ -474,6 +475,10 @@ namespace GraphicProject
             {
                 if (choosedShape != null)
                 {
+                    if (shape != null && shape.getTransformFlag())
+                    {
+                        Transform.transformTranslation(shape);
+                    }
                     Pen pen = new Pen(choosedShape.getColor(), 3);
                     Graphics g = frm.panel1.CreateGraphics();
                     switch (choosedShape.getTypeDraw())
@@ -525,85 +530,6 @@ namespace GraphicProject
             }
         }
         
-
-        //public void paintOneShape(Object sender, PaintEventArgs e)
-        //{
-        //    if (choosedShape != null)
-        //    {
-        //        Pen pen = new Pen(choosedShape.getColor(), 3);
-        //        Graphics g = frm.panel1.CreateGraphics();
-        //        switch (choosedShape.getTypeDraw())
-        //        {
-        //            case TypeDraw.Line:
-        //                Line line = (Line)choosedShape;
-        //                //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
-        //                //DDA_Line2(line);
-        //                drawLinebyMidPoint(line);
-        //                break;
-        //            case TypeDraw.Rectangle:
-        //                Rectangle retangle = (Rectangle)choosedShape;
-        //                List<Line> listLines = retangle.getAllLines();
-        //                if (listLines != null)
-        //                    foreach (Line _line in listLines)
-        //                    {
-        //                        DDA_Line2(_line);
-        //                    }
-        //                break;
-        //            case TypeDraw.Triangle:
-        //                Triangle triangle = (Triangle)choosedShape;
-        //                listLines = triangle.getAllLines();
-        //                if (listLines != null)
-        //                    foreach (Line _line in listLines)
-        //                    {
-        //                        DDA_Line2(_line);
-        //                    }
-        //                break;
-        //            case TypeDraw.Parallelogram:
-        //                Parallelogram parallelogram = (Parallelogram)choosedShape;
-        //                listLines = parallelogram.getAllLines();
-        //                if (listLines != null)
-        //                    foreach (Line _line in listLines)
-        //                    {
-        //                        DDA_Line2(_line);
-        //                    }
-        //                break;
-        //            case TypeDraw.Circle:
-        //                Circle circle = (Circle)choosedShape;
-        //                MidPoint_Circle(circle);
-        //                break;
-        //            case TypeDraw.Ellipse:
-        //                Ellipse ellipse = (Ellipse)choosedShape;
-        //                MidPoint_Ellipse(ellipse);
-        //                break;
-        //        }
-        //        g.Dispose();
-        //    }
-        //}
-
-        //if (shape.checkDrawable()) //if (endClick)
-        //{
-        //    switch (shape.getTypeDraw())
-        //    {
-        //        case TypeDraw.Line:
-        //            Line line = (Line)shape;
-        //            if (line.getEndPoint() != null)
-        //            {
-        //                Pen pen = new Pen(shape.getColor(), 3);
-        //                Graphics g = frm.panel1.CreateGraphics();
-        //                //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
-
-        //                DDA_Line2(line);
-        //            }
-        //            break;
-        //    }
-        //}
-        //}
-
-        //public void addShape(Shape shape)
-        //{
-        //    shape.setName();
-        //    this.shapeSet.Add(shape);
-        //}
         public List<Shape> getShapeSet()
         {
             return shapeSet;
@@ -647,7 +573,7 @@ namespace GraphicProject
         {
             choosedFlag = true;
             choosedShape = shapeSet.ElementAt(index);
-
+            getInfoShape();
         }
 
         public void removeShape(int index)
@@ -660,13 +586,69 @@ namespace GraphicProject
 
         public void translationTransform(int index)
         {
-            Shape shape = shapeSet.ElementAt(index);
-            Transform.transformTranslation(shape, new Point(1, 1));
+            shape = shapeSet.ElementAt(index);
+            shape.setTransformFlag(true);
+            //this.translationFlag = true;
+            //Transform.transformTranslation(shape, new Point(1, 1));
         }
 
         public void showAllShape2D()
         {
             choosedFlag = false;
+        }
+
+        private void getInfoShape()
+        {
+            
+            frm.richTextBox1.AppendText("Tên hình ảnh: " + choosedShape.getName()+"\n");
+            frm.richTextBox1.AppendText("Màu sắc: " + choosedShape.getColor().ToString() + "\n");
+            switch (shape.getTypeDraw())
+            {
+                case TypeDraw.Line:
+                    Line line = (Line)choosedShape;
+                    frm.richTextBox1.AppendText("Điểm đầu: " + line.getStartPoint().ToString()+"\n");
+                    frm.richTextBox1.AppendText("Điểm cuối: " + line.getEndPoint().ToString()+"\n");
+                    frm.richTextBox1.AppendText("Chiều dài: ");
+                    break;
+                case TypeDraw.Circle:
+                    Circle circle = (Circle)choosedShape;
+                    frm.richTextBox1.AppendText("Tâm: " + circle.getCenterPoint().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Bán kính: ");
+                    break;
+                case TypeDraw.Ellipse:
+                    Ellipse ellipse = (Ellipse)choosedShape;
+                    frm.richTextBox1.AppendText("Tâm: " + ellipse.getStartPoint().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Bán kính dài: ");
+                    frm.richTextBox1.AppendText("Bán kính rộng: ");
+                    break;
+                case TypeDraw.Parallelogram:
+                    Parallelogram parallelogram = (Parallelogram)choosedShape;
+                    frm.richTextBox1.AppendText("Điểm thứ I: " + parallelogram.getPoint1().ToString()+"\n");
+                    frm.richTextBox1.AppendText("Điểm thứ II: " + parallelogram.getPoint2().ToString()+"\n");
+                    frm.richTextBox1.AppendText("Điểm thứ III: " + parallelogram.getPoint3().ToString()+"\n");
+                    frm.richTextBox1.AppendText("Điểm thứ IV: " + parallelogram.getPoint4().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Chiều dài:" + "\n");
+                    frm.richTextBox1.AppendText("Chiều rộng:" + "\n");
+                    break;
+                case TypeDraw.Rectangle:
+                    Rectangle rectangle = (Rectangle)choosedShape;
+                    frm.richTextBox1.AppendText("Điểm thứ I: "+rectangle.getStartPoint().ToString()+"\n");
+                    frm.richTextBox1.AppendText("Điểm thứ II: " + rectangle.getPoint12().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Điểm thứ III: " + rectangle.getEndPoint().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Điểm thứ VI: " + rectangle.getPoint21().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Chiều dài:" + "\n");
+                    frm.richTextBox1.AppendText("Chiều rộng:" + "\n");
+                    break;
+                case TypeDraw.Triangle:
+                    Triangle triangle = (Triangle)choosedShape;
+                    frm.richTextBox1.AppendText("Điểm thứ I" + triangle.getPoint1().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Điểm thứ II" + triangle.getPoint2().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Điểm thứ III" + triangle.getPoint3().ToString() + "\n");
+                    frm.richTextBox1.AppendText("Độ dài cạnh I: " + "\n");
+                    frm.richTextBox1.AppendText("Độ dài cạnh II: " + "\n");
+                    frm.richTextBox1.AppendText("Độ dài cạnh III: " + "\n");
+                    break;
+            }
         }
     }
 }

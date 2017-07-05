@@ -10,6 +10,7 @@ namespace GraphicProject
     class Rectangle:Shape
     {
         Point startPoint, endPoint;
+        Point point12, point21;
 
         //Insert 2 Point to Rectangle and get-set method
         //handle...
@@ -26,6 +27,12 @@ namespace GraphicProject
             //this.endPoint = endPoint;
             setStartPoint(startPoint);
             setEndPoint(endPoint);
+        }
+
+        private void calculatePoints()
+        {
+            this.point12 = new Point(endPoint.X, startPoint.Y);
+            this.point21 = new Point(startPoint.X, endPoint.Y);
         }
 
         public Rectangle() : this(new Point(0, 0), new Point(0, 0))
@@ -55,12 +62,20 @@ namespace GraphicProject
             return endPoint;
         }
 
+        public Point getPoint12()
+        {
+            return point12;
+        }
+
+        public Point getPoint21()
+        {
+            return point21;
+        }
+
         public List<Line> getAllLines()
         {
             if (startPoint == null || endPoint == null)
                 return null;
-            Point point12 = new Point(endPoint.X, startPoint.Y);
-            Point point21 = new Point(startPoint.X, endPoint.Y);
             Line l1 = new Line(startPoint, point12);
             l1.setColor(this.getColor());
             Line l2 = new Line(point12, endPoint);

@@ -14,12 +14,15 @@ namespace GraphicProject
         private int remainingClick;
         private string name;
         private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1, numCube=1,numCylinder=1;
+        private Point transformPoint;
+        private bool transformFlag;
 
         protected Shape(TypeDraw typeDraw)
         {
             this.typeDraw = typeDraw;
             resetRemaningClick();
             this.color = Color.Black; //default color
+            setTransformFlag(false);
         }
 
         protected void setTypeDraw(TypeDraw typeDraw)
@@ -82,6 +85,11 @@ namespace GraphicProject
         {
             if (remainingClick > 0)  
                 this.remainingClick--;
+        }
+
+        private void setTransformClick()
+        {
+            this.remainingClick = 1;
         }
 
         public bool checkDrawable()
@@ -158,6 +166,29 @@ namespace GraphicProject
             Shape.numRectangle = 1;
             Shape.numSquare = 1;
             Shape.numTriangle = 1;
+        }
+
+        public void setTransformPoint(Point transformPoint)
+        {
+            this.transformPoint = transformPoint;
+            setTransformFlag(true);
+        }
+
+        public Point getTransformPoint()
+        {
+            return transformPoint;
+        }
+
+        public void setTransformFlag(bool flag)
+        {
+            this.transformFlag = flag;
+            if(flag)
+                setTransformClick();
+        }
+
+        public bool getTransformFlag()
+        {
+            return this.transformFlag;
         }
     }
 }

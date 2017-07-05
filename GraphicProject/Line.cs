@@ -11,10 +11,10 @@ namespace GraphicProject
     {
         private Point startPoint, endPoint;
         private bool dottedLineFlag;
+        
         public Line(Point startPoint,Point endPoint,Color color):this(startPoint,endPoint)
         {
             setColor(color);
-            setDottedLineFlag(false);
         }
 
         public Line(Point startPoint,Point endPoint, bool dottedLineFlag=false):this(startPoint,endPoint)
