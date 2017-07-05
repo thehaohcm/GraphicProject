@@ -11,4 +11,9 @@ namespace GraphicProject
         Line, Square, Rectangle, Circle, Triangle, Parallelogram, Ellipse,Cube,Cylinder,Rhombus
 
     }
+
+    enum TypeTransform
+    {
+        Translation,Scaling,Rotation,Reflection
+    }
 }

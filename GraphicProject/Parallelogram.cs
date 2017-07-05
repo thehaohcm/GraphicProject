@@ -38,6 +38,7 @@ namespace GraphicProject
         public void setPoint1(Point point)
         {
             this.point1 = point;
+            calculatePoint4();
             minusRemainingClick();
         }
 
@@ -49,6 +50,7 @@ namespace GraphicProject
         public void setPoint2(Point point)
         {
             this.point2 = point;
+            calculatePoint4();
             minusRemainingClick();
         }
 
@@ -60,6 +62,7 @@ namespace GraphicProject
         public void setPoint3(Point point)
         {
             this.point3 = point;
+            calculatePoint4();
             minusRemainingClick();
         }
 

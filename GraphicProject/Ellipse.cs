@@ -11,17 +11,20 @@ namespace GraphicProject
     {
         Point startPoint, endWidthPoint, endHeightPoint;
         double widthRadius, heightRadius;
-		public Ellipse(Point startPoint,Point endWidthPoint,Point endHightPoint,Color color):this(startPoint,endWidthPoint,endHightPoint)
+        private bool dottedEllipseFlag;
+
+        public Ellipse(Point startPoint,Point endWidthPoint,Point endHightPoint,Color color):this(startPoint,endWidthPoint,endHightPoint)
         {
             setColor(color);
         }
 
-		public Ellipse(Point startPoint,Point endWidthPoint, Point endHightPoint): base(TypeDraw.Ellipse)
+		public Ellipse(Point startPoint,Point endWidthPoint, Point endHightPoint, bool dottedEllipseFlag=false) : base(TypeDraw.Ellipse)
         {
             setStartPoint(startPoint);
             setEndWidthPoint(endWidthPoint);
             setEndHightPoint(endHightPoint);
 
+            setDottedEllipseFlag(dottedEllipseFlag);
             //calculate width,heigth
             //handle...
         }
@@ -76,6 +79,16 @@ namespace GraphicProject
         public double getHeightRadius()
         {
             return heightRadius;
+        }
+
+        public void setDottedEllipseFlag(bool dottedEllipseFlag)
+        {
+            this.dottedEllipseFlag = dottedEllipseFlag;
+        }
+
+        public bool getDottedEllipseFlag()
+        {
+            return this.dottedEllipseFlag;
         }
     }
 }

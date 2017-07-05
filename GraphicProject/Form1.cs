@@ -198,8 +198,9 @@ namespace GraphicProject
                 {
                     drawShape.clearAllScreen();
                     drawShape.updateListView();
-                    panel1.Refresh();
+                    drawShape.setNullChoosedShape();
                     richTextBox1.Clear();
+                    panel1.Refresh();
                 }
             }
         }
@@ -219,10 +220,12 @@ namespace GraphicProject
             int index = this.listBox1.IndexFromPoint(e.Location);
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
+                richTextBox1.Clear();
                 this.indexChoosedShape = index;
                 drawShape.chooseShape(index);
                 button9.Enabled = true;
                 button12.Enabled = true;
+                
                 //drawShape.resetShape();
                 panel1.Refresh();
             }
@@ -267,6 +270,7 @@ namespace GraphicProject
         private void button13_Click(object sender, EventArgs e)
         {
             drawShape.showAllShape();
+            drawShape.setNullChoosedShape();
             richTextBox1.Clear();
             panel1.Refresh();
         }

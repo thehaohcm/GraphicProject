@@ -43,6 +43,7 @@ namespace GraphicProject
         public void setStartPoint(Point startPoint)
         {
             this.startPoint = startPoint;
+            calculatePoints();
             minusRemainingClick();
         }
 
@@ -54,6 +55,7 @@ namespace GraphicProject
         public void setEndPoint(Point endPoint)
         {
             this.endPoint = endPoint;
+            calculatePoints();
             minusRemainingClick();
         }
 

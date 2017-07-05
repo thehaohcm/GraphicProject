@@ -169,7 +169,7 @@ namespace GraphicProject
             }
         }
 
-        public void MidPoint_Ellipse(Ellipse ellipse)
+        public void MidPoint_Ellipse(Ellipse ellipse,bool dottedEllipseFlag=false)
         {
             //int x1, y1, x2, y2, centerX, centerY;
             int x, y, fx, fy, a2, b2, p, a, b;
@@ -480,8 +480,10 @@ namespace GraphicProject
                             {
                                 if (_s.getTypeDraw() == TypeDraw.Line)
                                     drawLinebyMidPoint((Line)_s);
-                                else if (_s.getTypeDraw() == TypeDraw.Ellipse)
-                                    MidPoint_Ellipse((Ellipse)_s);
+                                else if (_s.getTypeDraw() == TypeDraw.Ellipse) {
+                                    Ellipse _e = (Ellipse)_s;
+                                    MidPoint_Ellipse(_e, _e.getDottedEllipseFlag());
+                                }
                             }
                             break;
                     }
@@ -545,6 +547,7 @@ namespace GraphicProject
                     g.Dispose();
                 }
             }
+            getInfoShape();
         }
         
         public List<Shape> getShapeSet()
@@ -636,56 +639,64 @@ namespace GraphicProject
 
         private void getInfoShape()
         {
-            
-            frm.richTextBox1.AppendText("Tên hình ảnh: " + choosedShape.getName()+"\n");
-            frm.richTextBox1.AppendText("Màu sắc: " + choosedShape.getColor().ToString() + "\n");
-            switch (choosedShape.getTypeDraw())
+            if (choosedShape != null)
             {
-                case TypeDraw.Line:
-                    Line line = (Line)choosedShape;
-                    frm.richTextBox1.AppendText("Điểm đầu: " + line.getStartPoint().ToString()+"\n");
-                    frm.richTextBox1.AppendText("Điểm cuối: " + line.getEndPoint().ToString()+"\n");
-                    frm.richTextBox1.AppendText("Chiều dài: ");
-                    break;
-                case TypeDraw.Circle:
-                    Circle circle = (Circle)choosedShape;
-                    frm.richTextBox1.AppendText("Tâm: " + circle.getCenterPoint().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Bán kính: ");
-                    break;
-                case TypeDraw.Ellipse:
-                    Ellipse ellipse = (Ellipse)choosedShape;
-                    frm.richTextBox1.AppendText("Tâm: " + ellipse.getStartPoint().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Bán kính dài: ");
-                    frm.richTextBox1.AppendText("Bán kính rộng: ");
-                    break;
-                case TypeDraw.Parallelogram:
-                    Parallelogram parallelogram = (Parallelogram)choosedShape;
-                    frm.richTextBox1.AppendText("Điểm thứ I: " + parallelogram.getPoint1().ToString()+"\n");
-                    frm.richTextBox1.AppendText("Điểm thứ II: " + parallelogram.getPoint2().ToString()+"\n");
-                    frm.richTextBox1.AppendText("Điểm thứ III: " + parallelogram.getPoint3().ToString()+"\n");
-                    frm.richTextBox1.AppendText("Điểm thứ IV: " + parallelogram.getPoint4().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Chiều dài:" + "\n");
-                    frm.richTextBox1.AppendText("Chiều rộng:" + "\n");
-                    break;
-                case TypeDraw.Rectangle:
-                    Rectangle rectangle = (Rectangle)choosedShape;
-                    frm.richTextBox1.AppendText("Điểm thứ I: "+rectangle.getStartPoint().ToString()+"\n");
-                    frm.richTextBox1.AppendText("Điểm thứ II: " + rectangle.getPoint12().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Điểm thứ III: " + rectangle.getEndPoint().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Điểm thứ VI: " + rectangle.getPoint21().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Chiều dài:" + "\n");
-                    frm.richTextBox1.AppendText("Chiều rộng:" + "\n");
-                    break;
-                case TypeDraw.Triangle:
-                    Triangle triangle = (Triangle)choosedShape;
-                    frm.richTextBox1.AppendText("Điểm thứ I" + triangle.getPoint1().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Điểm thứ II" + triangle.getPoint2().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Điểm thứ III" + triangle.getPoint3().ToString() + "\n");
-                    frm.richTextBox1.AppendText("Độ dài cạnh I: " + "\n");
-                    frm.richTextBox1.AppendText("Độ dài cạnh II: " + "\n");
-                    frm.richTextBox1.AppendText("Độ dài cạnh III: " + "\n");
-                    break;
+                frm.richTextBox1.Clear();
+                frm.richTextBox1.AppendText("Tên hình ảnh: " + choosedShape.getName() + "\n");
+                frm.richTextBox1.AppendText("Màu sắc: " + choosedShape.getColor().ToString() + "\n");
+                switch (choosedShape.getTypeDraw())
+                {
+                    case TypeDraw.Line:
+                        Line line = (Line)choosedShape;
+                        frm.richTextBox1.AppendText("Điểm đầu: " + line.getStartPoint().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm cuối: " + line.getEndPoint().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Chiều dài: ");
+                        break;
+                    case TypeDraw.Circle:
+                        Circle circle = (Circle)choosedShape;
+                        frm.richTextBox1.AppendText("Tâm: " + circle.getCenterPoint().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Bán kính: ");
+                        break;
+                    case TypeDraw.Ellipse:
+                        Ellipse ellipse = (Ellipse)choosedShape;
+                        frm.richTextBox1.AppendText("Tâm: " + ellipse.getStartPoint().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Bán kính dài: ");
+                        frm.richTextBox1.AppendText("Bán kính rộng: ");
+                        break;
+                    case TypeDraw.Parallelogram:
+                        Parallelogram parallelogram = (Parallelogram)choosedShape;
+                        frm.richTextBox1.AppendText("Điểm thứ I: " + parallelogram.getPoint1().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ II: " + parallelogram.getPoint2().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ III: " + parallelogram.getPoint3().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ IV: " + parallelogram.getPoint4().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Chiều dài:" + "\n");
+                        frm.richTextBox1.AppendText("Chiều rộng:" + "\n");
+                        break;
+                    case TypeDraw.Rectangle:
+                        Rectangle rectangle = (Rectangle)choosedShape;
+                        frm.richTextBox1.AppendText("Điểm thứ I: " + rectangle.getStartPoint().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ II: " + rectangle.getPoint12().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ III: " + rectangle.getEndPoint().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ VI: " + rectangle.getPoint21().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Chiều dài:" + "\n");
+                        frm.richTextBox1.AppendText("Chiều rộng:" + "\n");
+                        break;
+                    case TypeDraw.Triangle:
+                        Triangle triangle = (Triangle)choosedShape;
+                        frm.richTextBox1.AppendText("Điểm thứ I" + triangle.getPoint1().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ II" + triangle.getPoint2().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ III" + triangle.getPoint3().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Độ dài cạnh I: " + "\n");
+                        frm.richTextBox1.AppendText("Độ dài cạnh II: " + "\n");
+                        frm.richTextBox1.AppendText("Độ dài cạnh III: " + "\n");
+                        break;
+                }
             }
+        }
+
+        public void setNullChoosedShape()
+        {
+            this.choosedShape = null;
         }
     }
 }
