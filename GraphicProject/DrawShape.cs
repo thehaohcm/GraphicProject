@@ -11,14 +11,14 @@ namespace GraphicProject
     class DrawShape
     {
 
-        private List<Shape> shapeSet,shapeSet3D;
-        private Shape shape,choosedShape;
+        private List<Shape> shapeSet, shapeSet3D;
+        private Shape shape, choosedShape;
         private Form1 frm;
         private Color color;
         private bool choosedFlag = false;
-        private bool check2d=true;
+        private bool check2d = true;
         //private bool translationFlag = false;
-        
+
         public DrawShape(Form1 frm)
         {
             shapeSet = new List<Shape>();
@@ -104,12 +104,15 @@ namespace GraphicProject
             putpixel(round(centerX - y), round(centerY - x), color);
         }
 
-        private void put4pixel(int x, int y, int centerX, int centerY, Color color)
+        private void put4pixel(int x, int y, int centerX, int centerY, Color color, bool dottedEllipseFlag = false)
         {
             putpixel(round(centerX + x), round(centerY + y), color);
             putpixel(round(centerX - x), round(centerY + y), color);
-            putpixel(round(centerX + x), round(centerY - y), color);
-            putpixel(round(centerX - x), round(centerY - y), color);
+            if (dottedEllipseFlag == false)
+            {
+                putpixel(round(centerX + x), round(centerY - y), color);
+                putpixel(round(centerX - x), round(centerY - y), color);
+            }
         }
 
         public int round(double tds)
@@ -183,6 +186,7 @@ namespace GraphicProject
             fy = 2 * a2 * y;
             put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
             p = round(b2 - (a2 * b) + (0.25 * a2));//p=b2 - a2*b +a2/4
+            int count = 0;
             while (fx < fy)
             {
                 x++;
@@ -198,10 +202,15 @@ namespace GraphicProject
                     p += b2 * (2 * x + 3) + a2 * (2 - 2 * y);//p=p +b2(2x +3) +a2(2-2y)
                     fy -= 2 * a2;
                 }
-                put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+                //if (dottedEllipseFlag && count % 20 == 0)
+                //    put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor(), dottedEllipseFlag);
+                //else 
+                    put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+                count++;
             }
             p = round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y - 1) * (y - 1) - a2 * b2);
             //
+            count = 0;
             while (y > 0)
             {
                 y--;
@@ -217,7 +226,12 @@ namespace GraphicProject
                     fx += 2 * b2;
                     p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);//p=p+ b2(2x +2) + a2(3-2y)
                 }
-                put4pixel(ellipse.getStartPoint().X, ellipse.getStartPoint().Y, x, y, ellipse.getColor());
+                //if (dottedEllipseFlag && count % 20 == 0)
+                put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());//, dottedEllipseFlag);
+                //else if (dottedEllipseFlag && count % 20 == 0)
+                //put4pixel(ellipse.getStartPoint().X, ellipse.getStartPoint().Y, x, y, ellipse.getColor());
+
+                count++;
             }
         }
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
@@ -454,7 +468,7 @@ namespace GraphicProject
                             break;
                         case TypeDraw.Ellipse:
                             Ellipse ellipse = (Ellipse)s;
-                            MidPoint_Ellipse(ellipse);
+                            MidPoint_Ellipse(ellipse,true);
                             break;
                         case TypeDraw.Cube:
                             Cube cube = (Cube)s;

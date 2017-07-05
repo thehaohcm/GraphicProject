@@ -319,5 +319,10 @@ namespace GraphicProject
             panel1.Refresh();
             drawShape.updateListView();
         }
+
+        private void giớiThiệuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AboutBox().ShowDialog();
+        }
     }
 }
