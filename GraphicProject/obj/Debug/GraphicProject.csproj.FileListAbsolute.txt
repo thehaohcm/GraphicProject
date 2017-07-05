@@ -1,0 +1,10 @@
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\bin\Debug\GraphicProject.exe.config
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.Form1.resources
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.Properties.Resources.resources
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.csproj.GenerateResource.Cache
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\bin\Debug\GraphicProject.exe
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\bin\Debug\GraphicProject.pdb
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.exe
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.pdb
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.csprojResolveAssemblyReference.cache
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.InputCubeForm.resources
