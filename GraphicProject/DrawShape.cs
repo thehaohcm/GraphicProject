@@ -602,7 +602,7 @@ namespace GraphicProject
             
             frm.richTextBox1.AppendText("Tên hình ảnh: " + choosedShape.getName()+"\n");
             frm.richTextBox1.AppendText("Màu sắc: " + choosedShape.getColor().ToString() + "\n");
-            switch (shape.getTypeDraw())
+            switch (choosedShape.getTypeDraw())
             {
                 case TypeDraw.Line:
                     Line line = (Line)choosedShape;

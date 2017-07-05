@@ -11,23 +11,25 @@ namespace GraphicProject
     {
         public static void transformTranslation(Shape shape)
         {
-            int dx, dy;
+            int dxStart, dyStart,dxEnd,dyEnd;
             Point newPosition = shape.getTransformPoint();
             switch (shape.getTypeDraw())
             {
                 case TypeDraw.Line:
                     Line line = (Line)shape;
-                    dx = newPosition.X - line.getStartPoint().X;
-                    dy = newPosition.Y - line.getStartPoint().Y;
-                    line.setStartPoint(multiMatrix2D(dx, dy, new double[3] { line.getStartPoint().X, line.getStartPoint().Y, 1 }));
-                    line.setEndPoint(multiMatrix2D(dx, dy, new double[3] { line.getEndPoint().Y, line.getEndPoint().Y, 1 }));
+                    dxStart = newPosition.X - line.getStartPoint().X;
+                    dyStart = newPosition.Y - line.getStartPoint().Y;
+                    dxEnd = newPosition.X - line.getEndPoint().X;
+                    dyEnd = newPosition.Y - line.getEndPoint().Y;
+                    line.setStartPoint(multiMatrix2D(dxStart, dyStart, new double[3] { line.getStartPoint().X, line.getStartPoint().Y, 1 }));
+                    line.setEndPoint(multiMatrix2D(dxEnd, dyEnd, new double[3] { line.getEndPoint().Y, line.getEndPoint().Y, 1 }));
                     break;
                 case TypeDraw.Circle:
                     Circle circle = (Circle)shape;
-                    dx = newPosition.X - circle.getCenterPoint().X;
-                    dy = newPosition.Y - circle.getCenterPoint().Y;
-                    circle.setCenterPoint(multiMatrix2D(dx, dy, new double[3] { circle.getCenterPoint().X, circle.getCenterPoint().Y, 1 }));
-                    circle.setEndPoint(multiMatrix2D(dx, dy, new double[3] { circle.getEndPoint().X, circle.getEndPoint().Y, 1 }));
+                    dxStart = newPosition.X - circle.getCenterPoint().X;
+                    dyStart = newPosition.Y - circle.getCenterPoint().Y;
+                    circle.setCenterPoint(multiMatrix2D(dxStart, dyStart, new double[3] { circle.getCenterPoint().X, circle.getCenterPoint().Y, 1 }));
+                    circle.setEndPoint(multiMatrix2D(dxStart, dyStart, new double[3] { circle.getEndPoint().X, circle.getEndPoint().Y, 1 }));
                     break;
             }
             shape.setTransformFlag(false);
