@@ -76,12 +76,12 @@ namespace GraphicProject
                     break;
                 case TypeDraw.Circle:
                     Circle circle = (Circle)shape;
-                    circle.setCenterPoint(multiMatrix2D(TypeTransform.Scaling, scalingX, scalingY, new double[3] { circle.getCenterPoint().X, circle.getCenterPoint().Y, 1 }));
+                    //circle.setCenterPoint(multiMatrix2D(TypeTransform.Scaling, scalingX, scalingY, new double[3] { circle.getCenterPoint().X, circle.getCenterPoint().Y, 1 }));
                     circle.setEndPoint(multiMatrix2D(TypeTransform.Scaling, scalingX, scalingY, new double[3] { circle.getEndPoint().X, circle.getEndPoint().Y, 1 }));
                     break;
                 case TypeDraw.Ellipse:
                     Ellipse ellipse = (Ellipse)shape;
-                    ellipse.setStartPoint(multiMatrix2D(TypeTransform.Scaling, scalingX, scalingY, new double[3] { ellipse.getStartPoint().X, ellipse.getStartPoint().Y, 1 }));
+                    //ellipse.setStartPoint(multiMatrix2D(TypeTransform.Scaling, scalingX, scalingY, new double[3] { ellipse.getStartPoint().X, ellipse.getStartPoint().Y, 1 }));
                     ellipse.setEndHightPoint(multiMatrix2D(TypeTransform.Scaling, scalingX, scalingY, new double[3] { ellipse.getEndHightPoint().X, ellipse.getEndHightPoint().Y, 1 }));
                     ellipse.setEndWidthPoint(multiMatrix2D(TypeTransform.Scaling, scalingX, scalingY, new double[3] { ellipse.getEndWidthPoint().X, ellipse.getEndWidthPoint().Y, 1 }));
                     break;
@@ -109,6 +109,7 @@ namespace GraphicProject
 
         private static Point multiMatrix2D(TypeTransform type, double dx, double dy, double[] array)
         {
+            Console.WriteLine("ma tran dau: " + array[0] + " - " + array[1] + " - " + array[2]);
             double[,] matrix = new double[3, 3];
             switch (type) {
                 case TypeTransform.Translation:
@@ -130,6 +131,7 @@ namespace GraphicProject
                 temparr[i] = array[0] * matrix[0, count] + array[1] * matrix[1, count] + array[2] * matrix[2, count];
                 count++;
             }
+            Console.WriteLine("Ma trận kq: " + temparr[0] + " - " + temparr[1] + " - " + temparr[2]);
 
             Point pt = new Point(Convert.ToInt16(temparr[0]), Convert.ToInt16(temparr[1]));
             return pt;

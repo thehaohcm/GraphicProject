@@ -91,7 +91,6 @@ namespace GraphicProject
             ptd.Y = point1.Y + point3.Y;
             this.point4.X = ptd.X - point2.X;
             this.point4.Y = ptd.Y - point2.Y;
-            minusRemainingClick();
         }
 
         public List<Line> getAllLines()

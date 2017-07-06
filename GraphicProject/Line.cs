@@ -11,6 +11,7 @@ namespace GraphicProject
     {
         private Point startPoint, endPoint;
         private bool dottedLineFlag;
+        private double length;
         
         public Line(Point startPoint,Point endPoint,Color color):this(startPoint,endPoint)
         {
@@ -37,12 +38,14 @@ namespace GraphicProject
         public void setStartPoint(Point startPoint)
         {
             this.startPoint = startPoint;
+            calculateLength();
             minusRemainingClick();
         }
 
         public void setEndPoint(Point endPoint)
         {
             this.endPoint = endPoint;
+            calculateLength();
             minusRemainingClick();
         }
 
@@ -64,6 +67,18 @@ namespace GraphicProject
         public bool getDottedLineFlag()
         {
             return this.dottedLineFlag;
+        }
+
+        private void calculateLength()
+        {
+            if ((startPoint != null && endPoint != null) || (startPoint != new Point(0, 0)) && endPoint != new Point(0, 0)) {
+                this.length = Math.Sqrt(((endPoint.X - startPoint.X) * (endPoint.X - startPoint.X)) + ((endPoint.Y - startPoint.Y) * (endPoint.Y - startPoint.Y)));
+            }
+        }
+
+        public double getLength()
+        {
+            return this.length;
         }
     }
 }

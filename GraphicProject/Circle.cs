@@ -67,7 +67,7 @@ namespace GraphicProject
 
         private void calculateRadius()
         {
-            if (centerPoint != new Point(0, 0) && endPoint != new Point(0, 0))
+            if ((centerPoint!=null&&endPoint!=null) || (centerPoint != new Point(0, 0)) && endPoint != new Point(0, 0))
             {
                 double c1 = Math.Abs(centerPoint.X - endPoint.X);
                 double c2 = Math.Abs(centerPoint.Y - endPoint.Y);

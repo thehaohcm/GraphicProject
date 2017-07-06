@@ -26,10 +26,9 @@ namespace GraphicProject
             this.point3d = new Point3D(200, 200, 200);
             minusRemainingClick();
 
-            //width = 50 * 2;
-            height = 30 * 2;
-            radius = 30;
-            //depth = 20 * 2;
+            radius = 40 * 2;
+            height = 80 * 2;
+
 
             point3d.X = 200;
             point3d.Y = 200;
@@ -42,63 +41,50 @@ namespace GraphicProject
         private void arrPoint3D(int x, int y, int z)
         {
             Point3D p;
-            // p1
+            // p1 true
             p = new Point3D(x + radius, y, z);
             list.Add(p);
-            //p2
-            p = new Point3D(x, y, z + radius);
+            //p2 true
+            p = new Point3D(x, y, (int)((z - radius) * 1.5));
             list.Add(p);
-            //3
+            //3 true
             p = new Point3D(x - radius, y, z);
             list.Add(p);
-            //4
-            p = new Point3D(x - radius, y - height, z);
+            //4 
+            p = new Point3D(x - 3 * radius, y - height, z);
             list.Add(p);
             //5
-            p = new Point3D(x + radius, y - height, z);
+            p = new Point3D(x - radius, y - height, z);
             list.Add(p);
             //6
-            p = new Point3D(x, y - height, z - radius);
+            p = new Point3D(x, y - height, (int)((z - radius) * 1.5));
             list.Add(p);
             //7
-            p = new Point3D(x, y - height, z);
+            p = new Point3D(x - 2 * radius, y - height, z);
             list.Add(p);
-            //p0
+            //p0 true
             p = new Point3D(x, y, z);
             list.Add(p);
+
 
             Point p2d;
             double can2 = (int)Math.Sqrt(2);
             foreach (Point3D _p in list)
             {
                 p2d = new Point(200 + (int)(((double)_p.X - (double)((double)_p.Y / can2))), 200 + (int)(((double)_p.Z - (double)((double)_p.Y / can2))));
+
                 list2D.Add(p2d);
             }
-            //return list;
         }
-        //public List<Point> arrpoint2D()
-        //{
-        //    Point p2d;
-        //    double can2 = (int)Math.Sqrt(2);
-        //    foreach (Point3D p in list)
-        //    {
-        //        p2d = new Point((int)(((double)p.X - (double)((double)p.Y / can2))), (int)(((double)p.Z - (double)((double)p.Y / can2))));
-        //        list2D.Add(p2d);
-        //    }
 
-        //    return list2D;
-        //}
-
-        public List<Shape> getListLine()
+        public List<Shape> getListShape()
         {
             List<Shape> listLine = new List<Shape>();
-            Console.WriteLine("list2dElement: " + list2D.ElementAt(0).X + " - " + list2D.ElementAt(0).Y);
-            listLine.Add(new Line(list2D.ElementAt(3), list2D.ElementAt(4)));
-            listLine.Add(new Line(list2D.ElementAt(1), list2D.ElementAt(5)));
-            listLine.Add(new Ellipse(list2D.ElementAt(0), list2D.ElementAt(1), list2D.ElementAt(2)));
-            listLine.Add(new Ellipse(list2D.ElementAt(7), list2D.ElementAt(5), list2D.ElementAt(6)));
 
-
+            listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3)));
+            listLine.Add(new Line(list2D.ElementAt(0), list2D.ElementAt(4)));
+            listLine.Add(new Ellipse(list2D.ElementAt(7), list2D.ElementAt(0), list2D.ElementAt(1)));
+            listLine.Add(new Ellipse(list2D.ElementAt(6), list2D.ElementAt(4), list2D.ElementAt(5)));
             return listLine;
         }
 

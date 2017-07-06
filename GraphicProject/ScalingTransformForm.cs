@@ -10,11 +10,24 @@ using System.Windows.Forms;
 
 namespace GraphicProject
 {
-    public partial class ScalingTransformForm : Form
+    partial class ScalingTransformForm : Form
     {
-        public ScalingTransformForm()
+        DrawShape drawShape;
+        public ScalingTransformForm(DrawShape drawShape)
         {
             InitializeComponent();
+            this.drawShape = drawShape;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.Text != "")
+            {
+                int scaling = Convert.ToInt16(comboBox1.Text);
+                drawShape.scallingTransform(scaling);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }

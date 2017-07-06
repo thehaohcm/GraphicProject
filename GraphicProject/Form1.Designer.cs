@@ -56,6 +56,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button14 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -160,7 +161,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(944, 604);
+            this.button8.Location = new System.Drawing.Point(944, 622);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(226, 46);
             this.button8.TabIndex = 0;
@@ -219,7 +220,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(944, 465);
+            this.button9.Location = new System.Drawing.Point(944, 437);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(226, 40);
             this.button9.TabIndex = 11;
@@ -251,7 +252,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(944, 511);
+            this.button12.Location = new System.Drawing.Point(944, 483);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(226, 42);
             this.button12.TabIndex = 14;
@@ -261,7 +262,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(944, 559);
+            this.button13.Location = new System.Drawing.Point(944, 577);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(226, 39);
             this.button13.TabIndex = 15;
@@ -323,11 +324,22 @@
             this.giớiThiệuToolStripMenuItem.Text = "Giới thiệu";
             this.giớiThiệuToolStripMenuItem.Click += new System.EventHandler(this.giớiThiệuToolStripMenuItem_Click);
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(944, 529);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(226, 42);
+            this.button14.TabIndex = 19;
+            this.button14.Text = "Tỉ lệ";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 711);
+            this.Controls.Add(this.button14);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.toolStrip1);
@@ -392,6 +404,7 @@
         public System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.ToolStripMenuItem giớiThiệuToolStripMenuItem;
+        private System.Windows.Forms.Button button14;
     }
 }
 

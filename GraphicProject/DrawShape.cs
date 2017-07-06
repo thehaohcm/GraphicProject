@@ -490,7 +490,7 @@ namespace GraphicProject
                             //g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
                             //g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
                             g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
-                            foreach(Shape _s in cylinder.getListLine())
+                            foreach(Shape _s in cylinder.getListShape())
                             {
                                 if (_s.getTypeDraw() == TypeDraw.Line)
                                     drawLinebyMidPoint((Line)_s);
@@ -664,18 +664,18 @@ namespace GraphicProject
                         Line line = (Line)choosedShape;
                         frm.richTextBox1.AppendText("Điểm đầu: " + line.getStartPoint().ToString() + "\n");
                         frm.richTextBox1.AppendText("Điểm cuối: " + line.getEndPoint().ToString() + "\n");
-                        frm.richTextBox1.AppendText("Chiều dài: ");
+                        frm.richTextBox1.AppendText("Chiều dài: "+line.getLength().ToString());
                         break;
                     case TypeDraw.Circle:
                         Circle circle = (Circle)choosedShape;
                         frm.richTextBox1.AppendText("Tâm: " + circle.getCenterPoint().ToString() + "\n");
-                        frm.richTextBox1.AppendText("Bán kính: ");
+                        frm.richTextBox1.AppendText("Bán kính: "+circle.getRadius().ToString());
                         break;
                     case TypeDraw.Ellipse:
                         Ellipse ellipse = (Ellipse)choosedShape;
                         frm.richTextBox1.AppendText("Tâm: " + ellipse.getStartPoint().ToString() + "\n");
-                        frm.richTextBox1.AppendText("Bán kính dài: ");
-                        frm.richTextBox1.AppendText("Bán kính rộng: ");
+                        frm.richTextBox1.AppendText("Bán kính nhỏ: ");
+                        frm.richTextBox1.AppendText("Bán kính lớn: ");
                         break;
                     case TypeDraw.Parallelogram:
                         Parallelogram parallelogram = (Parallelogram)choosedShape;
@@ -692,17 +692,17 @@ namespace GraphicProject
                         frm.richTextBox1.AppendText("Điểm thứ II: " + rectangle.getPoint12().ToString() + "\n");
                         frm.richTextBox1.AppendText("Điểm thứ III: " + rectangle.getEndPoint().ToString() + "\n");
                         frm.richTextBox1.AppendText("Điểm thứ VI: " + rectangle.getPoint21().ToString() + "\n");
-                        frm.richTextBox1.AppendText("Chiều dài:" + "\n");
-                        frm.richTextBox1.AppendText("Chiều rộng:" + "\n");
+                        frm.richTextBox1.AppendText("Chiều dài:" +rectangle.getHeigth()+ "\n");
+                        frm.richTextBox1.AppendText("Chiều rộng:" +rectangle.getWidth()+ "\n");
                         break;
                     case TypeDraw.Triangle:
                         Triangle triangle = (Triangle)choosedShape;
                         frm.richTextBox1.AppendText("Điểm thứ I" + triangle.getPoint1().ToString() + "\n");
                         frm.richTextBox1.AppendText("Điểm thứ II" + triangle.getPoint2().ToString() + "\n");
                         frm.richTextBox1.AppendText("Điểm thứ III" + triangle.getPoint3().ToString() + "\n");
-                        frm.richTextBox1.AppendText("Độ dài cạnh I: " + "\n");
-                        frm.richTextBox1.AppendText("Độ dài cạnh II: " + "\n");
-                        frm.richTextBox1.AppendText("Độ dài cạnh III: " + "\n");
+                        frm.richTextBox1.AppendText("Độ dài cạnh I: " +triangle.getLength1()+ "\n");
+                        frm.richTextBox1.AppendText("Độ dài cạnh II: " +triangle.getLength2()+ "\n");
+                        frm.richTextBox1.AppendText("Độ dài cạnh III: " +triangle.getLength3()+ "\n");
                         break;
                 }
             }
@@ -711,6 +711,13 @@ namespace GraphicProject
         public void setNullChoosedShape()
         {
             this.choosedShape = null;
+        }
+
+        public void scallingTransform(int scraling)
+        {
+            if (choosedShape != null) {
+                Transform.transformScaling(choosedShape);
+            }
         }
     }
 }

@@ -324,5 +324,11 @@ namespace GraphicProject
         {
             new AboutBox().ShowDialog();
         }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            if (new ScalingTransformForm(drawShape).ShowDialog()==DialogResult.OK)
+                panel1.Refresh();
+        }
     }
 }

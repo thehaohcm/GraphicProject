@@ -145,7 +145,6 @@ namespace GraphicProject
                     numRhombus++;
                     this.remainingClick = 3;
                     break;
-                    break;
                 case TypeDraw.Cube:
                     this.name = "Cube_" + numCube;
                     numCube++;

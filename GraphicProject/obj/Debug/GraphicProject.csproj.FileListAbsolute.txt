@@ -9,3 +9,4 @@ C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\Gra
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.csprojResolveAssemblyReference.cache
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.InputCubeForm.resources
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.AboutBox.resources
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.ScalingTransformForm.resources

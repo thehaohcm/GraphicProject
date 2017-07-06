@@ -11,6 +11,7 @@ namespace GraphicProject
     {
         Point startPoint, endPoint;
         Point point12, point21;
+        double width, height;
 
         //Insert 2 Point to Rectangle and get-set method
         //handle...
@@ -44,6 +45,7 @@ namespace GraphicProject
         {
             this.startPoint = startPoint;
             calculatePoints();
+            calcuateWidthHeight();
             minusRemainingClick();
         }
 
@@ -56,6 +58,7 @@ namespace GraphicProject
         {
             this.endPoint = endPoint;
             calculatePoints();
+            calcuateWidthHeight();
             minusRemainingClick();
         }
 
@@ -92,6 +95,35 @@ namespace GraphicProject
             listLine.Add(l3);
             listLine.Add(l4);
             return listLine;
+        }
+
+        public double getWidth()
+        {
+            return this.width;
+        }
+
+        public double getHeigth()
+        {
+            return this.height;
+        }
+
+        private void calcuateWidthHeight()
+        {
+            if ((startPoint != null && endPoint != null)||(startPoint!=new Point(0,0))&&endPoint!=new Point(0,0))
+            {
+                double width = Math.Sqrt(((endPoint.X - point12.X) * (endPoint.X - point12.X)) + ((endPoint.Y - point12.Y) * (endPoint.Y - point12.Y)));
+                double height = Math.Sqrt(((startPoint.X - point21.X) * (startPoint.X - point21.X)) + ((startPoint.Y - point21.Y) * (startPoint.Y - point21.Y)));
+                if (width < height)
+                {
+                    this.width = width;
+                    this.height = height;
+                }
+                else
+                {
+                    this.width = height;
+                    this.height = width;
+                }
+            }
         }
     }
 }
