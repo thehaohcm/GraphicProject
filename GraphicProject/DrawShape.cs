@@ -46,9 +46,6 @@ namespace GraphicProject
                 case TypeDraw.Rectangle:
                     shape = new Rectangle();
                     break;
-                case TypeDraw.Square:
-                    shape = new Square();
-                    break;
                 case TypeDraw.Triangle:
                     shape = new Triangle();
                     break;
@@ -291,11 +288,11 @@ namespace GraphicProject
             int k = 1;
             while (step != -1)
             {
-                x += x_inc;
-                y += y_inc;
+                x += x_inc;// ngu như con bò    
+                y += y_inc;// chó hào
                 putpixel(round(x), round(y), line.getColor());
-                k++;
-                step--;
+                k++; // ăn cứt
+                step--;// ăn cc
             }
 
         }
@@ -632,6 +629,7 @@ namespace GraphicProject
 
         public void removeShape(int index)
         {
+            shapeSet.ElementAt(index).minusCountShape();
             shapeSet.RemoveAt(index);
             choosedFlag = false;
             choosedShape = null;
@@ -674,8 +672,8 @@ namespace GraphicProject
                     case TypeDraw.Ellipse:
                         Ellipse ellipse = (Ellipse)choosedShape;
                         frm.richTextBox1.AppendText("Tâm: " + ellipse.getStartPoint().ToString() + "\n");
-                        frm.richTextBox1.AppendText("Bán kính nhỏ: ");
-                        frm.richTextBox1.AppendText("Bán kính lớn: ");
+                        frm.richTextBox1.AppendText("Bán kính nhỏ: "+ellipse.getWidthRadius().ToString()+"\n");
+                        frm.richTextBox1.AppendText("Bán kính lớn: "+ellipse.getHeightRadius().ToString());
                         break;
                     case TypeDraw.Parallelogram:
                         Parallelogram parallelogram = (Parallelogram)choosedShape;
@@ -683,8 +681,8 @@ namespace GraphicProject
                         frm.richTextBox1.AppendText("Điểm thứ II: " + parallelogram.getPoint2().ToString() + "\n");
                         frm.richTextBox1.AppendText("Điểm thứ III: " + parallelogram.getPoint3().ToString() + "\n");
                         frm.richTextBox1.AppendText("Điểm thứ IV: " + parallelogram.getPoint4().ToString() + "\n");
-                        frm.richTextBox1.AppendText("Chiều dài:" + "\n");
-                        frm.richTextBox1.AppendText("Chiều rộng:" + "\n");
+                        frm.richTextBox1.AppendText("Chiều dài:"+parallelogram.getHeight().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Chiều rộng:" + parallelogram.getWidth().ToString() + "\n");
                         break;
                     case TypeDraw.Rectangle:
                         Rectangle rectangle = (Rectangle)choosedShape;

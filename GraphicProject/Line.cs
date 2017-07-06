@@ -71,7 +71,7 @@ namespace GraphicProject
 
         private void calculateLength()
         {
-            if ((startPoint != null && endPoint != null) || (startPoint != new Point(0, 0)) && endPoint != new Point(0, 0)) {
+            if ((startPoint != null && endPoint != null) && (startPoint != new Point(0, 0)) && endPoint != new Point(0, 0)) {
                 this.length = Math.Sqrt(((endPoint.X - startPoint.X) * (endPoint.X - startPoint.X)) + ((endPoint.Y - startPoint.Y) * (endPoint.Y - startPoint.Y)));
             }
         }

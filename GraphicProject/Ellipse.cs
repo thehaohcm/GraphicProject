@@ -37,6 +37,7 @@ namespace GraphicProject
         public void setStartPoint(Point startPoint)
         {
             this.startPoint = startPoint;
+            calculateWidthHeight();
             minusRemainingClick();
         }
 
@@ -48,9 +49,8 @@ namespace GraphicProject
         public void setEndWidthPoint(Point endWidthPoint)
         {
             this.endWidthPoint = endWidthPoint;
+            calculateWidthHeight();
             minusRemainingClick();
-            if (startPoint != null)
-                widthRadius = Math.Abs(startPoint.X - endWidthPoint.X);
         }
 
         public Point getEndWidthPoint()
@@ -89,6 +89,29 @@ namespace GraphicProject
         public bool getDottedEllipseFlag()
         {
             return this.dottedEllipseFlag;
+        }
+
+        public void calculateWidthHeight()
+        {
+            if ((startPoint != null && endWidthPoint != null && endHeightPoint != null) && (startPoint != new Point(0, 0) && endHeightPoint != new Point(0, 0) && endWidthPoint != new Point(0, 0))){
+                double widthRadius, heightRadius;
+                widthRadius = Math.Sqrt(((endWidthPoint.X - startPoint.X) * (endWidthPoint.X - startPoint.X)) + ((endWidthPoint.Y - startPoint.Y) * (endWidthPoint.Y - startPoint.Y)));
+                heightRadius = Math.Sqrt(((endHeightPoint.X - startPoint.X) * (endHeightPoint.X - startPoint.X)) + ((endHeightPoint.Y - startPoint.Y) * (endHeightPoint.Y - startPoint.Y)));
+                if (widthRadius < heightRadius)
+                {
+                    this.widthRadius = widthRadius;
+                    this.heightRadius = heightRadius;
+                    
+                }
+                else
+                {
+                    this.widthRadius = heightRadius;
+                    this.heightRadius = widthRadius;
+                    //Point tempPoint = endHeightPoint;
+                    //endHeightPoint = endWidthPoint;
+                    //endWidthPoint = tempPoint;
+                }
+            }
         }
     }
 }

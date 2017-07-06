@@ -8,7 +8,7 @@ namespace GraphicProject
 {
     enum TypeDraw
     {
-        Line, Square, Rectangle, Circle, Triangle, Parallelogram, Ellipse,Cube,Cylinder,Rhombus
+        Line, Rectangle, Circle, Triangle, Parallelogram, Ellipse,Cube,Cylinder,Rhombus
 
     }
 

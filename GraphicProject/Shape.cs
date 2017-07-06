@@ -13,7 +13,7 @@ namespace GraphicProject
         TypeDraw typeDraw;
         private int remainingClick;
         private string name;
-        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numSquare = 1, numTriangle = 1, numCube=1,numCylinder=1,numRhombus=1;
+        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numTriangle = 1, numCube=1,numCylinder=1,numRhombus=1;
         private Point transformPoint;
         private bool transformFlag;
 
@@ -67,9 +67,6 @@ namespace GraphicProject
                     this.remainingClick = 3;
                     break;
                 case TypeDraw.Rectangle:
-                    this.remainingClick = 2;
-                    break;
-                case TypeDraw.Square:
                     this.remainingClick = 2;
                     break;
                 case TypeDraw.Triangle:
@@ -130,11 +127,6 @@ namespace GraphicProject
                     numRectangle++;
                     this.remainingClick = 2;
                     break;
-                case TypeDraw.Square:
-                    this.name = "Square_" + numSquare;
-                    numSquare++;
-                    this.remainingClick = 2;
-                    break;
                 case TypeDraw.Triangle:
                     this.name = "Triangle_" + numTriangle;
                     numTriangle++;
@@ -172,8 +164,41 @@ namespace GraphicProject
             Shape.numLine = 1;
             Shape.numParallelogram = 1;
             Shape.numRectangle = 1;
-            Shape.numSquare = 1;
             Shape.numTriangle = 1;
+        }
+
+        public void minusCountShape()
+        {
+            switch (this.getTypeDraw())
+            {
+                case TypeDraw.Circle:
+                    numCirCle--;
+                    break;
+                case TypeDraw.Cube:
+                    numCube--;
+                    break;
+                case TypeDraw.Cylinder:
+                    numCylinder--;
+                    break;
+                case TypeDraw.Ellipse:
+                    numEllipse--;
+                    break;
+                case TypeDraw.Line:
+                    numLine--;
+                    break;
+                case TypeDraw.Parallelogram:
+                    numParallelogram--;
+                    break;
+                case TypeDraw.Rectangle:
+                    numRectangle--;
+                    break;
+                case TypeDraw.Rhombus:
+                    numRhombus--;
+                    break;
+                case TypeDraw.Triangle:
+                    numTriangle--;
+                    break;
+            }
         }
 
         public void setTransformPoint(Point transformPoint)
