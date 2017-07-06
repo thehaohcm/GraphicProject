@@ -33,8 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,11 +81,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
-    <Compile Include="ReflextionTransformForm.cs">
+    <Compile Include="ReflectionTransformForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReflextionTransformForm.Designer.cs">
-      <DependentUpon>ReflextionTransformForm.cs</DependentUpon>
+    <Compile Include="ReflectionTransformForm.Designer.cs">
+      <DependentUpon>ReflectionTransformForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Rhombus.cs" />
     <Compile Include="RotationTransformForm.cs">
@@ -106,6 +113,7 @@
     <EmbeddedResource Include="InputCubeForm.resx">
       <DependentUpon>InputCubeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -116,6 +124,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Ellipse.cs" />
+    <EmbeddedResource Include="ReflectionTransformForm.resx">
+      <DependentUpon>ReflectionTransformForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScalingTransformForm.resx">
       <DependentUpon>ScalingTransformForm.cs</DependentUpon>
     </EmbeddedResource>

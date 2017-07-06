@@ -330,5 +330,13 @@ namespace GraphicProject
             if (new ScalingTransformForm(drawShape).ShowDialog()==DialogResult.OK)
                 panel1.Refresh();
         }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            if(new ReflectionTransformForm(drawShape).ShowDialog() == DialogResult.OK)
+            {
+                panel1.Refresh();
+            }
+        }
     }
 }

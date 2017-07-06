@@ -107,6 +107,127 @@ namespace GraphicProject
             shape.setTransformFlag(false);
         }
 
+        public static void transformReflection(Shape shape, TypeReflectionTransform type)
+        {
+            switch (shape.getTypeDraw())
+            {
+                case TypeDraw.Line:
+                    Line line = (Line)shape;
+                    switch (type)
+                    {
+                        case TypeReflectionTransform.Horizontal:
+                            line.setStartPoint(new Point(line.getStartPoint().X, -line.getStartPoint().Y));
+                            line.setEndPoint(new Point(line.getEndPoint().X, -line.getEndPoint().Y));
+                            break;
+                        case TypeReflectionTransform.Vertical:
+                            line.setStartPoint(new Point(-line.getStartPoint().X, line.getStartPoint().Y));
+                            line.setEndPoint(new Point(-line.getEndPoint().X, line.getEndPoint().Y));
+                            break;
+                        case TypeReflectionTransform.Origin:
+                            line.setStartPoint(new Point(-line.getStartPoint().X, -line.getStartPoint().Y));
+                            line.setEndPoint(new Point(-line.getEndPoint().X, -line.getEndPoint().Y));
+                            break;
+                    }
+                    break;
+                case TypeDraw.Circle:
+                    Circle circle = (Circle)shape;
+                    switch (type) {
+                        case TypeReflectionTransform.Horizontal:
+                            circle.setCenterPoint(new Point(circle.getCenterPoint().X, -circle.getCenterPoint().Y));
+                            circle.setEndPoint(new Point(circle.getEndPoint().X, -circle.getEndPoint().Y));
+                            break;
+                        case TypeReflectionTransform.Vertical:
+                            circle.setCenterPoint(new Point(-circle.getCenterPoint().X, circle.getCenterPoint().Y));
+                            circle.setEndPoint(new Point(-circle.getEndPoint().X, circle.getEndPoint().Y));
+                            break;
+                        case TypeReflectionTransform.Origin:
+                            circle.setCenterPoint(new Point(-circle.getCenterPoint().X, -circle.getCenterPoint().Y));
+                            circle.setEndPoint(new Point(-circle.getEndPoint().X, -circle.getEndPoint().Y));
+                            break;
+                    }
+                    break;
+                case TypeDraw.Ellipse:
+                    Ellipse ellipse = (Ellipse)shape;
+                    switch (type) {
+                        case TypeReflectionTransform.Horizontal:
+                            ellipse.setStartPoint(new Point(ellipse.getStartPoint().X, -ellipse.getStartPoint().Y));
+                            ellipse.setEndHightPoint(new Point(ellipse.getEndHightPoint().X, -ellipse.getEndHightPoint().Y));
+                            ellipse.setEndWidthPoint(new Point(ellipse.getEndWidthPoint().X, -ellipse.getEndWidthPoint().Y));
+                            break;
+                        case TypeReflectionTransform.Vertical:
+                            ellipse.setStartPoint(new Point(-ellipse.getStartPoint().X, ellipse.getStartPoint().Y));
+                            ellipse.setEndHightPoint(new Point(-ellipse.getEndHightPoint().X, ellipse.getEndHightPoint().Y));
+                            ellipse.setEndWidthPoint(new Point(-ellipse.getEndWidthPoint().X, ellipse.getEndWidthPoint().Y));
+                            break;
+                        case TypeReflectionTransform.Origin:
+                            ellipse.setStartPoint(new Point(-ellipse.getStartPoint().X, -ellipse.getStartPoint().Y));
+                            ellipse.setEndHightPoint(new Point(-ellipse.getEndHightPoint().X, -ellipse.getEndHightPoint().Y));
+                            ellipse.setEndWidthPoint(new Point(-ellipse.getEndWidthPoint().X, -ellipse.getEndWidthPoint().Y));
+                            break;
+                    }
+                    break;
+                case TypeDraw.Parallelogram:
+                    Parallelogram parallelogram = (Parallelogram)shape;
+                    switch (type) {
+                        case TypeReflectionTransform.Horizontal:
+                            parallelogram.setPoint1(new Point(parallelogram.getPoint1().X, -parallelogram.getPoint1().Y));
+                            parallelogram.setPoint2(new Point(parallelogram.getPoint2().X, -parallelogram.getPoint2().Y));
+                            parallelogram.setPoint3(new Point(parallelogram.getPoint3().X, -parallelogram.getPoint3().Y));
+                            //parallelogram.setPoint4(multiMatrix2D(dx, dy, new double[3] { parallelogram.getPoint1().X, parallelogram.getPoint1().Y, 1 }));
+                            break;
+                        case TypeReflectionTransform.Vertical:
+                            parallelogram.setPoint1(new Point(-parallelogram.getPoint1().X, parallelogram.getPoint1().Y));
+                            parallelogram.setPoint2(new Point(-parallelogram.getPoint2().X, parallelogram.getPoint2().Y));
+                            parallelogram.setPoint3(new Point(-parallelogram.getPoint3().X, parallelogram.getPoint3().Y));
+                            break;
+                        case TypeReflectionTransform.Origin:
+                            parallelogram.setPoint1(new Point(-parallelogram.getPoint1().X, -parallelogram.getPoint1().Y));
+                            parallelogram.setPoint2(new Point(-parallelogram.getPoint2().X, -parallelogram.getPoint2().Y));
+                            parallelogram.setPoint3(new Point(-parallelogram.getPoint3().X, -parallelogram.getPoint3().Y));
+                            break;
+                    }
+                    break;
+                case TypeDraw.Rectangle:
+                    Rectangle rectangle = (Rectangle)shape;
+                    switch (type) {
+                        case TypeReflectionTransform.Horizontal:
+                            rectangle.setStartPoint(new Point(rectangle.getStartPoint().X, -rectangle.getStartPoint().Y));
+                            rectangle.setEndPoint(new Point(rectangle.getEndPoint().X, -rectangle.getEndPoint().Y));
+                            break;
+                        case TypeReflectionTransform.Vertical:
+                            rectangle.setStartPoint(new Point(-rectangle.getStartPoint().X, rectangle.getStartPoint().Y));
+                            rectangle.setEndPoint(new Point(-rectangle.getEndPoint().X, rectangle.getEndPoint().Y));
+                            break;
+                        case TypeReflectionTransform.Origin:
+                            rectangle.setStartPoint(new Point(-rectangle.getStartPoint().X, -rectangle.getStartPoint().Y));
+                            rectangle.setEndPoint(new Point(-rectangle.getEndPoint().X, -rectangle.getEndPoint().Y));
+                            break;
+                    }
+                    break;
+                case TypeDraw.Triangle:
+                    Triangle triangle = (Triangle)shape;
+                    switch (type) {
+                        case TypeReflectionTransform.Horizontal:
+                            triangle.setPoint1(new Point(triangle.getPoint1().X, -triangle.getPoint1().Y));
+                            triangle.setPoint2(new Point(triangle.getPoint2().X, -triangle.getPoint2().Y));
+                            triangle.setPoint3(new Point(triangle.getPoint3().X, -triangle.getPoint3().Y));
+                            break;
+                        case TypeReflectionTransform.Vertical:
+                            triangle.setPoint1(new Point(-triangle.getPoint1().X, triangle.getPoint1().Y));
+                            triangle.setPoint2(new Point(-triangle.getPoint2().X, triangle.getPoint2().Y));
+                            triangle.setPoint3(new Point(-triangle.getPoint3().X, triangle.getPoint3().Y));
+                            break;
+                        case TypeReflectionTransform.Origin:
+                            triangle.setPoint1(new Point(-triangle.getPoint1().X, -triangle.getPoint1().Y));
+                            triangle.setPoint2(new Point(-triangle.getPoint2().X, -triangle.getPoint2().Y));
+                            triangle.setPoint3(new Point(-triangle.getPoint3().X, -triangle.getPoint3().Y));
+                            break;
+                    }
+                    break;
+            }
+            shape.setTransformFlag(false);
+        }
+
         private static Point multiMatrix2D(TypeTransform type, double dx, double dy, double[] array)
         {
             Console.WriteLine("ma tran dau: " + array[0] + " - " + array[1] + " - " + array[2]);

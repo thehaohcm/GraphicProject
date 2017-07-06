@@ -717,5 +717,13 @@ namespace GraphicProject
                 Transform.transformScaling(choosedShape);
             }
         }
+
+        public void reflectionTransform(TypeReflectionTransform type)
+        {
+            if (choosedShape != null)
+            {
+                Transform.transformReflection(choosedShape, type);
+            }
+        }
     }
 }

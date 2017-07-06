@@ -16,4 +16,9 @@ namespace GraphicProject
     {
         Translation,Scaling,Rotation,Reflection
     }
+
+    enum TypeReflectionTransform
+    {
+        Vertical,Horizontal,Origin
+    }
 }

@@ -57,6 +57,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.giớiThiệuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -161,7 +162,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(944, 622);
+            this.button8.Location = new System.Drawing.Point(944, 675);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(226, 46);
             this.button8.TabIndex = 0;
@@ -262,7 +263,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(944, 577);
+            this.button13.Location = new System.Drawing.Point(944, 630);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(226, 39);
             this.button13.TabIndex = 15;
@@ -276,7 +277,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 683);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 728);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1186, 28);
             this.toolStrip1.TabIndex = 16;
@@ -334,11 +335,22 @@
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(944, 577);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(226, 42);
+            this.button15.TabIndex = 20;
+            this.button15.Text = "Đối xứng";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 711);
+            this.ClientSize = new System.Drawing.Size(1186, 756);
+            this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -405,6 +417,7 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.ToolStripMenuItem giớiThiệuToolStripMenuItem;
         private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
     }
 }
 
