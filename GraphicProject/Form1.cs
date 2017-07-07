@@ -25,6 +25,9 @@ namespace GraphicProject
             button8.Enabled = false;
             button13.Enabled = false;
             button12.Enabled = false;
+            button14.Enabled = false;
+            button15.Enabled = false;
+            button17.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -87,7 +90,11 @@ namespace GraphicProject
                             if (ellipse.getRemainingClick() == 3)
                                 ellipse.setStartPoint(new Point(e.X, e.Y));
                             else if (ellipse.getRemainingClick() == 2)
-                                ellipse.setEndHightPoint(new Point(e.X, e.Y));
+                                ellipse.setEndWidthPoint(new Point(e.X, e.Y));
+                            break;
+                        case TypeDraw.Square:
+                            Square square = (Square)drawShape.getShape();
+                            square.setPoint1(new Point(e.X, e.Y));
                             break;
                         
                     }
@@ -124,7 +131,7 @@ namespace GraphicProject
                                 break;
                             case TypeDraw.Ellipse:
                                 Ellipse ellipse = (Ellipse)drawShape.getShape();
-                                ellipse.setEndWidthPoint(new Point(e.X, e.Y));
+                                ellipse.setEndHightPoint(new Point(e.X, e.Y));
                                 break;
                             case TypeDraw.Cube:
                                 Cube cube = (Cube)drawShape.getShape();
@@ -133,6 +140,10 @@ namespace GraphicProject
                             case TypeDraw.Cylinder:
                                 Cylinder cylinder = (Cylinder)drawShape.getShape();
                                 cylinder.setPoint(new Point(e.X, e.Y));
+                                break;
+                            case TypeDraw.Square:
+                                Square square = (Square)drawShape.getShape();
+                                square.setPoint2(new Point(e.X, e.Y));
                                 break;
 
                         }
@@ -224,8 +235,13 @@ namespace GraphicProject
                 this.indexChoosedShape = index;
                 drawShape.chooseShape(index);
                 button9.Enabled = true;
+                button8.Enabled = true;
+                button13.Enabled = true;
                 button12.Enabled = true;
-                
+                button14.Enabled = true;
+                button15.Enabled = true;
+                button17.Enabled = true;
+
                 //drawShape.resetShape();
                 panel1.Refresh();
             }
@@ -240,7 +256,12 @@ namespace GraphicProject
                     drawShape.removeShape(indexChoosedShape);
                     this.indexChoosedShape = -1;
                     button9.Enabled = false;
+                    button8.Enabled = false;
+                    button13.Enabled = false;
                     button12.Enabled = false;
+                    button14.Enabled = false;
+                    button15.Enabled = false;
+                    button17.Enabled = false;
                     panel1.Refresh();
                     richTextBox1.Clear();
                 }
@@ -291,6 +312,7 @@ namespace GraphicProject
             button4.Enabled = true;
             button5.Enabled = true;
             button6.Enabled = true;
+            button16.Enabled = true;
 
             dToolStripMenuItem.Checked = true;
             dToolStripMenuItem1.Checked = false;
@@ -311,6 +333,7 @@ namespace GraphicProject
             button4.Enabled = false;
             button5.Enabled = false;
             button6.Enabled = false;
+            button16.Enabled = false;
 
             dToolStripMenuItem1.Checked = true;
             dToolStripMenuItem.Checked = false;
@@ -336,6 +359,28 @@ namespace GraphicProject
             if(new ReflectionTransformForm(drawShape).ShowDialog() == DialogResult.OK)
             {
                 panel1.Refresh();
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            drawShape.initShape(TypeDraw.Square);
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            if(new RotationTransformForm(drawShape).ShowDialog() == DialogResult.OK)
+            {
+                panel1.Refresh();
+            }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Color color = colorDialog1.Color;
+                drawShape.fillColor(color);
             }
         }
     }

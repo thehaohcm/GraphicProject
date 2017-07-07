@@ -55,6 +55,9 @@ namespace GraphicProject
                 case TypeDraw.Cylinder:
                     shape = new Cylinder();
                     break;
+                case TypeDraw.Square:
+                    shape = new Square();
+                    break;
             }
             shape.setColor(color);
             choosedFlag = false;
@@ -173,8 +176,16 @@ namespace GraphicProject
         {
             //int x1, y1, x2, y2, centerX, centerY;
             int x, y, fx, fy, a2, b2, p, a, b;
-            a = (int)ellipse.getWidthRadius();
-            b = (int)ellipse.getHeightRadius();
+            //if (!ellipse.getChangeFlag())
+            //{
+                a = (int)ellipse.getWidthRadius();
+                b = (int)ellipse.getHeightRadius();
+            //}
+            //else
+            //{
+            //    a = (int)ellipse.getHeightRadius();
+            //    b = (int)ellipse.getWidthRadius();
+            //}
             x = 0;
             y = b;
             a2 = a * a;
@@ -288,11 +299,11 @@ namespace GraphicProject
             int k = 1;
             while (step != -1)
             {
-                x += x_inc;// ngu như con bò    
-                y += y_inc;// chó hào
+                x += x_inc;
+                y += y_inc;//
                 putpixel(round(x), round(y), line.getColor());
-                k++; // ăn cứt
-                step--;// ăn cc
+                k++; // 
+                step--;// 
             }
 
         }
@@ -430,7 +441,8 @@ namespace GraphicProject
                             Line line = (Line)s;
                             //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
                             //DDA_Line2(line);
-                            drawLinebyMidPoint(line);
+                            //drawLinebyMidPoint(line);
+                            DDA_Line2(line);
                             break;
                         case TypeDraw.Rectangle:
                             Rectangle retangle = (Rectangle)s;
@@ -497,6 +509,15 @@ namespace GraphicProject
                                 }
                             }
                             break;
+                        case TypeDraw.Square:
+                            Square square = (Square)s;
+                            listLines = square.getAllLines();
+                            if (listLines != null)
+                                foreach (Line _line in listLines)
+                                {
+                                    DDA_Line2(_line);
+                                }
+                            break;
                     }
                     g.Dispose();
                 }
@@ -507,7 +528,7 @@ namespace GraphicProject
                 {
                     if (shape != null && shape.getTransformFlag())
                     {
-                        Transform.transformTranslation(shape);
+                        Transform.translationTransform(shape);
                     }
                     Pen pen = new Pen(choosedShape.getColor(), 3);
                     Graphics g = frm.panel1.CreateGraphics();
@@ -517,7 +538,7 @@ namespace GraphicProject
                             Line line = (Line)choosedShape;
                             //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
                             //DDA_Line2(line);
-                            drawLinebyMidPoint(line);
+                            DDA_Line2(line);
                             break;
                         case TypeDraw.Rectangle:
                             Rectangle retangle = (Rectangle)choosedShape;
@@ -553,6 +574,15 @@ namespace GraphicProject
                         case TypeDraw.Ellipse:
                             Ellipse ellipse = (Ellipse)choosedShape;
                             MidPoint_Ellipse(ellipse);
+                            break;
+                        case TypeDraw.Square:
+                            Square square = (Square)choosedShape;
+                            listLines = square.getAllLines();
+                            if (listLines != null)
+                                foreach (Line _line in listLines)
+                                {
+                                    DDA_Line2(_line);
+                                }
                             break;
                     }
                     g.Dispose();
@@ -702,6 +732,14 @@ namespace GraphicProject
                         frm.richTextBox1.AppendText("Độ dài cạnh II: " +triangle.getLength2()+ "\n");
                         frm.richTextBox1.AppendText("Độ dài cạnh III: " +triangle.getLength3()+ "\n");
                         break;
+                    case TypeDraw.Square:
+                        Square square = (Square)choosedShape;
+                        frm.richTextBox1.AppendText("Điểm thứ I: " + square.getPoint1().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ II: " + square.getPoint2().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ III: " + square.getPoint3().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ IV: " + square.getPoint4().ToString() + "\n");
+                        frm.richTextBox1.AppendText("Độ dài cạnh: " + square.getEdge().ToString() + "\n");
+                        break;
                 }
             }
         }
@@ -711,18 +749,40 @@ namespace GraphicProject
             this.choosedShape = null;
         }
 
-        public void scallingTransform(int scraling)
+        public void transformScalling(int scaling)
         {
             if (choosedShape != null) {
-                Transform.transformScaling(choosedShape);
+                Transform.scalingTransform(choosedShape, scaling, scaling);
             }
         }
 
-        public void reflectionTransform(TypeReflectionTransform type)
+        public void transformReflection(TypeReflectionTransform type)
         {
             if (choosedShape != null)
             {
-                Transform.transformReflection(choosedShape, type);
+                Transform.reflectionTransform(choosedShape, type);
+            }
+        }
+
+        public void transformRotation(float rotation)
+        {
+            if (choosedShape != null)
+            {
+                Transform.rotationTransform(choosedShape, rotation);
+            }
+        }
+
+        private void flooadFill(int x,int y,Color nc,Color bc)
+        {
+
+        }
+
+        public void fillColor(Color color)
+        {
+            if (choosedShape != null)
+            {
+                //FillColor.scanLine(choosedShape, color);
+                
             }
         }
     }

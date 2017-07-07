@@ -57,6 +57,10 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Đối xứng qua trục hoành (Ox)",
+            "Đối xứng qua trục tung (Oy)",
+            "Đối xứng qua góc tọa độ (O)"});
             this.comboBox1.Location = new System.Drawing.Point(209, 35);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(225, 28);

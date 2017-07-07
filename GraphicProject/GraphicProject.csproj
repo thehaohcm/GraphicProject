@@ -100,10 +100,12 @@
     <Compile Include="ScalingTransformForm.Designer.cs">
       <DependentUpon>ScalingTransformForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FillColor.cs" />
     <Compile Include="Shape.cs" />
+    <Compile Include="Square.cs" />
     <Compile Include="Transform.cs" />
     <Compile Include="Triangle.cs" />
-    <Compile Include="TypeDraw.cs" />
+    <Compile Include="Type.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +128,9 @@
     <Compile Include="Ellipse.cs" />
     <EmbeddedResource Include="ReflectionTransformForm.resx">
       <DependentUpon>ReflectionTransformForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RotationTransformForm.resx">
+      <DependentUpon>RotationTransformForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScalingTransformForm.resx">
       <DependentUpon>ScalingTransformForm.cs</DependentUpon>

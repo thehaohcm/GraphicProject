@@ -101,14 +101,18 @@ namespace GraphicProject
 
         private void ReflectionTransformForm_Load(object sender, EventArgs e)
         {
-            comboBox1.DataSource = Enum.GetValues(typeof(TypeReflectionTransform));
 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            Enum.TryParse<TypeReflectionTransform>(comboBox1.SelectedValue.ToString(), out type);
+
+            if (comboBox1.Text.Contains("(Oy)"))
+                type = TypeReflectionTransform.Vertical;
+            else if (comboBox1.Text.Contains("(Ox)"))
+                type = TypeReflectionTransform.Horizontal;
+            else
+                type = TypeReflectionTransform.Origin;
 
         }
 
@@ -116,7 +120,7 @@ namespace GraphicProject
         {
             if (comboBox1.Text != "")
             {
-                drawShape.reflectionTransform(type);
+                drawShape.transformReflection(type);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

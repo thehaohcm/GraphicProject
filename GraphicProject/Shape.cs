@@ -13,7 +13,7 @@ namespace GraphicProject
         TypeDraw typeDraw;
         private int remainingClick;
         private string name;
-        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numTriangle = 1, numCube=1,numCylinder=1,numRhombus=1;
+        private static int numCirCle = 1, numEllipse = 1, numLine = 1, numParallelogram = 1, numRectangle = 1, numTriangle = 1, numCube=1,numCylinder=1,numRhombus=1,numSquare=1;
         private Point transformPoint;
         private bool transformFlag;
 
@@ -71,6 +71,9 @@ namespace GraphicProject
                     break;
                 case TypeDraw.Triangle:
                     this.remainingClick = 3;
+                    break;
+                case TypeDraw.Square:
+                    this.remainingClick = 2;
                     break;
                 case TypeDraw.Rhombus:
                     this.remainingClick = 3;
@@ -132,6 +135,11 @@ namespace GraphicProject
                     numTriangle++;
                     this.remainingClick = 3;
                     break;
+                case TypeDraw.Square:
+                    this.name = "Square_" + numSquare;
+                    numSquare++;
+                    this.remainingClick = 2;
+                    break;
                 case TypeDraw.Rhombus:
                     this.name = "Rhombus_" + numRhombus;
                     numRhombus++;
@@ -165,6 +173,7 @@ namespace GraphicProject
             Shape.numParallelogram = 1;
             Shape.numRectangle = 1;
             Shape.numTriangle = 1;
+            Shape.numSquare = 1;
         }
 
         public void minusCountShape()
@@ -197,6 +206,9 @@ namespace GraphicProject
                     break;
                 case TypeDraw.Triangle:
                     numTriangle--;
+                    break;
+                case TypeDraw.Square:
+                    numSquare--;
                     break;
             }
         }

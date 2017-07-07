@@ -21,12 +21,21 @@ namespace GraphicProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.Text != "")
+            try
             {
-                int scaling = Convert.ToInt16(comboBox1.Text);
-                drawShape.scallingTransform(scaling);
+                if (comboBox1.Text.Trim() == "")
+                {
+                    MessageBox.Show("Đã có lỗi xảy ra. Bạn vui lòng nhập vào góc quay hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                int scraling = Convert.ToInt16(comboBox1.Text);
+                drawShape.transformScalling(scraling);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra, bạn vui lòng nhập lại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

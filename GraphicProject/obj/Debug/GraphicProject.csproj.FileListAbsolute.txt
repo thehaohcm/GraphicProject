@@ -42,3 +42,4 @@ C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\Gra
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\bin\Debug\ru\DevExpress.XtraEditors.v15.1.resources.dll
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.ReflectionTransformForm.resources
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.exe.licenses
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.RotationTransformForm.resources

@@ -86,7 +86,7 @@ namespace GraphicProject
 
         private void calculatePoint4andlenths()
         {
-            if ((point1 == null && point2 == null && point3 == null)&&(point1!=new Point(0,0)&&point2!=new Point(0,0)&&point3!=new Point(0,0)))
+            if ((point1 != null && point2 != null && point3 != null)&&(point1!=new Point(0,0)&&point2!=new Point(0,0)&&point3!=new Point(0,0)))
             {
                 Point ptd = new Point(0, 0);
                 ptd.X = point1.X + point3.X;
@@ -114,6 +114,7 @@ namespace GraphicProject
         {
             if (point1 == null || point2 == null || point3 == null || point4 == null)
                 return null;
+            //calculatePoint4andlenths();
             Line l1 = new Line(point1, point2);
             l1.setColor(this.getColor());
             Line l2 = new Line(point2, point3);

@@ -11,7 +11,7 @@ namespace GraphicProject
     {
         Point startPoint, endWidthPoint, endHeightPoint;
         double widthRadius, heightRadius;
-        private bool dottedEllipseFlag;
+        private bool dottedEllipseFlag,changeFlag;
 
         public Ellipse(Point startPoint,Point endWidthPoint,Point endHightPoint,Color color):this(startPoint,endWidthPoint,endHightPoint)
         {
@@ -21,8 +21,8 @@ namespace GraphicProject
 		public Ellipse(Point startPoint,Point endWidthPoint, Point endHightPoint, bool dottedEllipseFlag=false) : base(TypeDraw.Ellipse)
         {
             setStartPoint(startPoint);
-            setEndWidthPoint(endWidthPoint);
-            setEndHightPoint(endHightPoint);
+            //setEndWidthPoint(endWidthPoint);
+            //setEndHightPoint(endHightPoint);
 
             setDottedEllipseFlag(dottedEllipseFlag);
             //calculate width,heigth
@@ -37,7 +37,7 @@ namespace GraphicProject
         public void setStartPoint(Point startPoint)
         {
             this.startPoint = startPoint;
-            calculateWidthHeight();
+            //calculateWidthHeight();
             minusRemainingClick();
         }
 
@@ -49,7 +49,7 @@ namespace GraphicProject
         public void setEndWidthPoint(Point endWidthPoint)
         {
             this.endWidthPoint = endWidthPoint;
-            calculateWidthHeight();
+            //calculateWidthHeight();
             minusRemainingClick();
         }
 
@@ -61,9 +61,11 @@ namespace GraphicProject
         public void setEndHightPoint(Point endHightPoint)
         {
             this.endHeightPoint = endHightPoint;
+            calculateWidthHeight();
             minusRemainingClick();
             if (startPoint != null)
-                heightRadius = Math.Abs(startPoint.Y - endHeightPoint.Y);
+                //heightRadius = Math.Abs(startPoint.Y - endHeightPoint.Y);
+                heightRadius = Math.Sqrt(((endHeightPoint.X - startPoint.X) * (endHeightPoint.X - startPoint.X)) + ((endHeightPoint.Y - startPoint.Y) * (endHeightPoint.Y - startPoint.Y)));
         }
 
         public Point getEndHightPoint()
@@ -93,7 +95,7 @@ namespace GraphicProject
 
         public void calculateWidthHeight()
         {
-            if ((startPoint != null && endWidthPoint != null && endHeightPoint != null) && (startPoint != new Point(0, 0) && endHeightPoint != new Point(0, 0) && endWidthPoint != new Point(0, 0))){
+            if ((startPoint != null && endWidthPoint != null && endHeightPoint != null) || (startPoint != new Point(0, 0) && endHeightPoint != new Point(0, 0) && endWidthPoint != new Point(0, 0))){
                 double widthRadius, heightRadius;
                 widthRadius = Math.Sqrt(((endWidthPoint.X - startPoint.X) * (endWidthPoint.X - startPoint.X)) + ((endWidthPoint.Y - startPoint.Y) * (endWidthPoint.Y - startPoint.Y)));
                 heightRadius = Math.Sqrt(((endHeightPoint.X - startPoint.X) * (endHeightPoint.X - startPoint.X)) + ((endHeightPoint.Y - startPoint.Y) * (endHeightPoint.Y - startPoint.Y)));
@@ -101,15 +103,17 @@ namespace GraphicProject
                 {
                     this.widthRadius = widthRadius;
                     this.heightRadius = heightRadius;
-                    
+                    this.changeFlag = false;
                 }
                 else
                 {
                     this.widthRadius = heightRadius;
                     this.heightRadius = widthRadius;
-                    //Point tempPoint = endHeightPoint;
-                    //endHeightPoint = endWidthPoint;
-                    //endWidthPoint = tempPoint;
+
+                    this.changeFlag = false;
+                    Point tempPoint = new Point(endHeightPoint.X, endHeightPoint.Y);
+                    endHeightPoint = endWidthPoint;
+                    endWidthPoint = tempPoint;
                 }
             }
         }
