@@ -95,8 +95,8 @@ namespace GraphicProject
                 this.point4.Y = ptd.Y - point2.Y;
 
                 double width, height;
-                width = Math.Sqrt(((point2.X - point1.X) * (point2.X - point1.X)) - ((point2.Y - point1.Y) * (point2.Y - point1.Y)));
-                height = Math.Sqrt(((point3.X - point1.X) * (point3.X - point1.X)) - ((point3.Y - point1.Y) * (point3.Y - point1.Y)));
+                width = Math.Sqrt(((point2.X - point1.X) * (point2.X - point1.X)) + ((point2.Y - point1.Y) * (point2.Y - point1.Y)));
+                height = Math.Sqrt(((point3.X - point1.X) * (point3.X - point1.X)) + ((point3.Y - point1.Y) * (point3.Y - point1.Y)));
                 if (width < height)
                 {
                     this.width = width;

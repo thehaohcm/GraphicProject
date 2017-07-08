@@ -21,8 +21,8 @@ namespace GraphicProject
 		public Ellipse(Point startPoint,Point endWidthPoint, Point endHightPoint, bool dottedEllipseFlag=false) : base(TypeDraw.Ellipse)
         {
             setStartPoint(startPoint);
-            //setEndWidthPoint(endWidthPoint);
-            //setEndHightPoint(endHightPoint);
+            setEndWidthPoint(endWidthPoint);
+            setEndHightPoint(endHightPoint);
 
             setDottedEllipseFlag(dottedEllipseFlag);
             //calculate width,heigth
@@ -107,15 +107,22 @@ namespace GraphicProject
                 }
                 else
                 {
-                    this.widthRadius = heightRadius;
-                    this.heightRadius = widthRadius;
+                    this.widthRadius = widthRadius;
+                    this.heightRadius = heightRadius;
+                    //this.widthRadius = widthRadius;
+                    //this.heightRadius = heightRadius;
 
-                    this.changeFlag = false;
-                    Point tempPoint = new Point(endHeightPoint.X, endHeightPoint.Y);
-                    endHeightPoint = endWidthPoint;
-                    endWidthPoint = tempPoint;
+                    this.changeFlag = true;
+                    //Point tempPoint = new Point(endHeightPoint.X, endHeightPoint.Y);
+                    //endHeightPoint = endWidthPoint;
+                    //endWidthPoint = tempPoint;
                 }
             }
+        }
+
+        public bool getChangeFlag()
+        {
+            return changeFlag;
         }
     }
 }

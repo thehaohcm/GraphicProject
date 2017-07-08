@@ -178,18 +178,28 @@ namespace GraphicProject
             int x, y, fx, fy, a2, b2, p, a, b;
             //if (!ellipse.getChangeFlag())
             //{
-                a = (int)ellipse.getWidthRadius();
-                b = (int)ellipse.getHeightRadius();
+            //a = (int)ellipse.getWidthRadius();
+            //b = (int)ellipse.getHeightRadius();
             //}
             //else
             //{
-            //    a = (int)ellipse.getHeightRadius();
-            //    b = (int)ellipse.getWidthRadius();
+            if (Math.Abs((int)ellipse.getEndHightPoint().Y) > Math.Abs((int)ellipse.getEndWidthPoint().Y)){
+                a = (int)ellipse.getHeightRadius();
+                b = (int)ellipse.getWidthRadius();
+            }
+            else
+            {
+                b = (int)ellipse.getHeightRadius();
+                a = (int)ellipse.getWidthRadius();
+            }
+            
+            
             //}
-            x = 0;
-            y = b;
+           
             a2 = a * a;
             b2 = b * b;
+            x = 0;
+            y = b;
             fx = 0;
             fy = 2 * a2 * y;
             put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
@@ -481,24 +491,25 @@ namespace GraphicProject
                             break;
                         case TypeDraw.Cube:
                             Cube cube = (Cube)s;
-                            g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
-                            g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
+                            //g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
+                            //g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
                             //g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
                             //g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
-                            g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
-                            foreach (Line _line in cube.getListLine())
-                            {
-                                //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
-                                drawLinebyMidPoint(_line,_line.getDottedLineFlag());
-                            }
+                            //g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
+                            if(cube!=null)
+                                foreach (Line _line in cube.getListLine())
+                                {
+                                    //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
+                                    drawLinebyMidPoint(_line,_line.getDottedLineFlag());
+                                }
                             break;
                         case TypeDraw.Cylinder:
                             Cylinder cylinder = (Cylinder)s;
-                            g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
-                            g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
-                            //g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
-                            //g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
-                            g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
+                            //g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
+                            //g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
+                            ////g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
+                            ////g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
+                            //g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
                             foreach(Shape _s in cylinder.getListShape())
                             {
                                 if (_s.getTypeDraw() == TypeDraw.Line)
@@ -529,66 +540,120 @@ namespace GraphicProject
                     if (shape != null && shape.getTransformFlag())
                     {
                         Transform.translationTransform(shape);
+                        getInfoShape();
                     }
-                    Pen pen = new Pen(choosedShape.getColor(), 3);
-                    Graphics g = frm.panel1.CreateGraphics();
-                    switch (choosedShape.getTypeDraw())
+                    //Pen pen = new Pen(choosedShape.getColor(), 3);
+                    //Graphics g = frm.panel1.CreateGraphics();
+                    if (check2d)
                     {
-                        case TypeDraw.Line:
-                            Line line = (Line)choosedShape;
-                            //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
-                            //DDA_Line2(line);
-                            DDA_Line2(line);
-                            break;
-                        case TypeDraw.Rectangle:
-                            Rectangle retangle = (Rectangle)choosedShape;
-                            List<Line> listLines = retangle.getAllLines();
-                            if (listLines != null)
-                                foreach (Line _line in listLines)
-                                {
-                                    DDA_Line2(_line);
-                                }
-                            break;
-                        case TypeDraw.Triangle:
-                            Triangle triangle = (Triangle)choosedShape;
-                            listLines = triangle.getAllLines();
-                            if (listLines != null)
-                                foreach (Line _line in listLines)
-                                {
-                                    DDA_Line2(_line);
-                                }
-                            break;
-                        case TypeDraw.Parallelogram:
-                            Parallelogram parallelogram = (Parallelogram)choosedShape;
-                            listLines = parallelogram.getAllLines();
-                            if (listLines != null)
-                                foreach (Line _line in listLines)
-                                {
-                                    DDA_Line2(_line);
-                                }
-                            break;
-                        case TypeDraw.Circle:
-                            Circle circle = (Circle)choosedShape;
-                            MidPoint_Circle(circle);
-                            break;
-                        case TypeDraw.Ellipse:
-                            Ellipse ellipse = (Ellipse)choosedShape;
-                            MidPoint_Ellipse(ellipse);
-                            break;
-                        case TypeDraw.Square:
-                            Square square = (Square)choosedShape;
-                            listLines = square.getAllLines();
-                            if (listLines != null)
-                                foreach (Line _line in listLines)
-                                {
-                                    DDA_Line2(_line);
-                                }
-                            break;
+                        switch (choosedShape.getTypeDraw())
+                        {
+                            case TypeDraw.Line:
+                                Line line = (Line)choosedShape;
+                                //g.DrawLine(pen, line.getStartPoint().X, line.getStartPoint().Y, line.getEndPoint().X, line.getEndPoint().Y);
+                                //DDA_Line2(line);
+                                DDA_Line2(line);
+                                break;
+                            case TypeDraw.Rectangle:
+                                Rectangle retangle = (Rectangle)choosedShape;
+                                List<Line> listLines = retangle.getAllLines();
+                                if (listLines != null)
+                                    foreach (Line _line in listLines)
+                                    {
+                                        DDA_Line2(_line);
+                                    }
+                                break;
+                            case TypeDraw.Triangle:
+                                Triangle triangle = (Triangle)choosedShape;
+                                listLines = triangle.getAllLines();
+                                if (listLines != null)
+                                    foreach (Line _line in listLines)
+                                    {
+                                        DDA_Line2(_line);
+                                    }
+                                break;
+                            case TypeDraw.Parallelogram:
+                                Parallelogram parallelogram = (Parallelogram)choosedShape;
+                                listLines = parallelogram.getAllLines();
+                                if (listLines != null)
+                                    foreach (Line _line in listLines)
+                                    {
+                                        DDA_Line2(_line);
+                                    }
+                                break;
+                            case TypeDraw.Circle:
+                                Circle circle = (Circle)choosedShape;
+                                MidPoint_Circle(circle);
+                                break;
+                            case TypeDraw.Ellipse:
+                                Ellipse ellipse = (Ellipse)choosedShape;
+                                MidPoint_Ellipse(ellipse);
+                                break;
+                            case TypeDraw.Square:
+                                Square square = (Square)choosedShape;
+                                listLines = square.getAllLines();
+                                if (listLines != null)
+                                    foreach (Line _line in listLines)
+                                    {
+                                        DDA_Line2(_line);
+                                    }
+                                break;
+                                //case TypeDraw.Cube:
+                                //    Cube cube = (Cube)choosedShape;
+                                //    if (cube != null)
+                                //        foreach (Line _line in cube.getListLine())
+                                //        {
+                                //            //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
+                                //            drawLinebyMidPoint(_line, _line.getDottedLineFlag());
+                                //        }
+                                //    break;
+                                //case TypeDraw.Cylinder:
+                                //    Cylinder cylinder = (Cylinder)choosedShape;
+                                //    foreach (Shape _s in cylinder.getListShape())
+                                //    {
+                                //        if (_s.getTypeDraw() == TypeDraw.Line)
+                                //            drawLinebyMidPoint((Line)_s);
+                                //        else if (_s.getTypeDraw() == TypeDraw.Ellipse)
+                                //        {
+                                //            Ellipse _e = (Ellipse)_s;
+                                //            MidPoint_Ellipse(_e, _e.getDottedEllipseFlag());
+                                //        }
+                                //    }
+                                //    break;
+                        }
+                        //g.Dispose();
                     }
-                    g.Dispose();
+                    else
+                    {
+                        switch (choosedShape.getTypeDraw())
+                        {
+                            case TypeDraw.Cube:
+                                Cube cube = (Cube)choosedShape;
+                                if (cube != null)
+                                    foreach (Line _line in cube.getListLine())
+                                    {
+                                        //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
+                                        drawLinebyMidPoint(_line, _line.getDottedLineFlag());
+                                    }
+                                break;
+                            case TypeDraw.Cylinder:
+                                Cylinder cylinder = (Cylinder)choosedShape;
+                                foreach (Shape _s in cylinder.getListShape())
+                                {
+                                    if (_s.getTypeDraw() == TypeDraw.Line)
+                                        drawLinebyMidPoint((Line)_s);
+                                    else if (_s.getTypeDraw() == TypeDraw.Ellipse)
+                                    {
+                                        Ellipse _e = (Ellipse)_s;
+                                        MidPoint_Ellipse(_e, _e.getDottedEllipseFlag());
+                                    }
+                                }
+                                break;
+                        }
+                    }
                 }
             }
-            getInfoShape();
+            //getInfoShape();
         }
         
         public List<Shape> getShapeSet()
@@ -613,9 +678,17 @@ namespace GraphicProject
 
         public void clearAllScreen()
         {
-            shapeSet.Clear();
-            Shape.resetAllCountShape();
+            if (check2d)
+            {
+                shapeSet.Clear();
+                Shape.resetAllCountShape();
+            }else
+            {
+                shapeSet3D.Clear();
+                Shape.resetAllCountShape3D();
+            }
             frm.panel1.Refresh();
+
         }
 
         public void updateListView()
@@ -630,11 +703,6 @@ namespace GraphicProject
             {
                 frm.listBox1.Items.Add(shape.getName());
             }
-            if (frm.listBox1.Items.Count > 0)
-                frm.button8.Enabled = true;
-            else
-                frm.button8.Enabled = false;
-
             if (frm.listBox1.Items.Count > 0)
             {
                 frm.button13.Enabled = true;
@@ -749,10 +817,11 @@ namespace GraphicProject
             this.choosedShape = null;
         }
 
-        public void transformScalling(int scaling)
+        public void transformScaling(int scalingX,int scalingY)
         {
             if (choosedShape != null) {
-                Transform.scalingTransform(choosedShape, scaling, scaling);
+                Transform.scalingTransform(choosedShape, scalingX, scalingY);
+                getInfoShape();
             }
         }
 
@@ -761,6 +830,7 @@ namespace GraphicProject
             if (choosedShape != null)
             {
                 Transform.reflectionTransform(choosedShape, type);
+                getInfoShape();
             }
         }
 
@@ -769,6 +839,7 @@ namespace GraphicProject
             if (choosedShape != null)
             {
                 Transform.rotationTransform(choosedShape, rotation);
+                getInfoShape();
             }
         }
 
@@ -783,6 +854,17 @@ namespace GraphicProject
             {
                 //FillColor.scanLine(choosedShape, color);
                 
+            }
+        }
+
+        public void drawCube(int width,int height,int depth)
+        {
+            if (width != null && height != null && depth != null)
+            {
+                Cube cube = (Cube)shape;
+                cube.setWidth(width);
+                cube.setHeight(height);
+                cube.setDepth(depth);
             }
         }
     }

@@ -23,13 +23,14 @@ namespace GraphicProject
         {
             try
             {
-                if (comboBox1.Text.Trim() == "")
+                if (comboBox1.Text.Trim() == ""||comboBox2.Text.Trim()=="")
                 {
-                    MessageBox.Show("Đã có lỗi xảy ra. Bạn vui lòng nhập vào góc quay hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Đã có lỗi xảy ra. Bạn vui lòng nhập vào số tỉ lệ hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                int scraling = Convert.ToInt16(comboBox1.Text);
-                drawShape.transformScalling(scraling);
+                int scalingX = Convert.ToInt16(comboBox1.Text);
+                int scalingY = Convert.ToInt16(comboBox2.Text);
+                drawShape.transformScaling(scalingX,scalingY);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

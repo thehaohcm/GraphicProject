@@ -74,47 +74,58 @@ namespace GraphicProject
 
         public static void scalingTransform(Shape shape,int scalingX,int scalingY)
         {
-            scalingX--;
-            scalingY--;
+            //Shape tempShape=shape;
+            Point oldPoint = new Point(0, 0);
+            shape.setTransformPoint(new Point(0, 0));
+            
             switch (shape.getTypeDraw())
             {
                 case TypeDraw.Line:
                     Line line = (Line)shape;
-                    //line.setStartPoint(multiMatrix(TypeTransform.Scaling,scalingX, scalingY, new double[3] { line.getStartPoint().X, line.getStartPoint().Y, 1 }));
-                    if (line.getStartPoint().X < line.getEndPoint().X && line.getStartPoint().Y < line.getEndPoint().Y)
-                    {
-                        if (line.getStartPoint().X > line.getEndPoint().X)
-                            scalingX = -scalingX;
-                        if (line.getStartPoint().Y > line.getEndPoint().Y)
-                            scalingY = -scalingY;
-                    }
-                    else if (line.getStartPoint().X < line.getEndPoint().X && line.getStartPoint().Y > line.getEndPoint().Y)
-                    {
-                        if (line.getStartPoint().X > line.getEndPoint().X)
-                            scalingX = -scalingX;
-                        if (line.getStartPoint().Y < line.getEndPoint().Y)
-                            scalingY = -scalingY;
-                    }
-                    //line.setEndPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { line.getEndPoint().X, line.getEndPoint().Y, 1 }));
-                    line.setEndPoint(new Point(line.getEndPoint().X + scalingX * (line.getEndPoint().X-line.getStartPoint().X), line.getEndPoint().Y + scalingY * (line.getEndPoint().Y - line.getStartPoint().Y)));
+                    oldPoint = line.getStartPoint();
+                    translationTransform(shape);
+                    line.setStartPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { line.getStartPoint().X, line.getStartPoint().Y, 1 }));
+                    //if (line.getStartPoint().X < line.getEndPoint().X && line.getStartPoint().Y < line.getEndPoint().Y)
+                    //{
+                    //    if (line.getStartPoint().X > line.getEndPoint().X)
+                    //        scalingX = -scalingX;
+                    //    if (line.getStartPoint().Y > line.getEndPoint().Y)
+                    //        scalingY = -scalingY;
+                    //}
+                    //else if (line.getStartPoint().X < line.getEndPoint().X && line.getStartPoint().Y > line.getEndPoint().Y)
+                    //{
+                    //    if (line.getStartPoint().X > line.getEndPoint().X)
+                    //        scalingX = -scalingX;
+                    //    if (line.getStartPoint().Y < line.getEndPoint().Y)
+                    //        scalingY = -scalingY;
+                    //}
+                    line.setEndPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { line.getEndPoint().X, line.getEndPoint().Y, 1 }));
+                    //line.setEndPoint(new Point(line.getEndPoint().X + scalingX * (line.getEndPoint().X-line.getStartPoint().X), line.getEndPoint().Y + scalingY * (line.getEndPoint().Y - line.getStartPoint().Y)));
                     break;
                 case TypeDraw.Circle:
                     Circle circle = (Circle)shape;
-                    //circle.setCenterPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { circle.getCenterPoint().X, circle.getCenterPoint().Y, 1 }));
-                    if (circle.getCenterPoint().X < circle.getEndPoint().X)
-                        scalingX = -scalingX;
-                    if (circle.getCenterPoint().Y < circle.getEndPoint().Y)
-                        scalingY = -scalingY;
-                    circle.setEndPoint(new Point(circle.getEndPoint().X + scalingX * (circle.getEndPoint().X - circle.getCenterPoint().X),circle.getEndPoint().Y + scalingY * (circle.getEndPoint().Y - circle.getCenterPoint().Y)));
+                    oldPoint = circle.getCenterPoint();
+                    translationTransform(shape);
+                    circle.setCenterPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { circle.getCenterPoint().X, circle.getCenterPoint().Y, 1 }));
+                    circle.setEndPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { circle.getEndPoint().X, circle.getEndPoint().Y, 1 }));
+                    //if (circle.getCenterPoint().X < circle.getEndPoint().X)
+                    //    scalingX = -scalingX;
+                    //if (circle.getCenterPoint().Y < circle.getEndPoint().Y)
+                    //    scalingY = -scalingY;
+                    //circle.setEndPoint(new Point(circle.getEndPoint().X + scalingX * (circle.getEndPoint().X - circle.getCenterPoint().X), circle.getEndPoint().Y + scalingY * (circle.getEndPoint().Y - circle.getCenterPoint().Y)));
                     break;
                 case TypeDraw.Ellipse:
                     Ellipse ellipse = (Ellipse)shape;
+                    oldPoint = ellipse.getStartPoint();
+                    translationTransform(shape);
                     //ellipse.setStartPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { ellipse.getStartPoint().X, ellipse.getStartPoint().Y, 1 }));
                     ellipse.setEndHightPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { ellipse.getEndHightPoint().X, ellipse.getEndHightPoint().Y, 1 }));
                     ellipse.setEndWidthPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { ellipse.getEndWidthPoint().X, ellipse.getEndWidthPoint().Y, 1 }));
                     break;
                 case TypeDraw.Parallelogram:
                     Parallelogram parallelogram = (Parallelogram)shape;
+                    oldPoint = parallelogram.getPoint1();
+                    translationTransform(shape);
                     //parallelogram.setPoint1(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { parallelogram.getPoint1().X, parallelogram.getPoint1().Y, 1 }));
                     parallelogram.setPoint2(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { parallelogram.getPoint2().X, parallelogram.getPoint2().Y, 1 }));
                     parallelogram.setPoint3(multiMatrix(TypeTransform.Translation, scalingX, scalingY, new double[3] { parallelogram.getPoint3().X, parallelogram.getPoint3().Y, 1 }));
@@ -122,20 +133,28 @@ namespace GraphicProject
                     break;
                 case TypeDraw.Rectangle:
                     Rectangle rectangle = (Rectangle)shape;
+                    oldPoint = rectangle.getStartPoint();
+                    translationTransform(shape);
                     //rectangle.setStartPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { rectangle.getStartPoint().X, rectangle.getStartPoint().Y, 1 }));
                     rectangle.setEndPoint(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { rectangle.getEndPoint().X, rectangle.getEndPoint().Y, 1 }));
                     break;
                 case TypeDraw.Triangle:
                     Triangle triangle = (Triangle)shape;
+                    oldPoint = triangle.getPoint1();
+                    translationTransform(shape);
                     //triangle.setPoint1(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { triangle.getPoint1().X, triangle.getPoint1().Y, 1 }));
                     triangle.setPoint2(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { triangle.getPoint2().X, triangle.getPoint2().Y, 1 }));
                     triangle.setPoint3(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { triangle.getPoint3().X, triangle.getPoint3().Y, 1 }));
                     break;
                 case TypeDraw.Square:
                     Square square = (Square)shape;
+                    oldPoint = square.getPoint1();
+                    translationTransform(shape);
                     square.setPoint2(multiMatrix(TypeTransform.Scaling, scalingX, scalingY, new double[3] { square.getPoint2().X, square.getPoint2().Y, 1 }));
                     break;
             }
+            shape.setTransformPoint(oldPoint);
+            translationTransform(shape);
             shape.setTransformFlag(false);
         }
 
@@ -327,8 +346,8 @@ namespace GraphicProject
                     matrix[2, 0] = dx; matrix[2, 1] = dy; matrix[2, 2] = 1;
                     break;
                 case TypeTransform.Scaling:
-                    matrix[0, 0] = dx+1; matrix[0, 1] = 0; matrix[0, 2] = 0;
-                    matrix[1, 0] = 0; matrix[1, 1] = dy+1; matrix[1, 2] = 0;
+                    matrix[0, 0] = dx; matrix[0, 1] = 0; matrix[0, 2] = 0;
+                    matrix[1, 0] = 0; matrix[1, 1] = dy; matrix[1, 2] = 0;
                     matrix[2, 0] = 0; matrix[2, 1] = 0; matrix[2, 2] = 1;
                     break;
                 case TypeTransform.Rotation:

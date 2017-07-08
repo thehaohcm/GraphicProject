@@ -11,30 +11,61 @@ namespace GraphicProject
     {
         List<Point3D> list = new List<Point3D>();
         List<Point> list2D = new List<Point>();
-        Point point;
+        Point startPoint;
         int width, height, depth;
         Point3D point3d;
 
-        public Cube():base(TypeDraw.Cube)
+        public Cube(Point startPoint, int width,int height,int depth,Color color):base(TypeDraw.Cube)
         {
-            setColor(Color.Black);
+            setStartPoint(startPoint);
+            setWidth(width);
+            setHeight(height);
+            setDepth(depth);
+            setColor(color);
         }
 
-        public void setPoint(Point point)
+        public Cube(Point startPoint,int width,int height,int depth):this(startPoint,width,height,depth,Color.Black)
         {
-            this.point = point;
-            this.point3d = new Point3D(200, 200,200);
+
+        }
+
+        public Cube():this(new Point(0,0),0,0,0)
+        {
+
+        }
+
+        public void setStartPoint(Point startPoint)
+        {
+            this.startPoint = startPoint;
+            this.point3d = new Point3D(0,0,0);// (200, 200,200);
+
+            //width = this.width * 2;//50*2;
+            //height = this.height * 2;//30*2;
+            //depth = this.depth * 2;//20*2;
+
+            point3d.X = startPoint.X;//200;
+            point3d.Y = startPoint.Y;//200;
+            point3d.Z = 0;
+
+            
+            calculate();
             minusRemainingClick();
+        }
 
-            width = 50*2;
-            height = 30*2;
-            depth = 20*2;
+        private void calculate()
+        {
+            if (startPoint != new Point(0, 0) && width != 0 && height != 0 && depth != 0)
+            {
+                width = this.width * 2;//50*2;
+                height = this.height * 2;//30*2;
+                depth = this.depth * 2;//20*2;
+                arrPoint3D(point3d.X, point3d.Y, point3d.Z);
+            }
+        }
 
-            point3d.X = 200;
-            point3d.Y = 200;
-            point3d.Z = 200;
-
-            arrPoint3D(point3d.X, point3d.Y, point3d.Z);
+        public Point getStartPoint()
+        {
+            return this.startPoint;
         }
 
         //private List<Point3D> arrPoint3D(int x, int y, int z)
@@ -98,27 +129,59 @@ namespace GraphicProject
         //    return list2D;
         //}
 
+        public void setWidth(int width)
+        {
+            this.width = width;
+            calculate();
+        }
+
+        public int getWidth()
+        {
+            return width;
+        }
+
+        public void setHeight(int height)
+        {
+            this.height = height;
+            calculate();
+        }
+
+        public int getHeigth()
+        {
+            return height;
+        }
+
+        public void setDepth(int depth)
+        {
+            this.depth = depth;
+            calculate();
+        }
+
+        public int getDepth()
+        {
+            return depth;
+        }
+
         public List<Line> getListLine()
         {
-            
-
-
-
+           
             List<Line> listLine = new List<Line>();
-            Console.WriteLine("list2dElement: " + list2D.ElementAt(0).X + " - " + list2D.ElementAt(0).Y);
-            listLine.Add(new Line(list2D.ElementAt(1), list2D.ElementAt(0)));
-            listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(1)));
-            listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3)));
-            listLine.Add(new Line(list2D.ElementAt(3), list2D.ElementAt(0)));
-            listLine.Add(new Line(list2D.ElementAt(4), list2D.ElementAt(3)));
-            listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(4)));
-            listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(6)));
-            listLine.Add(new Line(list2D.ElementAt(6), list2D.ElementAt(7),true));
-            listLine.Add(new Line(list2D.ElementAt(4), list2D.ElementAt(7),true));
-            listLine.Add(new Line(list2D.ElementAt(7), list2D.ElementAt(0),true));
-            listLine.Add(new Line(list2D.ElementAt(6), list2D.ElementAt(1)));
-            listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(2)));
-
+            if (list2D != null&&list2D.Count>0)
+            {
+                Console.WriteLine("list2dElement: " + list2D.ElementAt(0).X + " - " + list2D.ElementAt(0).Y);
+                listLine.Add(new Line(list2D.ElementAt(1), list2D.ElementAt(0)));
+                listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(1)));
+                listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3)));
+                listLine.Add(new Line(list2D.ElementAt(3), list2D.ElementAt(0)));
+                listLine.Add(new Line(list2D.ElementAt(4), list2D.ElementAt(3)));
+                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(4)));
+                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(6)));
+                listLine.Add(new Line(list2D.ElementAt(6), list2D.ElementAt(7), true));
+                listLine.Add(new Line(list2D.ElementAt(4), list2D.ElementAt(7), true));
+                listLine.Add(new Line(list2D.ElementAt(7), list2D.ElementAt(0), true));
+                listLine.Add(new Line(list2D.ElementAt(6), list2D.ElementAt(1)));
+                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(2)));
+            }
             return listLine;
         }
 

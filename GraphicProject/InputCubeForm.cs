@@ -13,7 +13,7 @@ namespace GraphicProject
     partial class InputCubeForm : Form
     {
         DrawShape drawShape;
-        public InputCubeForm(DrawShape drawshape)
+        public InputCubeForm(DrawShape drawShape)
         {
             InitializeComponent();
             this.drawShape = drawShape;
@@ -31,8 +31,22 @@ namespace GraphicProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            this.Close();
+            try
+            {
+                int width, height, depth;
+                width = Convert.ToInt16(textBox1.Text);
+                height = Convert.ToInt16(textBox2.Text);
+                depth = Convert.ToInt16(textBox3.Text);
+                drawShape.drawCube(width,height,depth);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra, bạn vui lòng nhập lại giá trị", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            
         }
     }
 }

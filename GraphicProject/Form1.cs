@@ -30,6 +30,20 @@ namespace GraphicProject
             button17.Enabled = false;
         }
 
+        public int round(double tds)
+        {
+            int tdm;
+            double sodu = tds % 5;
+            if (sodu != 0)
+            {
+                if (sodu >= 3) tdm = (int)(tds + 5 - sodu);
+                else tdm = (int)(tds - sodu);
+            }
+            else tdm = (int)tds;
+            if (tdm > 400) tdm = 400;
+            return tdm;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {            
         }
@@ -60,41 +74,41 @@ namespace GraphicProject
                     {
                         case TypeDraw.Line:
                             Line line = (Line)drawShape.getShape();
-                            //line.setStartPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
-                            line.setStartPoint(new Point(e.X, e.Y));
+                            //line.setStartPoint(new Point(Convert.ToInt16(round(e.X)), Convert.ToInt16(round(e.Y))));
+                            line.setStartPoint(new Point(round(e.X), round(e.Y)));
                             break;
                         case TypeDraw.Rectangle:
                             Rectangle rectangle = (Rectangle)drawShape.getShape();
-                            rectangle.setStartPoint(new Point(e.X, e.Y));
+                            rectangle.setStartPoint(new Point(round(e.X), round(e.Y)));
                             break;
                         case TypeDraw.Triangle:
                             Triangle triangle = (Triangle)drawShape.getShape();
                             if (triangle.getRemainingClick() == 3)
-                                triangle.setPoint1(new Point(e.X, e.Y));
+                                triangle.setPoint1(new Point(round(e.X), round(e.Y)));
                             else if (triangle.getRemainingClick() == 2)
-                                triangle.setPoint2(new Point(e.X, e.Y));
+                                triangle.setPoint2(new Point(round(e.X), round(e.Y)));
                             break;
                         case TypeDraw.Parallelogram:
                             Parallelogram parallelogram = (Parallelogram)drawShape.getShape();
                             if (parallelogram.getRemainingClick() == 3)
-                                parallelogram.setPoint1(new Point(e.X, e.Y));
+                                parallelogram.setPoint1(new Point(round(e.X), round(e.Y)));
                             else if (parallelogram.getRemainingClick() == 2)
-                                parallelogram.setPoint2(new Point(e.X, e.Y));
+                                parallelogram.setPoint2(new Point(round(e.X), round(e.Y)));
                             break;
                         case TypeDraw.Circle:
                             Circle circle = (Circle)drawShape.getShape();
-                            circle.setCenterPoint(new Point(e.X, e.Y));
+                            circle.setCenterPoint(new Point(round(e.X), round(e.Y)));
                             break;
                         case TypeDraw.Ellipse:
                             Ellipse ellipse = (Ellipse)drawShape.getShape();
                             if (ellipse.getRemainingClick() == 3)
-                                ellipse.setStartPoint(new Point(e.X, e.Y));
+                                ellipse.setStartPoint(new Point(round(e.X), round(e.Y)));
                             else if (ellipse.getRemainingClick() == 2)
-                                ellipse.setEndWidthPoint(new Point(e.X, e.Y));
+                                ellipse.setEndWidthPoint(new Point(round(e.X), round(e.Y)));
                             break;
                         case TypeDraw.Square:
                             Square square = (Square)drawShape.getShape();
-                            square.setPoint1(new Point(e.X, e.Y));
+                            square.setPoint1(new Point(round(e.X), round(e.Y)));
                             break;
                         
                     }
@@ -103,47 +117,48 @@ namespace GraphicProject
                 {
                     if (drawShape.getShape().getTransformFlag())
                     {
-                        drawShape.getShape().setTransformPoint(new Point(e.X, e.Y));
+                        drawShape.getShape().setTransformPoint(new Point(round(e.X), round(e.Y)));
                     }
                     else {
                         switch (drawShape.getShape().getTypeDraw())
                         {
                             case TypeDraw.Line:
                                 Line line = (Line)drawShape.getShape();
-                                //line.setEndPoint(new Point(Convert.ToInt16(e.X), Convert.ToInt16(e.Y)));
-                                line.setEndPoint(new Point(e.X, e.Y));
+                                //line.setEndPoint(new Point(Convert.ToInt16(round(e.X)), Convert.ToInt16(round(e.Y))));
+                                line.setEndPoint(new Point(round(e.X), round(e.Y)));
                                 break;
                             case TypeDraw.Rectangle:
                                 Rectangle rectangle = (Rectangle)drawShape.getShape();
-                                rectangle.setEndPoint(new Point(e.X, e.Y));
+                                rectangle.setEndPoint(new Point(round(e.X), round(e.Y)));
                                 break;
                             case TypeDraw.Triangle:
                                 Triangle triangle = (Triangle)drawShape.getShape();
-                                triangle.setPoint3(new Point(e.X, e.Y));
+                                triangle.setPoint3(new Point(round(e.X), round(e.Y)));
                                 break;
                             case TypeDraw.Parallelogram:
                                 Parallelogram paralleogram = (Parallelogram)drawShape.getShape();
-                                paralleogram.setPoint3(new Point(e.X, e.Y));
+                                paralleogram.setPoint3(new Point(round(e.X), round(e.Y)));
                                 break;
                             case TypeDraw.Circle:
                                 Circle circle = (Circle)drawShape.getShape();
-                                circle.setEndPoint(new Point(e.X, e.Y));
+                                circle.setEndPoint(new Point(round(e.X), round(e.Y)));
                                 break;
                             case TypeDraw.Ellipse:
                                 Ellipse ellipse = (Ellipse)drawShape.getShape();
-                                ellipse.setEndHightPoint(new Point(e.X, e.Y));
+                                ellipse.setEndHightPoint(new Point(round(e.X), round(e.Y)));
                                 break;
                             case TypeDraw.Cube:
                                 Cube cube = (Cube)drawShape.getShape();
-                                cube.setPoint(new Point(e.X, e.Y));
+                                cube.setStartPoint(new Point(round(e.X), round(e.Y)));
+                                new InputCubeForm(drawShape).ShowDialog();
                                 break;
                             case TypeDraw.Cylinder:
                                 Cylinder cylinder = (Cylinder)drawShape.getShape();
-                                cylinder.setPoint(new Point(e.X, e.Y));
+                                cylinder.setPoint(new Point(round(e.X), round(e.Y)));
                                 break;
                             case TypeDraw.Square:
                                 Square square = (Square)drawShape.getShape();
-                                square.setPoint2(new Point(e.X, e.Y));
+                                square.setPoint2(new Point(round(e.X), round(e.Y)));
                                 break;
 
                         }

@@ -112,7 +112,7 @@ namespace GraphicProject
             if ((startPoint != null && endPoint != null)&&(startPoint!=new Point(0,0))&&endPoint!=new Point(0,0))
             {
                 double width = Math.Sqrt(((endPoint.X - point12.X) * (endPoint.X - point12.X)) + ((endPoint.Y - point12.Y) * (endPoint.Y - point12.Y)));
-                double height = Math.Sqrt(((startPoint.X - point21.X) * (startPoint.X - point21.X)) + ((startPoint.Y - point21.Y) * (startPoint.Y - point21.Y)));
+                double height = Math.Sqrt(((startPoint.X - point12.X) * (startPoint.X - point12.X)) + ((startPoint.Y - point12.Y) * (startPoint.Y - point12.Y)));
                 if (width < height)
                 {
                     this.width = width;

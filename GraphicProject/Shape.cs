@@ -166,14 +166,18 @@ namespace GraphicProject
         public static void resetAllCountShape()
         {
             Shape.numCirCle = 1;
-            Shape.numCube = 1;
-            Shape.numCylinder = 1;
             Shape.numEllipse = 1;
             Shape.numLine = 1;
             Shape.numParallelogram = 1;
             Shape.numRectangle = 1;
             Shape.numTriangle = 1;
             Shape.numSquare = 1;
+        }
+
+        public static void resetAllCountShape3D()
+        {
+            Shape.numCube = 1;
+            Shape.numCylinder = 1;
         }
 
         public void minusCountShape()
