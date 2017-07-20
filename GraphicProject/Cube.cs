@@ -106,7 +106,7 @@ namespace GraphicProject
             double can2 = (int)Math.Sqrt(2);
             foreach (Point3D _p in list)
             {
-                p2d = new Point(200+(int)(((double)_p.X - (double)((double)_p.Y / can2))), 200+(int)(((double)_p.Z - (double)((double)_p.Y / can2))));
+                p2d = new Point(200+(int)(((double)_p.X - (double)((double)_p.Y / can2))),200+(int)(((double)_p.Z - (double)((double)_p.Y / can2))));
                 Console.WriteLine("2d: " + p2d.X + " - " + p2d.Y);
                 list2D.Add(p2d);
             }
@@ -169,7 +169,7 @@ namespace GraphicProject
             if (list2D != null&&list2D.Count>0)
             {
                 Console.WriteLine("list2dElement: " + list2D.ElementAt(0).X + " - " + list2D.ElementAt(0).Y);
-                listLine.Add(new Line(list2D.ElementAt(1), list2D.ElementAt(0)));
+                //listLine.Add(new Line(list2D.ElementAt(1), list2D.ElementAt(0)));
                 listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(1)));
                 listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3)));
                 listLine.Add(new Line(list2D.ElementAt(3), list2D.ElementAt(0)));

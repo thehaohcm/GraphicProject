@@ -31,6 +31,7 @@ namespace GraphicProject
 
         public Ellipse() : this(new Point(0, 0), new Point(0, 0), new Point(0, 0))
         {
+            dottedEllipseFlag = true;
             resetRemaningClick();
         }
 

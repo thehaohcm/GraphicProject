@@ -108,11 +108,11 @@ namespace GraphicProject
         {
             putpixel(round(centerX + x), round(centerY + y), color);
             putpixel(round(centerX - x), round(centerY + y), color);
-            if (dottedEllipseFlag == false)
-            {
+            //if (dottedEllipseFlag == false)
+            //{
                 putpixel(round(centerX + x), round(centerY - y), color);
                 putpixel(round(centerX - x), round(centerY - y), color);
-            }
+            //}
         }
 
         public int round(double tds)
@@ -172,8 +172,9 @@ namespace GraphicProject
             }
         }
 
-        public void MidPoint_Ellipse(Ellipse ellipse,bool dottedEllipseFlag=false)
+        public void MidPoint_Ellipse(Ellipse ellipse)//,bool dottedEllipseFlag=false)
         {
+            bool dottedEllipseFlag = ellipse.getDottedEllipseFlag();
             //int x1, y1, x2, y2, centerX, centerY;
             int x, y, fx, fy, a2, b2, p, a, b;
             //if (!ellipse.getChangeFlag())
@@ -421,9 +422,11 @@ namespace GraphicProject
             
             if (!check2d)
             {
-                g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
+                //g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
+                g.DrawLine(new Pen(Color.Black), 0, 200, 200, 200);
                 g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
-                g.DrawLine(new Pen(Color.FromArgb(0x00, 0x99, 0x00)), 200, 200, 400, 400);
+                //g.DrawLine(new Pen(Color.FromArgb(0x00, 0x99, 0x00)), 200, 200, 400, 400);
+                g.DrawLine(new Pen(Color.FromArgb(0x00, 0x99, 0x00)), 200, 200, 0,400);
             }
         }
 
@@ -487,7 +490,7 @@ namespace GraphicProject
                             break;
                         case TypeDraw.Ellipse:
                             Ellipse ellipse = (Ellipse)s;
-                            MidPoint_Ellipse(ellipse,true);
+                            MidPoint_Ellipse(ellipse);//,true);
                             break;
                         case TypeDraw.Cube:
                             Cube cube = (Cube)s;
@@ -516,7 +519,7 @@ namespace GraphicProject
                                     drawLinebyMidPoint((Line)_s);
                                 else if (_s.getTypeDraw() == TypeDraw.Ellipse) {
                                     Ellipse _e = (Ellipse)_s;
-                                    MidPoint_Ellipse(_e, _e.getDottedEllipseFlag());
+                                    MidPoint_Ellipse(_e);//, _e.getDottedEllipseFlag());
                                 }
                             }
                             break;
@@ -645,7 +648,7 @@ namespace GraphicProject
                                     else if (_s.getTypeDraw() == TypeDraw.Ellipse)
                                     {
                                         Ellipse _e = (Ellipse)_s;
-                                        MidPoint_Ellipse(_e, _e.getDottedEllipseFlag());
+                                        MidPoint_Ellipse(_e);//, _e.getDottedEllipseFlag());
                                     }
                                 }
                                 break;
