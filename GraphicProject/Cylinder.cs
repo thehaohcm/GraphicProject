@@ -141,10 +141,10 @@ namespace GraphicProject
         {
             List<Shape> listLine = new List<Shape>();
 
-            listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3)));
-            listLine.Add(new Line(list2D.ElementAt(0), list2D.ElementAt(4)));
-            listLine.Add(new Ellipse(list2D.ElementAt(7), list2D.ElementAt(0), list2D.ElementAt(1)));
-            listLine.Add(new Ellipse(list2D.ElementAt(6), list2D.ElementAt(5), list2D.ElementAt(4)));
+            listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3),getColor()));
+            listLine.Add(new Line(list2D.ElementAt(0), list2D.ElementAt(4), getColor()));
+            listLine.Add(new Ellipse(list2D.ElementAt(7), list2D.ElementAt(0), list2D.ElementAt(1), getColor()));
+            listLine.Add(new Ellipse(list2D.ElementAt(6), list2D.ElementAt(5), list2D.ElementAt(4), getColor()));
             return listLine;
         }
 

@@ -18,7 +18,7 @@ namespace GraphicProject
             setColor(color);
         }
 
-        public Line(Point startPoint,Point endPoint, bool dottedLineFlag=false):this(startPoint,endPoint)
+        public Line(Point startPoint,Point endPoint, Color color,bool dottedLineFlag=false):this(startPoint,endPoint,color)
         {
             setDottedLineFlag(dottedLineFlag);
         }

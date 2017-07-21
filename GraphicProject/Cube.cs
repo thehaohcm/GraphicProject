@@ -213,18 +213,18 @@ namespace GraphicProject
             if (list2D != null&&list2D.Count>0)
             {
                 Console.WriteLine("list2dElement: " + list2D.ElementAt(0).X + " - " + list2D.ElementAt(0).Y);
-                listLine.Add(new Line(list2D.ElementAt(1), list2D.ElementAt(0)));
-                listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(1)));
-                listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3)));
-                listLine.Add(new Line(list2D.ElementAt(3), list2D.ElementAt(0)));
-                listLine.Add(new Line(list2D.ElementAt(4), list2D.ElementAt(3)));
-                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(4)));
-                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(6)));
-                listLine.Add(new Line(list2D.ElementAt(6), list2D.ElementAt(7), true));
-                listLine.Add(new Line(list2D.ElementAt(4), list2D.ElementAt(7), true));
-                listLine.Add(new Line(list2D.ElementAt(7), list2D.ElementAt(0), true));
-                listLine.Add(new Line(list2D.ElementAt(6), list2D.ElementAt(1)));
-                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(2)));
+                listLine.Add(new Line(list2D.ElementAt(1), list2D.ElementAt(0),getColor()));
+                listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(1), getColor()));
+                listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3), getColor()));
+                listLine.Add(new Line(list2D.ElementAt(3), list2D.ElementAt(0), getColor()));
+                listLine.Add(new Line(list2D.ElementAt(4), list2D.ElementAt(3), getColor()));
+                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(4), getColor()));
+                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(6), getColor()));
+                listLine.Add(new Line(list2D.ElementAt(6), list2D.ElementAt(7), getColor(), true));
+                listLine.Add(new Line(list2D.ElementAt(4), list2D.ElementAt(7), getColor(), true));
+                listLine.Add(new Line(list2D.ElementAt(7), list2D.ElementAt(0), getColor(), true));
+                listLine.Add(new Line(list2D.ElementAt(6), list2D.ElementAt(1), getColor()));
+                listLine.Add(new Line(list2D.ElementAt(5), list2D.ElementAt(2), getColor()));
             }
             return listLine;
         }

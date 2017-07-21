@@ -894,6 +894,7 @@ namespace GraphicProject
             {
                 Cube cube = (Cube)shape;
                 //cube = new Cube(point3d, width, height, depth);
+                cube.setColor(color);
                 cube.setPoint3D(point3d);
                 cube.setWidth(width);
                 cube.setHeight(height);
@@ -917,6 +918,7 @@ namespace GraphicProject
             if (point3d != null)
             {
                 Cylinder cylinder = (Cylinder)shape;
+                cylinder.setColor(color);
                 cylinder.setPoint3D(point3d);
                 cylinder.setHeight(height);
                 cylinder.setRadius(radius);
