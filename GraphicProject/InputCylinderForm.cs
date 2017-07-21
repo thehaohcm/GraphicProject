@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace GraphicProject
 {
-    partial class InputCubeForm : Form
+    partial class InputCylinderForm : Form
     {
         DrawShape drawShape;
-        public InputCubeForm(DrawShape drawShape)
+        public InputCylinderForm(DrawShape drawShape)
         {
             InitializeComponent();
             this.drawShape = drawShape;
@@ -24,7 +24,7 @@ namespace GraphicProject
             this.Close();
         }
 
-        private void InputCubeForm_Load(object sender, EventArgs e)
+        private void InputCylinderForm_Load(object sender, EventArgs e)
         {
 
         }

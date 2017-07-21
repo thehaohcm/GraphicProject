@@ -1,6 +1,6 @@
 ﻿namespace GraphicProject
 {
-    partial class InputCubeForm
+    partial class InputCylinderForm
     {
         /// <summary>
         /// Required designer variable.
@@ -68,7 +68,7 @@
             this.textBox3.Location = new System.Drawing.Point(104, 83);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(206, 26);
-            this.textBox3.TabIndex = 6;
+            this.textBox3.TabIndex = 5;
             // 
             // label3
             // 
@@ -84,14 +84,14 @@
             this.textBox2.Location = new System.Drawing.Point(104, 51);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(206, 26);
-            this.textBox2.TabIndex = 5;
+            this.textBox2.TabIndex = 3;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(104, 19);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(206, 26);
-            this.textBox1.TabIndex = 4;
+            this.textBox1.TabIndex = 2;
             // 
             // label2
             // 
@@ -151,7 +151,7 @@
             this.txtZ.Location = new System.Drawing.Point(107, 86);
             this.txtZ.Name = "txtZ";
             this.txtZ.Size = new System.Drawing.Size(206, 26);
-            this.txtZ.TabIndex = 3;
+            this.txtZ.TabIndex = 5;
             // 
             // label6
             // 
@@ -167,7 +167,7 @@
             this.txtY.Location = new System.Drawing.Point(107, 54);
             this.txtY.Name = "txtY";
             this.txtY.Size = new System.Drawing.Size(206, 26);
-            this.txtY.TabIndex = 2;
+            this.txtY.TabIndex = 3;
             // 
             // label5
             // 
@@ -194,7 +194,7 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Tọa độ X:";
             // 
-            // InputCubeForm
+            // InputCylinderForm
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -206,10 +206,10 @@
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "InputCubeForm";
+            this.Name = "InputCylinderForm";
             this.ShowIcon = false;
-            this.Text = "Nhập thông tin hình hộp";
-            this.Load += new System.EventHandler(this.InputCubeForm_Load);
+            this.Text = "Nhập thông tin hình trụ";
+            this.Load += new System.EventHandler(this.InputCylinderForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

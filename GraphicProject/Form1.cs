@@ -148,9 +148,10 @@ namespace GraphicProject
                                 ellipse.setEndHightPoint(new Point(round(e.X), round(e.Y)));
                                 break;
                             case TypeDraw.Cube:
-                                Cube cube = (Cube)drawShape.getShape();
-                                cube.setStartPoint(new Point(round(e.X), round(e.Y)));
-                                new InputCubeForm(drawShape).ShowDialog();
+                                //Cube cube = (Cube)drawShape.getShape();
+                                //cube.setStartPoint(new Point(round(e.X), round(e.Y)));
+                                //new InputCubeForm(drawShape).ShowDialog();
+                                return;
                                 break;
                             case TypeDraw.Cylinder:
                                 Cylinder cylinder = (Cylinder)drawShape.getShape();
@@ -286,7 +287,7 @@ namespace GraphicProject
         private void button10_Click(object sender, EventArgs e)
         {
             drawShape.initShape(TypeDraw.Cube);
-            
+            new InputCubeForm(drawShape).ShowDialog();
         }
 
         private void button11_Click(object sender, EventArgs e)

@@ -148,7 +148,7 @@ namespace GraphicProject
                 case TypeDraw.Cube:
                     this.name = "Cube_" + numCube;
                     numCube++;
-                    this.remainingClick = 1;
+                    this.remainingClick = 0;
                     break;
                 case TypeDraw.Cylinder:
                     this.name = "Cylinder_" + numCylinder;

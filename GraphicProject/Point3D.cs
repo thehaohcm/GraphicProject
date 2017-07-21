@@ -54,5 +54,11 @@ namespace GraphicProject
                 z = value;
             }
         }
+
+        public override string ToString()
+        {
+            //return base.ToString();
+            return "{ " + x + " , " + y + " , " + x + " }";
+        }
     }
 }

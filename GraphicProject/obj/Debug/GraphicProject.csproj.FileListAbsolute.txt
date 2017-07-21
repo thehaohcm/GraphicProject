@@ -43,3 +43,4 @@ C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\Gra
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.ReflectionTransformForm.resources
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.exe.licenses
 C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.RotationTransformForm.resources
+C:\Users\thehaohcm\Documents\Visual Studio 2015\Projects\GraphicProject\KTDH\GraphicProject\obj\Debug\GraphicProject.InputCylinderForm.resources

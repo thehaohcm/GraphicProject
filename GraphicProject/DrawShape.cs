@@ -492,20 +492,20 @@ namespace GraphicProject
                             Ellipse ellipse = (Ellipse)s;
                             MidPoint_Ellipse(ellipse);//,true);
                             break;
-                        case TypeDraw.Cube:
-                            Cube cube = (Cube)s;
+                        //case TypeDraw.Cube:
+                        //    Cube cube = (Cube)s;
                             //g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
                             //g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
                             //g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
                             //g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
                             //g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
-                            if(cube!=null)
-                                foreach (Line _line in cube.getListLine())
-                                {
-                                    //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
-                                    drawLinebyMidPoint(_line,_line.getDottedLineFlag());
-                                }
-                            break;
+                            //if(cube!=null)
+                            //    foreach (Line _line in cube.getListLine())
+                            //    {
+                            //        //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
+                            //        drawLinebyMidPoint(_line,_line.getDottedLineFlag());
+                            //    }
+                            //break;
                         case TypeDraw.Cylinder:
                             Cylinder cylinder = (Cylinder)s;
                             //g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
@@ -811,6 +811,16 @@ namespace GraphicProject
                         frm.richTextBox1.AppendText("Điểm thứ IV: " + square.getPoint4().ToString() + "\n");
                         frm.richTextBox1.AppendText("Độ dài cạnh: " + square.getEdge().ToString() + "\n");
                         break;
+                    case TypeDraw.Cube:
+                        Cube cube = (Cube)choosedShape;
+                        frm.richTextBox1.AppendText("Điểm thứ I: " + cube.getList3D().ElementAt(0).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ II: " + cube.getList3D().ElementAt(1).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ III: " + cube.getList3D().ElementAt(2).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ IV: " + cube.getList3D().ElementAt(3).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ V: " + cube.getList3D().ElementAt(4).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ VI: " + cube.getList3D().ElementAt(5).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ VII: " + cube.getList3D().ElementAt(6).ToString() + "\n");
+                        break;
                 }
             }
         }
@@ -860,14 +870,27 @@ namespace GraphicProject
             }
         }
 
-        public void drawCube(int width,int height,int depth)
+        public void drawCube(Point3D point3d,int width,int height,int depth)
         {
-            if (width != null && height != null && depth != null)
+            if (point3d!=null&&width != null && height != null && depth != null)
             {
                 Cube cube = (Cube)shape;
+                //cube = new Cube(point3d, width, height, depth);
+                cube.setPoint3D(point3d);
                 cube.setWidth(width);
                 cube.setHeight(height);
                 cube.setDepth(depth);
+
+                if (cube != null)
+                    foreach (Line _line in cube.getListLine())
+                    {
+                        //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
+                        drawLinebyMidPoint(_line, _line.getDottedLineFlag());
+                    }
+                //break;
+                addShapeToShapeSet();
+                resetShape();
+
             }
         }
     }
