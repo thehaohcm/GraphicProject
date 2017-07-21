@@ -26,7 +26,7 @@ namespace GraphicProject
 
         private void InputCylinderForm_Load(object sender, EventArgs e)
         {
-
+            txtX.Select();
         }
 
         private void button1_Click(object sender, EventArgs e)
