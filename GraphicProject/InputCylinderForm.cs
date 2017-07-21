@@ -33,15 +33,14 @@ namespace GraphicProject
         {
             try
             {
-                int width, height, depth;
-                width = Convert.ToInt16(textBox1.Text);
-                height = Convert.ToInt16(textBox2.Text);
-                depth = Convert.ToInt16(textBox3.Text);
+                int height,radius;
+                height = Convert.ToInt16(textBox1.Text);
+                radius = Convert.ToInt16(textBox2.Text);
                 int x, y, z;
                 x = Convert.ToInt16(txtX.Text);
                 y = Convert.ToInt16(txtY.Text);
                 z = Convert.ToInt16(txtZ.Text);
-                drawShape.drawCube(new Point3D(x,y,z),width,height,depth);
+                drawShape.drawCylinder(new Point3D(x,y,z),height,radius);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }

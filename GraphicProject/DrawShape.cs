@@ -506,23 +506,23 @@ namespace GraphicProject
                             //        drawLinebyMidPoint(_line,_line.getDottedLineFlag());
                             //    }
                             //break;
-                        case TypeDraw.Cylinder:
-                            Cylinder cylinder = (Cylinder)s;
+                        //case TypeDraw.Cylinder:
+                            //Cylinder cylinder = (Cylinder)s;
                             //g.DrawLine(new Pen(Color.Black), 200, 200, 400, 200);
                             //g.DrawLine(new Pen(Color.Black), 200, 200, 200, 400);
                             ////g.DrawLine(new Pen(Color.Red), 200, 0, 200, 200);
                             ////g.DrawLine(new Pen(Color.Red), 200, 200, 400, 200);
                             //g.DrawLine(new Pen(Color.Aqua), 200, 200, 400, 400);
-                            foreach(Shape _s in cylinder.getListShape())
-                            {
-                                if (_s.getTypeDraw() == TypeDraw.Line)
-                                    drawLinebyMidPoint((Line)_s);
-                                else if (_s.getTypeDraw() == TypeDraw.Ellipse) {
-                                    Ellipse _e = (Ellipse)_s;
-                                    MidPoint_Ellipse(_e);//, _e.getDottedEllipseFlag());
-                                }
-                            }
-                            break;
+                            //foreach(Shape _s in cylinder.getListShape())
+                            //{
+                            //    if (_s.getTypeDraw() == TypeDraw.Line)
+                            //        drawLinebyMidPoint((Line)_s);
+                            //    else if (_s.getTypeDraw() == TypeDraw.Ellipse) {
+                            //        Ellipse _e = (Ellipse)_s;
+                            //        MidPoint_Ellipse(_e);//, _e.getDottedEllipseFlag());
+                            //    }
+                            //}
+                            //break;
                         case TypeDraw.Square:
                             Square square = (Square)s;
                             listLines = square.getAllLines();
@@ -730,8 +730,16 @@ namespace GraphicProject
 
         public void removeShape(int index)
         {
-            shapeSet.ElementAt(index).minusCountShape();
-            shapeSet.RemoveAt(index);
+            if (check2d)
+            {
+                shapeSet.ElementAt(index).minusCountShape();
+                shapeSet.RemoveAt(index);
+            }
+            else
+            {
+                shapeSet3D.ElementAt(index).minusCountShape();
+                shapeSet3D.RemoveAt(index);
+            }
             choosedFlag = false;
             choosedShape = null;
             updateListView();
@@ -821,6 +829,16 @@ namespace GraphicProject
                         frm.richTextBox1.AppendText("Điểm thứ VI: " + cube.getList3D().ElementAt(5).ToString() + "\n");
                         frm.richTextBox1.AppendText("Điểm thứ VII: " + cube.getList3D().ElementAt(6).ToString() + "\n");
                         break;
+                    case TypeDraw.Cylinder:
+                        Cylinder cylinder = (Cylinder)choosedShape;
+                        frm.richTextBox1.AppendText("Điểm thứ I: " + cylinder.getList3D().ElementAt(0).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ II: " + cylinder.getList3D().ElementAt(1).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ III: " + cylinder.getList3D().ElementAt(2).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ IV: " + cylinder.getList3D().ElementAt(3).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ V: " + cylinder.getList3D().ElementAt(4).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ VI: " + cylinder.getList3D().ElementAt(5).ToString() + "\n");
+                        frm.richTextBox1.AppendText("Điểm thứ VII: " + cylinder.getList3D().ElementAt(6).ToString() + "\n");
+                        break;
                 }
             }
         }
@@ -872,7 +890,7 @@ namespace GraphicProject
 
         public void drawCube(Point3D point3d,int width,int height,int depth)
         {
-            if (point3d!=null&&width != null && height != null && depth != null)
+            if (point3d!=null)
             {
                 Cube cube = (Cube)shape;
                 //cube = new Cube(point3d, width, height, depth);
@@ -891,6 +909,31 @@ namespace GraphicProject
                 addShapeToShapeSet();
                 resetShape();
 
+            }
+        }
+
+        public void drawCylinder(Point3D point3d,int height,int radius)
+        {
+            if (point3d != null)
+            {
+                Cylinder cylinder = (Cylinder)shape;
+                cylinder.setPoint3D(point3d);
+                cylinder.setHeight(height);
+                cylinder.setRadius(radius);
+                //cylinder.setPoint()
+                if(cylinder!=null)
+                    foreach (Shape _s in cylinder.getListShape())
+                    {
+                        if (_s.getTypeDraw() == TypeDraw.Line)
+                            drawLinebyMidPoint((Line)_s);
+                        else if (_s.getTypeDraw() == TypeDraw.Ellipse)
+                        {
+                            Ellipse _e = (Ellipse)_s;
+                            MidPoint_Ellipse(_e);//, _e.getDottedEllipseFlag());
+                        }
+                    }
+                addShapeToShapeSet();
+                resetShape();
             }
         }
     }

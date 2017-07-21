@@ -154,8 +154,9 @@ namespace GraphicProject
                                 return;
                                 break;
                             case TypeDraw.Cylinder:
-                                Cylinder cylinder = (Cylinder)drawShape.getShape();
-                                cylinder.setPoint(new Point(round(e.X), round(e.Y)));
+                                //Cylinder cylinder = (Cylinder)drawShape.getShape();
+                                //cylinder.setPoint(new Point(round(e.X), round(e.Y)));
+                                return;
                                 break;
                             case TypeDraw.Square:
                                 Square square = (Square)drawShape.getShape();
@@ -293,6 +294,7 @@ namespace GraphicProject
         private void button11_Click(object sender, EventArgs e)
         {
             drawShape.initShape(TypeDraw.Cylinder);
+            new InputCylinderForm(drawShape).ShowDialog();
         }
 
         private void button12_Click(object sender, EventArgs e)

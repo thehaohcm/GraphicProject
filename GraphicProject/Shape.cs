@@ -79,7 +79,12 @@ namespace GraphicProject
                     this.remainingClick = 3;
                     break;
                 case TypeDraw.Cube:
-                    this.remainingClick = 1;
+                    //this.remainingClick = 1;
+                    this.remainingClick = 0;
+                    break;
+                case TypeDraw.Cylinder:
+                    //this.remainingClick = 1;
+                    this.remainingClick = 0;
                     break;
             }
         }
@@ -148,12 +153,14 @@ namespace GraphicProject
                 case TypeDraw.Cube:
                     this.name = "Cube_" + numCube;
                     numCube++;
+                    //this.remainingClick = 1;
                     this.remainingClick = 0;
                     break;
                 case TypeDraw.Cylinder:
                     this.name = "Cylinder_" + numCylinder;
                     numCylinder++;
-                    this.remainingClick = 1;
+                    //this.remainingClick = 1;
+                    this.remainingClick = 0;
                     break;
             }
         }
