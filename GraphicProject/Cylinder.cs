@@ -116,7 +116,7 @@ namespace GraphicProject
             //5
             p = new Point3D(x - radius, y - height, z);
             list.Add(p);
-            //6
+           
             //p = new Point3D(x, y - height, (int)((z - radius) * 1.5));
             p = new Point3D(x,y,(int)((z*1.5)));
             list.Add(p);

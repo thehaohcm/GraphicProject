@@ -705,6 +705,7 @@ namespace GraphicProject
             foreach (Shape shape in _shapeSet)
             {
                 frm.listBox1.Items.Add(shape.getName());
+                draw3DShape(shape);
             }
             if (frm.listBox1.Items.Count > 0)
             {
@@ -936,6 +937,34 @@ namespace GraphicProject
                     }
                 addShapeToShapeSet();
                 resetShape();
+            }
+        }
+
+        public void draw3DShape(Shape shape)
+        {
+            switch (shape.getTypeDraw())
+            {
+                case TypeDraw.Cube:
+                    Cube cube = (Cube)shape;
+                    foreach (Line _line in cube.getListLine())
+                    {
+                        //g.DrawLine(pen, _line.getStartPoint(), _line.getEndPoint());
+                        drawLinebyMidPoint(_line, _line.getDottedLineFlag());
+                    }
+                    break;
+                case TypeDraw.Cylinder:
+                    Cylinder cylinder = (Cylinder)shape;
+                    foreach (Shape _s in cylinder.getListShape())
+                    {
+                        if (_s.getTypeDraw() == TypeDraw.Line)
+                            drawLinebyMidPoint((Line)_s);
+                        else if (_s.getTypeDraw() == TypeDraw.Ellipse)
+                        {
+                            Ellipse _e = (Ellipse)_s;
+                            MidPoint_Ellipse(_e);//, _e.getDottedEllipseFlag());
+                        }
+                    }
+                    break;
             }
         }
     }
