@@ -38,22 +38,22 @@ namespace GraphicProject
 
         }
 
-        public void setPoint(Point point)
-        {
-            //this.point = point;
-            this.point3d = new Point3D(200, 200, 200);
-            minusRemainingClick();
+        //public void setPoint(Point point)
+        //{
+        //    //this.point = point;
+        //    //this.point3d = new Point3D(200, 200, 200);
+        //    //minusRemainingClick();
 
-            radius = 40 * 2;
-            height = 80 * 2;
+        //    //radius = 40 * 2;
+        //    //height = 80 * 2;
 
 
-            point3d.X = 200;
-            point3d.Y = 200;
-            point3d.Z = 200;
+        //    //point3d.X = 200;
+        //    //point3d.Y = 200;
+        //    //point3d.Z = 200;
 
-            arrPoint3D(point3d.X, point3d.Y, point3d.Z);
-        }
+        //    //arrPoint3D(point3d.X, point3d.Y, point3d.Z);
+        //}
 
         public void setPoint3D(Point3D point3d)
         {
@@ -117,7 +117,8 @@ namespace GraphicProject
             p = new Point3D(x - radius, y - height, z);
             list.Add(p);
             //6
-            p = new Point3D(x, y - height, (int)((z - radius) * 1.5));
+            //p = new Point3D(x, y - height, (int)((z - radius) * 1.5));
+            p = new Point3D(x,y,(int)((z*1.5)));
             list.Add(p);
             //7
             p = new Point3D(x - 2 * radius, y - height, z);
@@ -132,7 +133,7 @@ namespace GraphicProject
             foreach (Point3D _p in list)
             {
                 p2d = new Point(200 + (int)(((double)_p.X - (double)((double)_p.Y / can2))), 200 + (int)(((double)_p.Z - (double)((double)_p.Y / can2))));
-
+                Console.WriteLine("X: " + p2d.X + " - Y: " + p2d.Y);
                 list2D.Add(p2d);
             }
         }
@@ -144,7 +145,7 @@ namespace GraphicProject
             listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3),getColor()));
             listLine.Add(new Line(list2D.ElementAt(0), list2D.ElementAt(4), getColor()));
             listLine.Add(new Ellipse(list2D.ElementAt(7), list2D.ElementAt(0), list2D.ElementAt(1), getColor()));
-            listLine.Add(new Ellipse(list2D.ElementAt(6), list2D.ElementAt(5), list2D.ElementAt(4), getColor()));
+            listLine.Add(new Ellipse(list2D.ElementAt(6), list2D.ElementAt(3), list2D.ElementAt(5), getColor()));
             return listLine;
         }
 
