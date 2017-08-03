@@ -67,6 +67,11 @@ namespace GraphicProject
             if (startPoint != null)
                 //heightRadius = Math.Abs(startPoint.Y - endHeightPoint.Y);
                 heightRadius = Math.Sqrt(((endHeightPoint.X - startPoint.X) * (endHeightPoint.X - startPoint.X)) + ((endHeightPoint.Y - startPoint.Y) * (endHeightPoint.Y - startPoint.Y)));
+
+            if (startPoint != null && endWidthPoint != null)
+            {
+
+            }
         }
 
         public Point getEndHightPoint()

@@ -253,6 +253,92 @@ namespace GraphicProject
                 count++;
             }
         }
+
+        public void MidPoint_Ellipse1(Ellipse ellipse)//,bool dottedEllipseFlag=false)
+        {
+            bool dottedEllipseFlag = ellipse.getDottedEllipseFlag();
+            //int x1, y1, x2, y2, centerX, centerY;
+            int x, y, fx, fy, a2, b2, p, a, b;
+            //if (!ellipse.getChangeFlag())
+            //{
+            //a = (int)ellipse.getWidthRadius();
+            //b = (int)ellipse.getHeightRadius();
+            //}
+            //else
+            //{
+
+
+            //if (Math.Abs((int)ellipse.getEndHightPoint().Y) > Math.Abs((int)ellipse.getEndWidthPoint().Y))
+            //{
+                a = (int)ellipse.getHeightRadius();
+                b = (int)ellipse.getWidthRadius();
+            //}
+            //else
+            //{
+            //    b = (int)ellipse.getHeightRadius();
+            //    a = (int)ellipse.getWidthRadius();
+            //}
+
+
+            //}
+
+            a2 = a * a;
+            b2 = b * b;
+            x = 0;
+            y = b;
+            fx = 0;
+            fy = 2 * a2 * y;
+            put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+            p = round(b2 - (a2 * b) + (0.25 * a2));//p=b2 - a2*b +a2/4
+            //int count = 0;
+            while (fx < fy)
+            {
+                x++;
+                fx += 2 * b2;
+                //delay(50);
+                if (p < 0)
+                {
+                    p += b2 * (2 * x + 3);//p=p + b2*(2x +3)
+                }
+                else
+                {
+                    y--;
+                    p += b2 * (2 * x + 3) + a2 * (2 - 2 * y);//p=p +b2(2x +3) +a2(2-2y)
+                    fy -= 2 * a2;
+                }
+                //if (dottedEllipseFlag && count % 20 == 0)
+                //    put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor(), dottedEllipseFlag);
+                //else 
+                put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+                //count++;
+            }
+            p = round(b2 * (x + 0.5) * (x + 0.5) + a2 * (y - 1) * (y - 1) - a2 * b2);
+            //
+            //count = 0;
+            while (y > 0)
+            {
+                y--;
+                fy -= 2 * a2;
+                // delay(50);
+                if (p >= 0)
+                {
+                    p += a2 * (3 - 2 * y); //p=p +a2(3-2y)
+                }
+                else
+                {
+                    x++;
+                    fx += 2 * b2;
+                    p += b2 * (2 * x + 2) + a2 * (3 - 2 * y);//p=p+ b2(2x +2) + a2(3-2y)
+                }
+                //if (dottedEllipseFlag && count % 20 == 0)
+                put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());//, dottedEllipseFlag);
+                //else if (dottedEllipseFlag && count % 20 == 0)
+                //put4pixel(ellipse.getStartPoint().X, ellipse.getStartPoint().Y, x, y, ellipse.getColor());
+
+                //count++;
+            }
+        }
+
         public void DDA_Line(Line line) // Ve duong thang co dinh dang mau
         {
             //Line line = (Line)s;
