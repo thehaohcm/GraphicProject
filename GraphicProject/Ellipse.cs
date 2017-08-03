@@ -13,7 +13,7 @@ namespace GraphicProject
         double widthRadius, heightRadius;
         private bool dottedEllipseFlag,changeFlag;
 
-        public Ellipse(Point startPoint,Point endWidthPoint,Point endHightPoint,Color color):this(startPoint,endWidthPoint,endHightPoint)
+        public Ellipse(Point startPoint,Point endWidthPoint,Point endHightPoint,Color color, bool dottedEllipseFlag = false) :this(startPoint,endWidthPoint,endHightPoint,dottedEllipseFlag)
         {
             setColor(color);
         }
@@ -31,7 +31,7 @@ namespace GraphicProject
 
         public Ellipse() : this(new Point(0, 0), new Point(0, 0), new Point(0, 0))
         {
-            dottedEllipseFlag = true;
+            dottedEllipseFlag = false;
             resetRemaningClick();
         }
 

@@ -108,11 +108,11 @@ namespace GraphicProject
         {
             putpixel(round(centerX + x), round(centerY + y), color);
             putpixel(round(centerX - x), round(centerY + y), color);
-            //if (dottedEllipseFlag == false)
-            //{
+            if (dottedEllipseFlag == false)
+            {
                 putpixel(round(centerX + x), round(centerY - y), color);
                 putpixel(round(centerX - x), round(centerY - y), color);
-            //}
+            }
         }
 
         public int round(double tds)
@@ -221,9 +221,14 @@ namespace GraphicProject
                     p += b2 * (2 * x + 3) + a2 * (2 - 2 * y);//p=p +b2(2x +3) +a2(2-2y)
                     fy -= 2 * a2;
                 }
-                //if (dottedEllipseFlag && count % 20 == 0)
-                //    put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor(), dottedEllipseFlag);
-                //else 
+                if (dottedEllipseFlag)
+                {
+                    if (count % 10 != 0)
+                        put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor(), dottedEllipseFlag);
+                    else
+                        put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
+                }
+                else
                     put4pixel(x, y, ellipse.getStartPoint().X, ellipse.getStartPoint().Y, ellipse.getColor());
                 count++;
             }
