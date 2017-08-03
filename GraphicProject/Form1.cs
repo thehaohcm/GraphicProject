@@ -228,6 +228,13 @@ namespace GraphicProject
                     drawShape.updateListView();
                     drawShape.setNullChoosedShape();
                     richTextBox1.Clear();
+                    button9.Enabled = false;
+                    button12.Enabled = false;
+                    button14.Enabled = false;
+                    button15.Enabled = false;
+                    button17.Enabled = false;
+                    button13.Enabled = false;
+                    button8.Enabled = false;
                     panel1.Refresh();
                 }
             }

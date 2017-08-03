@@ -111,17 +111,17 @@ namespace GraphicProject
             p = new Point3D(x - radius, y, z);
             list.Add(p);
             //4 
-            p = new Point3D(x - 3 * radius, y - height, z);
+            p = new Point3D(x - 3 * radius, y - height, z+15);
             list.Add(p);
             //5
-            p = new Point3D(x - radius, y - height, z);
+            p = new Point3D(x - radius, y - height, z+15);
             list.Add(p);
-           
+            //6
             //p = new Point3D(x, y - height, (int)((z - radius) * 1.5));
-            p = new Point3D(x,y,(int)((z*1.5)));
+            p = new Point3D(x, y, (int)((z * 1.5 + radius)));
             list.Add(p);
             //7
-            p = new Point3D(x - 2 * radius, y - height, z);
+            p = new Point3D(x - (int)(2 * radius), y - height, z);
             list.Add(p);
             //p0 true
             p = new Point3D(x, y, z);
@@ -142,12 +142,23 @@ namespace GraphicProject
         {
             List<Shape> listLine = new List<Shape>();
 
-            listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3),getColor()));
+            listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3), getColor()));
             listLine.Add(new Line(list2D.ElementAt(0), list2D.ElementAt(4), getColor()));
             listLine.Add(new Ellipse(list2D.ElementAt(7), list2D.ElementAt(0), list2D.ElementAt(1), getColor()));
-            listLine.Add(new Ellipse(list2D.ElementAt(6), list2D.ElementAt(3), list2D.ElementAt(5), getColor()));
+            listLine.Add(new Ellipse(list2D.ElementAt(5), list2D.ElementAt(4), list2D.ElementAt(6), getColor()));
             return listLine;
         }
+
+        //public List<Shape> getListShape()
+        //{
+        //    List<Shape> listLine = new List<Shape>();
+
+        //    listLine.Add(new Line(list2D.ElementAt(2), list2D.ElementAt(3),getColor()));
+        //    listLine.Add(new Line(list2D.ElementAt(0), list2D.ElementAt(4), getColor()));
+        //    listLine.Add(new Ellipse(list2D.ElementAt(7), list2D.ElementAt(0), list2D.ElementAt(1), getColor()));
+        //    listLine.Add(new Ellipse(list2D.ElementAt(6), list2D.ElementAt(3), list2D.ElementAt(5), getColor()));
+        //    return listLine;
+        //}
 
         public List<Point3D> getList3D()
         {
