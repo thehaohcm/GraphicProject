@@ -166,6 +166,14 @@ namespace GraphicProject
                         }
                         drawShape.addShapeToShapeSet();
                         drawShape.resetShape();
+                        button9.Enabled = false;
+                        button12.Enabled = false;
+                        button14.Enabled = false;
+                        button15.Enabled = false;
+                        button17.Enabled = false;
+                        button13.Enabled = false;
+                        if (drawShape.getShapeSet().Count == 0)
+                            button8.Enabled = false;
                     }
                     panel1.Refresh();
                 }
